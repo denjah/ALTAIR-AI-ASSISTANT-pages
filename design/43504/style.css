@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ALTAIR Brand Fonts Engineering - Local File Link */
+@font-face {
+    font-family: 'EuropeExt';
+    font-weight: 700;
+    src: url('../../EuropeExt-Bold.otf') format('opentype'),
+        local('EuropeExt Bold'),
+        local('EuropeExt-Bold'),
+        local('Impact'),
+        local('Arial Black');
+}
+
+:root {
+    --accent: #ED7A1C;
+    --accent-hover: #D96A10;
+    --bg-dark: #0a0a0c;
+    --surface-dark: rgba(10, 10, 12, 0.7);
+    --border-color: rgba(255, 255, 255, 0.15);
+    --text-main: #f0f0f0;
+    --text-muted: #94949e;
+    --container-w: 1320px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-dark);
+    background-image: url('../texture/BACK_TEXTURE_13.png');
+    background-size: 100% auto;
+    background-attachment: fixed;
+    background-repeat: repeat-y;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* Global Font Enforcement */
+h1,
+h2,
+h3,
+h4,
+[class*="text-europe"],
+.header-font,
+.font-europe {
+    font-family: 'EuropeExt', 'Impact', 'Arial Black', sans-serif !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.12em !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    margin: 0;
+}
+
+/* Figures Layer */
+.figures-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.figure-wrapper {
+    position: absolute;
+    width: 130vh;
+    height: 130vh;
+    opacity: 0;
+    animation: rotateSlow 60s linear infinite, fadeSequence 15s ease-in-out infinite;
+}
+
+.figure-wrapper img {
+    width: 100%;
+    height: 100%;
+}
+
+.fig-1 {
+    top: -20vh;
+    left: -10vw;
+    animation-delay: 0s;
+}
+
+.fig-2 {
+    top: 10vh;
+    right: -25vw;
+    animation-delay: 5s;
+}
+
+.fig-3 {
+    bottom: -35vh;
+    left: 15vw;
+    animation-delay: 10s;
+}
+
+@keyframes rotateSlow {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeSequence {
+
+    0%,
+    100% {
+        opacity: 0;
+    }
+
+    20%,
+    40% {
+        opacity: 0.55;
+    }
+
+    60% {
+        opacity: 0;
+    }
+}
+
+/* Container */
+.report-container {
+    max-width: var(--container-w);
+    margin: 80px auto;
+    padding: 64px;
+    background: var(--surface-dark);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-color);
+    border-radius: 40px;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0 60px 180px rgba(0, 0, 0, 1);
+}
+
+header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 48px;
+    margin-bottom: 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-wrapper {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 16px 32px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-wrapper img {
+    height: 60px;
+    width: auto;
+    filter: brightness(1.4);
+}
+
+/* Card & Typography */
+h1 {
+    font-size: 64px;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+h2 {
+    font-size: 30px;
+    margin-bottom: 44px;
+    color: var(--accent);
+    border-left: 8px solid var(--accent);
+    padding-left: 28px;
+}
+
+h3 {
+    font-size: 18px;
+    color: #fff;
+}
+
+.card {
+    background: rgba(15, 15, 18, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 36px;
+    padding: 48px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+    border-color: var(--accent);
+    background: rgba(20, 20, 24, 1);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.chip {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'EuropeExt', sans-serif !important;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    letter-spacing: 0.2em;
+    border-radius: 6px;
+}
+
+.quote-card {
+    background: rgba(255, 255, 255, 0.04);
+    padding: 36px;
+    border-radius: 24px;
+    border-left: 6px solid var(--accent);
+    font-style: italic;
+    color: #efefff;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-label {
+    color: var(--text-muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+.data-value {
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* Global Fade-in */
+.fade-up {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
