@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis | ELESTA | ID 44740</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'EuropeExt-Bold';
+            src: url('assets/EuropeExt-Bold.otf') format('opentype');
+            font-weight: bold;
+            font-style: normal;
+        }
+
+        :root {
+            --accent: #ED7A1C;
+            --bg-dark: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #999999;
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(0, 0, 0, 0.6);
+            --radius: 28px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/texture/BACK_TEXTURE_13.png') repeat-y;
+            background-size: 100% auto;
+            opacity: 0.4;
+            z-index: -3;
+            pointer-events: none;
+        }
+
+        .fixed-figures {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            width: 120vh;
+            height: 120vh;
+            opacity: 0.6;
+            filter: blur(80px);
+            mix-blend-mode: screen;
+        }
+
+        .shape-1 {
+            top: -30vh;
+            left: -30vh;
+            animation: rotateShape 25s linear infinite;
+        }
+
+        .shape-2 {
+            bottom: -30vh;
+            right: -30vh;
+            animation: rotateShape 30s linear infinite reverse;
+        }
+
+        .shape-3 {
+            top: 20vh;
+            left: 40vw;
+            width: 90vh;
+            height: 90vh;
+            opacity: 0.4;
+            animation: rotateShape 40s linear infinite;
+        }
+
+        @keyframes rotateShape {
+            from {
+                transform: rotate(0deg) scale(1);
+            }
+
+            to {
+                transform: rotate(360deg) scale(1.1);
+            }
+        }
+
+        .header {
+            width: 100%;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1320px;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            height: 70px;
+        }
+
+        .deal-info {
+            text-align: right;
+        }
+
+        .deal-id {
+            font-family: 'EuropeExt-Bold', sans-serif;
+            color: var(--accent);
+            font-size: 16px;
+            letter-spacing: 4px;
+        }
+
+        .deal-type {
+            font-size: 10px;
+            color: var(--text-secondary);
+            letter-spacing: 2px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            background: var(--glass);
+            backdrop-filter: blur(8px);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            padding: 100px 100px;
+            box-shadow: 0 0 100px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'EuropeExt-Bold', sans-serif;
+            font-size: 14px;
+            color: var(--accent);
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .hero-section {
+            margin-bottom: 120px;
+        }
+
+        .hero-title {
+            font-family: 'EuropeExt-Bold', sans-serif;
+            font-size: 110px;
+            line-height: 0.85;
+            letter-spacing: 6px;
+            margin-bottom: 30px;
+        }
+
+        .hero-tags {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            padding: 6px 16px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .hero-lead {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            color: var(--text-secondary);
+        }
+
+        .passport-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .passport-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: var(--radius);
+        }
+
+        .card-header {
+            font-family: 'EuropeExt-Bold', sans-serif;
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        .check-list {
+            list-style: none;
+        }
+
+        .check-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .check-list li::before {
+            content: "●";
+            color: var(--accent);
+            margin-right: 15px;
+            font-size: 10px;
+        }
+
+        .card-warning {
+            background: rgba(255, 157, 157, 0.03);
+            border: 1px solid rgba(255, 157, 157, 0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            padding: 50px;
+            border-radius: var(--radius);
+            margin-bottom: 100px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .pains-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 100px;
+        }
+
+        .pain-item h3 {
+            font-family: 'EuropeExt-Bold', sans-serif;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .quote {
+            color: var(--accent);
+            background: rgba(237, 122, 28, 0.08);
+            padding: 20px;
+            border-radius: 12px;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .strategy-card {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .script-item .badge {
+            background: var(--accent);
+            color: #fff;
+            font-size: 9px;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            display: inline-block;
+            font-weight: 800;
+        }
+
+        .script-item p {
+            font-size: 22px;
+            font-weight: 300;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 120px;
+        }
+
+        .action-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1px solid var(--border);
+        }
+
+        .footer-btn-wrap {
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        .btn-main {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 22px 60px;
+            border-radius: 99px;
+            font-family: 'EuropeExt-Bold', sans-serif;
+            font-size: 14px;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-main:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .footer {
+            width: 100%;
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 80px 40px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-logo {
+            height: 50px;
+            opacity: 0.3;
+            margin-bottom: 30px;
+        }
+
+        .footer-text {
+            font-size: 10px;
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+        }
+
+        @media (max-width: 1100px) {
+            .container {
+                padding: 60px;
+            }
+
+            .hero-title {
+                font-size: 60px;
+            }
+
+            .passport-grid,
+            .pains-grid,
+            .action-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="texture-overlay"></div>
+    <div class="fixed-figures">
+        <img src="assets/Figures/Property%201%3DAbstract-Shape-072.svg" class="shape shape-1">
+        <img src="assets/Figures/Property%201%3DAbstract-Shape-112.svg" class="shape shape-2">
+        <img src="assets/Figures/Property%201%3DAbstract-Shape-134.svg" class="shape shape-3">
+    </div>
+
+    <header class="header">
+        <div class="header-container">
+            <img src="assets/altair_logo.svg" alt="ALTAIR" class="logo">
+            <div class="deal-info">
+                <div class="deal-id">LEAD #44740</div>
+                <div class="deal-type">DEEP ANALYSIS</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero-section">
+            <h1 class="hero-title">ООО «ЭЛЕСТА»</h1>
+            <div class="hero-tags">
+                <span class="tag">TOP CLIENT</span>
+                <span class="tag">SMT VENDOR</span>
+                <span class="tag">OEZ RESIDENT</span>
+            </div>
+            <p class="hero-lead">
+                Ведущий российский разработчик систем безопасности «Юпитер». 30 лет экспертизы. Поставщик Росгвардии и
+                МВД.
+            </p>
+        </section>
+
+        <!-- ОБЯЗАТЕЛЬНЫЙ АНАЛИТИЧЕСКИЙ ПАСПОРТ -->
+        <section class="passport-section">
+            <h2 class="section-title">АНАЛИТИЧЕСКИЙ ПАСПОРТ</h2>
+            <div class="passport-grid">
+                <div class="passport-card">
+                    <div class="card-header">ЧТО ПРОАНАЛИЗИРОВАНО</div>
+                    <ul class="check-list">
+                        <li>Карточка компании и связи (Bitrix24)</li>
+                        <li>История почтовых переписок (Alexandra OMTS)</li>
+                        <li>Корпоративный ресурс elesta.ru</li>
+                        <li>Технические регламенты SMT-производства</li>
+                        <li>Запрос на Q2 2026 (LIS3DHTR, UC3843)</li>
+                    </ul>
+                </div>
+                <div class="passport-card card-warning">
+                    <div class="card-header">ИНФОРМАЦИОННЫЕ ПРОБЕЛЫ</div>
+                    <ul class="check-list">
+                        <li>Транскрипты телефонных звонков (отсутствуют записи)</li>
+                        <li>Stakeholders (ЛПР уровнем выше ОМТС)</li>
+                        <li>Сетку цен конкурентов по текущему тендеру</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h2 class="section-title">РЕЗЮМЕ СДЕЛКИ</h2>
+            <div class="glass-card">
+                <p>Клиент запрашивает <strong>3000 шт LIS3DHTR</strong> и <strong>2000 шт UC3843</strong>. Основные
+                    условия: строгое соблюдение датакодов и переход на оплату 50/50. Сделка имеет стратегическое
+                    значение для входа в долгосрочный цикл поставок 2026 года.</p>
+            </div>
+        </section>
+
+        <section class="pains-section">
+            <h2 class="section-title">БОЛИ И ТРЕБОВАНИЯ</h2>
+            <div class="pains-grid">
+                <div class="pain-item">
+                    <h3>DATACODE TRACEABILITY</h3>
+                    <div class="quote">«большая просьба в счете прописать датакод»</div>
+                    <p>Требование обусловлено жестким ОТК для систем спецназначения. Любое отклонение грозит возвратом
+                        партии.</p>
+                </div>
+                <div class="pain-item">
+                    <h3>ФИНАНСОВЫЙ ЦИКЛ (50/50)</h3>
+                    <div class="quote">«вопрос по оплате, вы работаете 50/50»</div>
+                    <p>Стандартный запрос крупного производства. Готовы рассматривать Альтер как основного поставщика
+                        при гибкости в оплате.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="strategy-section">
+            <h2 class="section-title">ТАКТИКА ПЕРЕГОВОРОВ</h2>
+            <div class="glass-card strategy-card">
+                <div class="script-item">
+                    <span class="badge">ОТКРЫВАШКА</span>
+                    <p>«Александра, добрый день! Подготовили предложение с учетом ваших требований по датакодам 24+
+                        года. Также мы согласовали возможность оплаты 50/50 для этого объема...»</p>
+                </div>
+                <div class="script-item">
+                    <span class="badge">АРГУМЕНТ</span>
+                    <p>«Мы обеспечиваем полную прослеживаемость и авиадоставку от 1 недели, что исключает риск простоя
+                        ваших SMT-линий».</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="actions">
+            <h2 class="section-title">СЛЕДУЮЩИЕ ШАГИ</h2>
+            <div class="action-grid">
+                <div class="action-card">Выставить счет с указанием Datecode 24+</div>
+                <div class="action-card">Подтвердить условия 50/50</div>
+                <div class="action-card">Предложить образцы для CECCLAB</div>
+            </div>
+        </section>
+
+        <div class="footer-btn-wrap">
+            <button class="btn-main">СКАЧАТЬ PDF ВЕРСИЮ</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <img src="assets/altair_logo.svg" alt="ALTAIR" class="footer-logo">
+        <p class="footer-text">© 2026 ALTAIR SALES ASSISTANT | ENGINE ANALYSIS UNIT</p>
+    </footer>
+</body>
+
+</html>
