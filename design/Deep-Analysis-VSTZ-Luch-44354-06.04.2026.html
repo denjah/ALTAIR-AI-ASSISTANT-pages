@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — ВСТЗ «ЛУЧ»</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #F7F7F4;
+            --bg-pattern: #ECECE6;
+            --surface: #FFFFFF;
+            --surface-soft: #F3F3F0;
+            --surface-mid: #E7E7E2;
+            --text: #4C4F52;
+            --text-strong: #3B3E42;
+            --text-muted: #8A8E92;
+            --text-faint: #B7BBB9;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --brand-blue: #1E5A8E;
+            --footer-bg: #0F4470;
+            --border: #D8D8D2;
+            --border-soft: #E8E8E3;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --radius-2xl: 28px;
+            --radius-pill: 999px;
+            --shadow-soft: 0 4px 14px rgba(60, 60, 60, 0.04);
+            --container: 1320px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt';
+            src: url('../EuropeExt.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt';
+            src: url('../EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a;
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            background-image: url('texture/BACK_TEXTURE_04-2X.png');
+            background-size: 100% auto;
+            background-repeat: repeat-y;
+        }
+
+        #figure-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .fig-slot {
+            position: absolute;
+            width: 120vh;
+            height: 120vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #fig-slot-1 {
+            top: -10vh;
+            left: -30vh;
+        }
+
+        #fig-slot-2 {
+            top: 40vh;
+            right: -40vh;
+        }
+
+        #fig-slot-3 {
+            bottom: -20vh;
+            left: 10vw;
+        }
+
+        .figure-img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transition: opacity 3s ease-in-out;
+            animation: rotateFigure 160s linear infinite;
+            transform-origin: center center;
+        }
+
+        #fig-slot-2 .figure-img {
+            animation-direction: reverse;
+            animation-duration: 200s;
+        }
+
+        #fig-slot-3 .figure-img {
+            animation-duration: 180s;
+        }
+
+        .figure-img.active {
+            opacity: 0.15;
+        }
+
+        @keyframes rotateFigure {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 32px 48px;
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.5);
+            min-height: 100vh;
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header {
+            padding-bottom: 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 48px;
+        }
+
+        .logo img {
+            height: 28px;
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .tag-pill {
+            padding: 8px 20px;
+            border-radius: var(--radius-pill);
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .tag-pill.accent {
+            background: var(--accent);
+            color: #FFFFFF;
+            border-color: var(--accent);
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'EuropeExt', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+        }
+
+        .section-spacing {
+            margin-bottom: 64px;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            margin-bottom: 16px;
+            color: #FFFFFF;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            color: var(--text);
+        }
+
+        .card-soft {
+            background: var(--surface-soft);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 32px;
+            color: var(--text-strong);
+            border-left: 4px solid var(--accent);
+            padding-left: 16px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .profile-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-soft);
+        }
+
+        .profile-key {
+            font-weight: 700;
+            color: var(--text-muted);
+            font-size: 14px;
+            width: 35%;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .profile-value {
+            font-size: 15px;
+            color: var(--text-strong);
+            font-weight: 600;
+            width: 65%;
+        }
+
+        .pain-card {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            height: 100%;
+        }
+
+        .pain-indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .pain-indicator.high {
+            background: #FF4D4F;
+            box-shadow: 0 0 10px rgba(255, 77, 79, 0.4);
+        }
+
+        .pain-indicator.medium {
+            background: #FAAD14;
+        }
+
+        .quote-block {
+            padding: 20px;
+            border-left: 4px solid var(--accent);
+            background: #F9F9F7;
+            font-style: italic;
+            color: var(--text-strong);
+            font-size: 14px;
+            line-height: 1.6;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .quote-source {
+            font-size: 11px;
+            color: var(--text-faint);
+            margin-top: 10px;
+            font-style: normal;
+            display: block;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .styled-list {
+            list-style: none;
+        }
+
+        .styled-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 18px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .styled-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 7px;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            background: var(--accent);
+            transform: rotate(45deg);
+        }
+
+        .rec-step {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .rec-number {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: var(--text-strong);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            flex-shrink: 0;
+        }
+
+        .rec-content strong {
+            color: var(--text-strong);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .tactic-card {
+            padding: 32px;
+            background: #F3F4F6;
+            border-radius: 20px;
+            margin-top: 24px;
+            border: 1px solid #E5E7EB;
+        }
+
+        .tactic-title {
+            font-family: 'EuropeExt';
+            font-size: 14px;
+            color: var(--brand-blue);
+            margin-bottom: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 60px 0;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="figure-layer">
+        <div class="fig-slot" id="fig-slot-1">
+            <img class="figure-img" src="Figures/Property 1=Abstract-Shape-009.svg">
+            <img class="figure-img" src="Figures/Property 1=Abstract-Shape-061.svg">
+        </div>
+        <div class="fig-slot" id="fig-slot-2">
+            <img class="figure-img" src="Figures/Property 1=Abstract-Shape-134.svg">
+            <img class="figure-img" src="Figures/Property 1=Abstract-Shape-034.svg">
+        </div>
+        <div class="fig-slot" id="fig-slot-3">
+            <img class="figure-img" src="Figures/Property 1=Abstract-Shape-112.svg">
+            <img class="figure-img" src="Figures/Property 1=Abstract-Shape-098.svg">
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="altair_logo.svg" alt="ALTAIR Logo">
+            </div>
+            <div class="system-status">
+                <span class="tag-pill">Company ID: 44354</span>
+                <span class="tag-pill accent">Senior AI Analyst</span>
+                <span class="tag-pill">06.04.2026</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero section-spacing">
+                <div class="tag-pill" style="margin-bottom: 24px; border-color: var(--accent);">Deep Client Analysis
+                </div>
+                <h1>ВСТЗ «ЛУЧ»</h1>
+                <div class="hero-subtitle">Волжский Светотехнический Завод: анализ производственного гиганта
+                    светотехники и взрывозащиты</div>
+            </section>
+
+            <section class="section-spacing grid-2">
+                <div class="card">
+                    <h2 class="section-title">AI-Обзор компании</h2>
+                    <div class="profile-grid">
+                        <div class="profile-row">
+                            <div class="profile-key">Сегмент</div>
+                            <div class="profile-value">Крупный бизнес / Производство</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="profile-key">Сфера</div>
+                            <div class="profile-value">LED, Взрывозащищенное (EX) и Медицинское освещение</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="profile-key">Локация</div>
+                            <div class="profile-value">г. Тольятти (2 производственные площадки)</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="profile-key">Масштаб</div>
+                            <div class="profile-value">4000+ позиций в номенклатуре</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="profile-key">Статус в CRM</div>
+                            <div class="profile-value">Постоянный клиент (CUSTOMER)</div>
+                        </div>
+                        <div class="profile-row">
+                            <div class="profile-key">Активность</div>
+                            <div class="profile-value">37 сделок, последняя выиграна: СЕГОДНЯ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="background: var(--brand-blue); color: white;">
+                    <h2 class="section-title" style="color: white; border-left-color: white;">Стратегический портрет
+                    </h2>
+                    <p style="font-size: 16px; line-height: 1.6; margin-bottom: 24px; opacity: 0.9;">
+                        Завод с 2008 года прошел путь до лидера ПФО. Ориентирован на дилерскую сеть и госконтракты.
+                        Стиль принятия решений — <strong>инженерно-структурированный</strong>.
+                    </p>
+                    <div class="card-soft" style="background: rgba(255,255,255,0.1); border: none;">
+                        <h3 style="font-size: 14px; margin-bottom: 12px; color: var(--accent);">Технический фокус</h3>
+                        <p style="font-size: 13px; color: rgba(255,255,255,0.8);">
+                            Высокая зависимость от сертификации взрывозащиты (EX). Любое изменение в компонентах требует
+                            строгого инженерного обоснования.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing card">
+                <h2 class="section-title">Ключевые боли и запросы</h2>
+                <div class="grid-2">
+                    <div class="card-soft pain-card">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span class="pain-indicator high"></span>
+                            <h3 style="color: var(--text-strong); font-size: 18px;">Технический дефицит (ORTAC)</h3>
+                        </div>
+                        <div class="quote-block">
+                            «Подскажите, пожалуйста, занимаетесь ли вы поставками: Клапан выравнивания давления M12x1,5
+                            из нерж. стали (1.4305/AISI 303) OSOMSVP01SL-R ORTAC (с гайкой)»
+                            <span class="quote-source">Источник: Сделка 17514, комментарий ЛПР</span>
+                        </div>
+                        <p style="font-size: 14px; font-weight: 600;">Суть: Необходимость в специфических импортных
+                            компонентах для взрывозащищенных корпусов.</p>
+                    </div>
+
+                    <div class="card-soft pain-card">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span class="pain-indicator medium"></span>
+                            <h3 style="color: var(--text-strong); font-size: 18px;">Импортозамещение корпусов</h3>
+                        </div>
+                        <div class="quote-block">
+                            «Клиенту нужны аналоги нержавеющих вводов и клапанов для новой серии TITAN-2 EX. Важна сталь
+                            303/304 и сертификат EX.»
+                            <span class="quote-source">Анализ сайта и истории запросов</span>
+                        </div>
+                        <p style="font-size: 14px; font-weight: 600;">Суть: Переход на новые стандарты производства в
+                            условиях ограничений.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing">
+                <div class="grid-2">
+                    <div class="card">
+                        <h2 class="section-title">Сильные стороны</h2>
+                        <ul class="styled-list">
+                            <li><strong>Лояльность:</strong> Работа с 2022 года, 37 сделок в истории.</li>
+                            <li><strong>Стабильный объем:</strong> Регулярные закупки, высокие суммы WON.</li>
+                            <li><strong>Прозрачность:</strong> Прямые выходы на ТД и Нач. снабжения.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h2 class="section-title">Возможности</h2>
+                        <ul class="styled-list">
+                            <li><strong>Кросс-продажи:</strong> Компоненты для медицинской серии PHARM.</li>
+                            <li><strong>Масштаб:</strong> Переход на рамочный контракт на 12 месяцев.</li>
+                            <li><strong>Техлид:</strong> Стать основным поставщиком для взрывозащиты.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing card">
+                <h2 class="section-title">Рекомендации менеджеру</h2>
+                <div class="rec-step">
+                    <div class="rec-number">1</div>
+                    <div class="rec-content">
+                        <strong>Закрыть вопрос по ORTAC</strong>
+                        Подготовить КП именно на клапаны M12x1,5 AISI 303. Это "входной билет" в новые крупные проекты
+                        завода.
+                    </div>
+                </div>
+                <div class="rec-step">
+                    <div class="rec-number">2</div>
+                    <div class="rec-content">
+                        <strong>Выход на Семена Разинкина (ТД)</strong>
+                        Нужно техническое подтверждение наших аналогов для EX-сертификации. Снабжение ждет отмашки от
+                        него.
+                    </div>
+                </div>
+                <div class="rec-step">
+                    <div class="rec-number">3</div>
+                    <div class="rec-content">
+                        <strong>Предложение по медицине</strong>
+                        Запросить спецификации на комплектующие для УФ-рециркуляторов. Это растущий сегмент.
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-spacing card" style="background: #F9FAFB;">
+                <h2 class="section-title">План разговора</h2>
+                <div class="tactic-card">
+                    <div class="tactic-title">Открывашка</div>
+                    <p style="font-style: italic; font-size: 15px; color: var(--text-strong);">
+                        «Семен Николаевич, добрый день! Это Альтаир. Проработали ваш запрос по нержавеющим клапанам
+                        ORTAC для взрывозащиты — есть решение в наличии, полностью соответствует стали 303. Готовы
+                        выслать образцы.»
+                    </p>
+                </div>
+                <div class="grid-2" style="margin-top: 32px;">
+                    <div>
+                        <h3 style="color: var(--brand-blue); font-size: 15px; margin-bottom: 16px;">Вопросы для развития
+                        </h3>
+                        <ul class="styled-list">
+                            <li style="font-size: 13px;">Какие планы по производству TITAN-2 на II квартал?</li>
+                            <li style="font-size: 13px;">Будем ли тестировать аналоги для горнодобывающей серии?</li>
+                        </ul>
+                    </div>
+                    <div class="card-soft" style="background: var(--accent-soft); border: 1px solid var(--accent);">
+                        <h3 style="color: var(--accent); font-size: 15px; margin-bottom: 8px;">Техника Close</h3>
+                        <p style="font-size: 13px; font-weight: 600;">Метод «Инженерный тест»:</p>
+                        <p style="font-size: 13px;">«Давайте я пришлю 10 образцов. Ваши инженеры проверят их в сборке.
+                            Если все ок — зафиксируем объем на год.»</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            ALTAIR ENGINEERING | Senior Sales AI Analyst | 2026.04.06
+        </footer>
+    </div>
+
+    <script>
+        const figures = document.querySelectorAll('.figure-img');
+        const slots = [[figures[0], figures[1]], [figures[2], figures[3]], [figures[4], figures[5]]];
+        slots.forEach((pair, slotIdx) => {
+            let activeIdx = 0; pair[activeIdx].classList.add('active');
+            setInterval(() => {
+                pair[activeIdx].classList.remove('active');
+                activeIdx = (activeIdx + 1) % pair.length;
+                pair[activeIdx].classList.add('active');
+            }, 6000 + slotIdx * 1500);
+        });
+    </script>
+</body>
+
+</html>
