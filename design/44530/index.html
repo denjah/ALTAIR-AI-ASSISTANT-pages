@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Analysis — Экомед-Комплекс — 44530</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D] font-sans" data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.78;"></div>
+
+    <script>
+        // Simple Engineering Particle Background (Static Grid initially, user rule)
+        const canvas = document.createElement('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        document.getElementById('particle-bg').appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 0.5;
+                this.vy = (Math.random() - 0.5) * 0.5;
+                this.size = Math.random() * 2 + 1;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(24, 77, 122, 0.15)'; // --blue
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles(count = 100) {
+            particles = [];
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw simple grid base
+            ctx.strokeStyle = 'rgba(129, 149, 168, 0.05)';
+            ctx.lineWidth = 1;
+            for (let i = 0; i < canvas.width; i += 40) {
+                ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, canvas.height); ctx.stroke();
+            }
+            for (let i = 0; i < canvas.height; i += 40) {
+                ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(canvas.width, i); ctx.stroke();
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // Draw connecting lines
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 100) {
+                        ctx.strokeStyle = `rgba(24, 77, 122, ${0.1 - dist / 1000})`;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+        window.addEventListener('resize', resizeCanvas);
+        initParticles();
+        animateParticles();
+    </script>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50 mb-8">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="../altair_logo.svg" alt="ALTAIR" class="h-10 w-auto">
+                <div class="h-8 w-px bg-gray-300"></div>
+                <div class="text-[#ED7A1C] font-semibold tracking-wide">SALES INTELLIGENCE</div>
+            </div>
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest uppercase">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 grid gap-8">
+
+        <!-- HEADER INTRO -->
+        <div class="flex items-center justify-between">
+            <div>
+                <h1 class="hero-title text-4xl mb-2">НПФ «Экомед-Комплекс»</h1>
+                <div class="flex gap-2">
+                    <span class="chip">ID: 44530</span>
+                    <span class="chip border border-[#ED7A1C]">Оборот: 124 млн ₽</span>
+                    <span class="chip bg-[#184D7A] text-white">B2B / B2G</span>
+                </div>
+            </div>
+            <div class="text-right glass-dark px-6 py-4 rounded-xl">
+                <div class="text-sm text-gray-300 mb-1">Ключевой ЛПР</div>
+                <div class="font-bold text-lg">Жарницкий В.Ш.</div>
+                <div class="text-sm text-[#ED7A1C]">Директор</div>
+            </div>
+        </div>
+
+        <!-- БЛОК №2 — КРАТКОЕ РЕЗЮМЕ СДЕЛКИ (accordion, закрыт по умолчанию) -->
+        <div id="deal-summary" class="glass">
+            <div onclick="toggleAccordion()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+                <div class="block-title">Краткое резюме (AI Обзор)</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2 transition-all">
+                    Открыть подробнее
+                    <span class="text-xl leading-none">↓</span>
+                </span>
+            </div>
+            <div id="accordion-content" class="accordion-content px-8 py-6 hidden body-text">
+                <p class="mb-4"><strong>Сегмент и отрасль:</strong> Железнодорожное приборостроение, производство
+                    высокоточного измерительного оборудования и бортовых комплексов (в т.ч. система контроля букс
+                    «Хранитель-1» для РЖД). На рынке с 1992 года.</p>
+                <p class="mb-4"><strong>Закупки у Альтаир:</strong> Совершено минимум 4 заказа на сумму 2.13 млн ₽.</p>
+                <p><strong>Стиль принятия решений:</strong> Прагматичный, инженерный, ориентирован на высокую надежность
+                    и строгие сроки (страх штрафов от РЖД). Основные контакты: Жарницкий Виталий Шулимович (директор),
+                    Игорь Любимов (отдел снабжения).</p>
+            </div>
+        </div>
+
+        <!-- БЛОК 3: БОЛИ И ПОЖЕЛАНИЯ -->
+        <div class="glass section-frame">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Ключевые боли и пожелания</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 body-text">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] text-lg mb-2 flex items-center gap-2">
+                        <span class="text-[#ED7A1C] text-2xl">•</span> Остановка производства (логистика)
+                    </h3>
+                    <p class="mb-3">Клиент работает "с колес". Срывы поставок из Турции из-за санкционных ограничений на
+                        авиаперевозки приводят к простоям.</p>
+                    <div class="quote-block">
+                        «У нас ноль на складе, и мы в понедельник уже всё останавливаем производство. Смотрите, какой
+                        ситуация аховая.»
+                        <span class="quote-author">— Виталий Шулимович (Директор)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="font-bold text-[#184D7A] text-lg mb-2 flex items-center gap-2">
+                        <span class="text-[#ED7A1C] text-2xl">•</span> Дефектные поставки (пересортица)
+                    </h3>
+                    <p class="mb-3">Пришла партия гермовводов с другой гайкой, из-за чего клиенту пришлось вручную
+                        дорабатывать изделия.</p>
+                    <div class="quote-block">
+                        «Резинки приходится сверлить... Это заняло больше часа времени... Я нанимаю человека, который
+                        будет сверлить... обойдётся где-то в 65 000 рублей.»
+                        <span class="quote-author">— Жарницкий В.Ш.</span>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2 mt-2 pt-6 border-t border-[rgba(129,149,168,0.28)]">
+                    <h3 class="font-bold text-[#184D7A] text-lg mb-2 flex items-center gap-2">
+                        <span class="text-[#ED7A1C] text-2xl">•</span> Сложность с поиском аналогов
+                    </h3>
+                    <p>Клиент вынужден использовать продукцию брендов типа Degson и искать им замену (клеммники с шагом
+                        3.81). Тяжело ориентироваться в новых каталогах азиатских заводов.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК 4: СИЛЬНЫЕ СТОРОНЫ -->
+        <div class="glass section-frame">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Сильные стороны и возможности</h2>
+            </div>
+            <ul class="body-text space-y-4 list-none pl-0">
+                <li class="flex items-start gap-3">
+                    <span class="text-[#ED7A1C] font-bold mt-1 text-lg">›</span>
+                    <span><strong>Высокая лояльность и терпение:</strong> Несмотря на косяки, клиент не разрывает
+                        отношения, продолжает общаться конструктивно и готов тестировать аналоги.</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-[#ED7A1C] font-bold mt-1 text-lg">›</span>
+                    <span><strong>Интерес к инновациям:</strong> Рассматривают переход на гермовводы с силиконовыми
+                        уплотнителями (дольше служат, устойчивы к перепадам температур — идеально для РЖД).</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="text-[#ED7A1C] font-bold mt-1 text-lg">›</span>
+                    <span><strong>Потребность в стабильности:</strong> Если Альтаир сможет решить боль с логистикой,
+                        можно стать эксклюзивным поставщиком по ключевым позициям.</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- БЛОК 5: РЕКОМЕНДАЦИИ -->
+        <div class="glass-dark section-frame relative overflow-hidden">
+            <!-- Декор -->
+            <div
+                class="absolute top-0 right-0 w-64 h-64 bg-[#ED7A1C] opacity-5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2">
+            </div>
+
+            <div class="section-title-wrapper !bg-[#133659]">
+                <h2 class="section-title !text-[#F3F7FB]">Авторитетные рекомендации менеджеру</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 body-text mt-4 relative z-10">
+                <div class="bg-[rgba(255,255,255,0.05)] p-6 rounded-xl border border-[rgba(255,255,255,0.1)]">
+                    <div class="text-[#ED7A1C] font-bold text-4xl mb-3 opacity-50">01</div>
+                    <h4 class="font-bold text-white mb-2 text-lg">Складская программа в СПб</h4>
+                    <p class="text-gray-300">Это ваш главный козырь. Заморозьте объемы на складе Альтаир. Это навсегда
+                        снимет их страх простоя.</p>
+                </div>
+                <div class="bg-[rgba(255,255,255,0.05)] p-6 rounded-xl border border-[rgba(255,255,255,0.1)]">
+                    <div class="text-[#ED7A1C] font-bold text-4xl mb-3 opacity-50">02</div>
+                    <h4 class="font-bold text-white mb-2 text-lg">Компенсация за брак</h4>
+                    <p class="text-gray-300">Защитите скидку или предоставьте бесплатно 50 силиконовых гермовводов IP68
+                        в счет убытка на 65 000 руб.</p>
+                </div>
+                <div class="bg-[rgba(255,255,255,0.05)] p-6 rounded-xl border border-[rgba(255,255,255,0.1)]">
+                    <div class="text-[#ED7A1C] font-bold text-4xl mb-3 opacity-50">03</div>
+                    <h4 class="font-bold text-white mb-2 text-lg">Клеммники "Под ключ"</h4>
+                    <p class="text-gray-300">Выдайте готовое решение по аналогам кросс-номенклатуры без необходимости
+                        заставлять Игоря искать по каталогам самому.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК 6: ПЛАН РАЗГОВОРА -->
+        <div class="glass section-frame">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Скрипт и План Разговора</h2>
+            </div>
+
+            <div class="space-y-8 body-text">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] uppercase text-sm tracking-wider mb-3">1. Открывашка</h3>
+                    <div class="p-4 bg-white rounded-lg border-l-4 border-[#184D7A] text-lg font-medium">
+                        «Виталий Шулимович / Игорь, добрый день. Это [Имя] из Альтаир. Я проанализировал всю историю
+                        наших поставок за год и наши косяки со сроками. Я звоню не с оправданиями, а с системным
+                        решением, чтобы вы больше никогда не останавливали производство из-за логистики.»
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-bold text-[#184D7A] uppercase text-sm tracking-wider mb-3">2. Ключевые вопросы
+                            (SPIN)</h3>
+                        <ul class="list-decimal pl-5 space-y-2">
+                            <li>Если мы сейчас выделим паллетоместо на нашем складе в Питере исключительно под ваш
+                                номенклатурный лист, какой объем вас полностью обезопасит?</li>
+                            <li>По новым силиконовым гермовводам: вы тестировали их на бортовом комплексе "Хранитель-1",
+                                или нам привезти образцы?</li>
+                            <li>Какие еще европейские клеммники сейчас тормозят вашу сборку?</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-[#184D7A] uppercase text-sm tracking-wider mb-3">3. Обработка
+                            возражений</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <span
+                                    class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-bold">Возражение</span>
+                                <span class="italic text-sm">«Вы обещаете, а потом авиарейсы отменяют.»</span>
+                                <p class="mt-1 font-medium text-[#184D7A]">«Поэтому мы переходим на буферный транзитный
+                                    склад. Я привезу партию в СПб до того, как она вам понадобится.»</p>
+                            </div>
+                            <div>
+                                <span
+                                    class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-bold">Возражение</span>
+                                <span class="italic text-sm">«У новых вводов другой шаг или гайка.»</span>
+                                <p class="mt-1 font-medium text-[#184D7A]">«Мы бесплатно дадим 50 образцов. Инженеры
+                                    попробуют их со своим инструментом. Не подойдет — подберем другую форму.»</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-[rgba(129,149,168,0.28)] text-center">
+                    <h3 class="font-bold text-[#ED7A1C] uppercase text-sm tracking-wider mb-4">Техника Close (Закрытие)
+                    </h3>
+                    <div class="p-6 bg-[#184D7A] text-white rounded-xl text-xl font-medium shadow-lg mx-auto max-w-3xl">
+                        «Игорь, давайте я в четверг привезу вам образцы новых силиконовых гермовводов и спецификацию по
+                        тем клеммникам. Заодно подпишем рамочное соглашение на складской резерв. Во сколько вам удобно?»
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12 bg-white/40">
+        <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
+            <div class="font-medium">© 2026 ALTAIR • Sales Intelligence System</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C] transition-colors font-medium">Скачать
+                    PDF отчёт</a>
+            </div>
+            <div class="text-xs opacity-70">Сгенерировано Altair AI-Sales Instructor • v3.2</div>
+        </div>
+    </footer>
+
+    <script>
+        // Автоматическая дата анализа
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date('2026-04-14T21:04:06+03:00'); // Текущая дата анализа
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        // Аккордеон
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+
+            if (content.classList.contains('hidden')) {
+                btn.innerHTML = `Открыть подробнее <span class="text-xl leading-none">↓</span>`;
+            } else {
+                btn.innerHTML = `Скрыть <span class="text-xl leading-none">↑</span>`;
+            }
+        }
+
+        window.onload = function () {
+            setAnalysisDate();
+        };
+    </script>
+</body>
+
+</html>
