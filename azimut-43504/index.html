@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Analysis — АО АЗИМУТ — 43504</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-dark: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        body {
+            font-family: 'Montserrat', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .glass-dark {
+            background: var(--glass-dark);
+            color: var(--text-on-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(18px);
+        }
+
+        .glass-dark-soft {
+            background: var(--glass-dark-soft);
+            color: var(--text-on-dark);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-section);
+            backdrop-filter: blur(18px);
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue);
+        }
+
+        .section-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 11.5px;
+            font-weight: 600;
+            border-radius: var(--radius-pill);
+            letter-spacing: 0.02em;
+        }
+
+        .chip-blue {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .chip-dark {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-on-dark);
+        }
+
+        .accent-line {
+            height: 3px;
+            width: 48px;
+            background: var(--accent);
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .metric-big {
+            font-family: 'EuropeExt Bold', sans-serif;
+            font-size: 34px;
+            line-height: 34px;
+            color: var(--accent);
+        }
+
+        .metric-big-blue {
+            font-family: 'EuropeExt Bold', sans-serif;
+            font-size: 34px;
+            line-height: 34px;
+            color: var(--blue);
+        }
+
+        .pain-card {
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            margin-bottom: 16px;
+        }
+
+        .strategy-step {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        .strategy-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(237, 122, 28, 0.08);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-right: 6px;
+            margin-bottom: 4px;
+        }
+
+        .tag-blue {
+            background: rgba(24, 77, 122, 0.08);
+            color: var(--blue);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .anim {
+            animation: fadeUp 0.4s ease forwards;
+        }
+
+        .anim-d1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .anim-d2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .anim-d3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D]" data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+    <script>
+        const canvas = document.createElement('canvas'); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        document.getElementById('particle-bg').appendChild(canvas);
+        const ctx = canvas.getContext('2d'); let particles = []; let fade = 1.0; let nextSwitch = Date.now() + 7000;
+        class Particle { constructor() { this.reset() } reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 2 + 0.5; this.speedX = (Math.random() - 0.5) * 0.6; this.speedY = (Math.random() - 0.5) * 0.6; this.alpha = Math.random() * 0.4 + 0.1; this.color = Math.random() > 0.7 ? '237,122,28' : '24,77,122' } update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > canvas.width) this.speedX *= -1; if (this.y < 0 || this.y > canvas.height) this.speedY *= -1 } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(${this.color},${this.alpha * fade})`; ctx.fill() } }
+        function initParticles(n = 200) { particles = []; for (let i = 0; i < n; i++)particles.push(new Particle()) }
+        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); if (Date.now() > nextSwitch) { fade -= 0.01; if (fade <= 0) { fade = 0; nextSwitch = Date.now() + 7000 } } else if (fade < 1) { fade += 0.01 } for (let p of particles) { p.update(); p.draw() } requestAnimationFrame(animate) }
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight }); initParticles(); animate();
+    </script>
+
+    <!-- HEADER -->
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="altair_logo.svg" alt="ALTAIR" class="h-16" onerror="this.style.display='none'">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest"
+                    style="font-family:'EuropeExt Bold',sans-serif">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 space-y-8 mt-8">
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 1 — HERO: AI-ОБЗОР КЛИЕНТА         ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark p-10 anim">
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+                <div class="flex-1">
+                    <div class="chip-dark text-xs mb-3">COMPANY #43504 • AVIATION / ATC</div>
+                    <h1 class="text-3xl md:text-[42px] leading-tight font-bold mb-4"
+                        style="font-family:'EuropeExt Bold',sans-serif;color:var(--accent)">
+                        АО «АЗИМУТ»
+                    </h1>
+                    <p class="text-lg leading-relaxed" style="color:var(--text-on-dark-muted)">
+                        Производственная компания, разрабатывающая и серийно выпускающая средства связи, навигации,
+                        посадки, наблюдения и автоматизации управления воздушным движением (УВД). Полный цикл — от
+                        разработки до поставки «под ключ». <strong style="color:var(--text-on-dark)">~650
+                            единиц</strong> поставленного оборудования. Оснащение аэродромов по всей России.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <span class="chip-dark">Москва / Калуга</span>
+                        <span class="chip-dark">azimut.ru</span>
+                        <span class="chip-dark">Гражданская авиация</span>
+                        <span class="chip-dark">ICAO / ASBU</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 min-w-[280px]">
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">₽3.9</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">млрд выручка</div>
+                    </div>
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">650+</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">единиц оборуд.</div>
+                    </div>
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">8</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">контактов в CRM</div>
+                    </div>
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">₽86K</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">прошлый заказ</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 2 — КРАТКОЕ РЕЗЮМЕ СДЕЛКИ            ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass anim anim-d1">
+            <div onclick="toggleAccordion()"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5 rounded-t-3xl transition-colors">
+                <div class="block-title">Краткое резюме сделки</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2 text-sm">
+                    Открыть подробнее <span class="text-xl leading-none">↓</span>
+                </span>
+            </div>
+            <div id="accordion-content" class="px-8 py-6 hidden">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-[#184D7A] mb-3">История закупок</h3>
+                        <table class="w-full text-sm">
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Всего заказов</td>
+                                <td class="py-2 font-medium">1</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Сумма закупок</td>
+                                <td class="py-2 font-medium">₽86 039</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Последний заказ</td>
+                                <td class="py-2">27 июля 2023</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Категория</td>
+                                <td class="py-2"><span class="tag">A — приоритет</span></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 text-[#73808C]">Тип</td>
+                                <td class="py-2"><span class="tag-blue tag">Конечный клиент</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-[#184D7A] mb-3">Текущий статус</h3>
+                        <table class="w-full text-sm">
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Активная задача</td>
+                                <td class="py-2 font-medium">«Жду товар на складе»</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Дедлайн</td>
+                                <td class="py-2">4 мая 2026</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Ответственный</td>
+                                <td class="py-2">Чайкин Валерий</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 text-[#73808C]">Последние звонки</td>
+                                <td class="py-2">27 марта — 1 апреля 2026 (Загра Пахрудинова)</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 rounded-2xl" style="background:var(--blue-soft)">
+                    <p class="text-sm"><strong>Ключевые контакты:</strong></p>
+                    <p class="text-sm mt-1">👤 Загра Пахрудинова — +7 495 926-37-69 (основной контакт по звонкам)</p>
+                    <p class="text-sm mt-1">👤 Андрей Баев — Инженер ДМТС • <a href="mailto:andrey.baev@azimut.ru"
+                            class="text-[#184D7A] underline">andrey.baev@azimut.ru</a> • 8 920 093-52-10</p>
+                    <p class="text-sm mt-1">👤 Асият Алиева — Директор по МТС • <a href="mailto:asiyat.alieva@azimut.ru"
+                            class="text-[#184D7A] underline">asiyat.alieva@azimut.ru</a> • доб. 1555</p>
+                    <p class="text-sm mt-1">👤 Сергей Макушин — Менеджер МТС • <a
+                            href="mailto:sergey.makushin@azimut.ru"
+                            class="text-[#184D7A] underline">sergey.makushin@azimut.ru</a> • +7 960 522-48-24</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 3 — ПРОФИЛЬ КЛИЕНТА                 ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8 anim anim-d2">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Профиль клиента — АО «АЗИМУТ»</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-2">О компании</h3>
+                    <p class="text-sm leading-relaxed">АО «АЗИМУТ» — разработчик и серийный производитель оборудования
+                        для обеспечения безопасности полётов гражданской авиации. Полный цикл: разработка → производство
+                        → монтаж → пусконаладка → лётные проверки. История связана с советской радиоэлектронной
+                        промышленностью 50-х годов.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-2">Продуктовые линейки</h3>
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tag-blue tag">Радиосвязь ОВЧ/УВЧ/ВЧ</span>
+                        <span class="tag-blue tag">ILS 2700 (посадка)</span>
+                        <span class="tag-blue tag">DVOR/DME (навигация)</span>
+                        <span class="tag-blue tag">АМИ 2700 (радар)</span>
+                        <span class="tag-blue tag">VCS 2700 (СКРС)</span>
+                        <span class="tag-blue tag">КСА УВД «Галактика»</span>
+                        <span class="tag-blue tag">MAS 2700 (МПСН)</span>
+                        <span class="tag-blue tag">П-166М (оповещение)</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-2">Ключевые факты</h3>
+                    <ul class="text-sm space-y-1">
+                        <li>📍 Москва + Калуга (производство)</li>
+                        <li>✈️ Оснащение аэродромов «под ключ»</li>
+                        <li>🛡️ Все сертификаты и лицензии для гражд. авиации</li>
+                        <li>🌍 Соответствие стандартам ICAO/ASBU</li>
+                        <li>📡 20+ типов серийных изделий</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 4 — BRAND INTELLIGENCE               ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark-soft p-8 anim anim-d3">
+            <div style="height:3px;width:48px;background:var(--accent);border-radius:3px;margin-bottom:12px"></div>
+            <h2 class="block-title mb-6" style="color:var(--text-on-dark)">Brand Intelligence</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="mb-4">
+                        <span class="chip mb-2">Архетип бренда</span>
+                        <p class="text-lg font-bold mt-2" style="color:var(--accent)">RULER (65%) + HERO (35%)</p>
+                    </div>
+                    <p class="text-sm leading-relaxed" style="color:var(--text-on-dark-muted)">
+                        АЗИМУТ позиционирует себя как <strong style="color:var(--text-on-dark)">гарант безопасности
+                            полётов</strong> — каждый продукт напрямую влияет на жизни людей. Архетип Ruler проявляется
+                        в стремлении контролировать критическую инфраструктуру, Hero — в миссии «обеспечить безопасность
+                        неба».
+                    </p>
+                    <div class="mt-4 space-y-2 text-sm" style="color:var(--text-on-dark-muted)">
+                        <p><strong style="color:var(--text-on-dark)">Миссия:</strong> Обеспечить безопасность полётов
+                            через надёжное радиоэлектронное оборудование</p>
+                        <p><strong style="color:var(--text-on-dark)">Ценности:</strong> Безопасность, надёжность, полный
+                            цикл, соответствие ICAO</p>
+                        <p><strong style="color:var(--text-on-dark)">Voice:</strong> Строгий, инженерный, основанный на
+                            стандартах и сертификации</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="chip mb-3">Как использовать в продажах АЛЬТАИР</span>
+                    <ul class="text-sm space-y-3 mt-3" style="color:var(--text-on-dark-muted)">
+                        <li>🛡️ <strong style="color:var(--text-on-dark)">Акцент на надёжность и сертификацию:</strong>
+                            АЗИМУТ — критическая инфраструктура. Каждый компонент должен быть безотказным. Говори языком
+                            стандартов: IP68, рабочая температура, наработка на отказ.</li>
+                        <li>✈️ <strong style="color:var(--text-on-dark)">Триггер «безопасность полётов»:</strong> «Мы
+                            понимаем, что ваши изделия отвечают за жизни людей — поэтому подбираем только компоненты с
+                            гарантированными характеристиками».</li>
+                        <li>📋 <strong style="color:var(--text-on-dark)">Документация и прослеживаемость:</strong> Для
+                            Ruler-архетипа важен порядок: сертификаты, паспорта качества, протоколы испытаний.</li>
+                        <li>⚡ <strong style="color:var(--text-on-dark)">Склад в СПб как страховка:</strong> Сбой
+                            поставки компонента = срыв пусконаладки на аэродроме. Резервный склад — критический
+                            аргумент.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 5 — КЛЮЧЕВЫЕ БОЛИ И ПОЖЕЛАНИЯ       ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Ключевые боли и пожелания</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-4">🔴 Выявленные боли</h3>
+                    <div class="pain-card">
+                        <p class="text-sm font-semibold text-[#243444]">Ожидание товара на складе поставщика</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">Текущая задача в CRM: «Жду товар на складе» —
+                            значит клиент готов купить, но ждёт наличие</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: CRM-задача • Приоритет: <span
+                                class="text-[#ED7A1C] font-semibold">Высокий</span></p>
+                        <p class="text-xs mt-1">→ <em>Принцип: «А завтра» (Якуба) + decision-triggers.md</em></p>
+                    </div>
+                    <div class="pain-card">
+                        <p class="text-sm font-semibold text-[#243444]">Длительный перерыв в закупках</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">Последний заказ — июль 2023 (почти 3 года назад).
+                            При выручке ₽3.9B потенциал закупок огромный, но реализация минимальна.</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: CRM-история • Приоритет: <span
+                                class="text-[#ED7A1C] font-semibold">Высокий</span></p>
+                        <p class="text-xs mt-1">→ <em>Принцип: Follow-up с инфоповодом (Якуба)</em></p>
+                    </div>
+                    <div class="pain-card">
+                        <p class="text-sm font-semibold text-[#243444]">Множество контактных лиц — сложная структура
+                            принятия решений</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">8 контактов в CRM, от инженера ДМТС до директора
+                            МТС. Нет чёткого маршрута согласования.</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: CRM-карточка • Приоритет: <span
+                                class="text-[#ED7A1C] font-semibold">Средний</span></p>
+                        <p class="text-xs mt-1">→ <em>Принцип: КЭВ (Гребенюк) — закрывай маленькие шаги</em></p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-4">🟢 Сильные сигналы</h3>
+                    <div class="pain-card" style="border-left-color: var(--blue)">
+                        <p class="text-sm font-semibold text-[#243444]">Активные звонки в марте–апреле 2026</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">Частые исходящие звонки Загре Пахрудиновой (27.03,
+                            31.03, 01.04) — сделка «живая»</p>
+                        <p class="text-xs text-[#73808C] mt-1">Сигнал: <span
+                                class="text-green-600 font-semibold">Активный интерес</span></p>
+                    </div>
+                    <div class="pain-card" style="border-left-color: var(--blue)">
+                        <p class="text-sm font-semibold text-[#243444]">Категория A — приоритетный клиент</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">Компания отмечена как категория A в CRM —
+                            максимальный приоритет обработки</p>
+                        <p class="text-xs text-[#73808C] mt-1">Сигнал: <span
+                                class="text-green-600 font-semibold">Высокий потенциал</span></p>
+                    </div>
+                    <div class="pain-card" style="border-left-color: var(--blue)">
+                        <p class="text-sm font-semibold text-[#243444]">Огромный потенциал: ₽3.9B выручка vs ₽86K
+                            закупок</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">Разрыв между масштабом компании и объёмом закупок
+                            в Альтаир = колоссальный потенциал роста</p>
+                        <p class="text-xs text-[#73808C] mt-1">Сигнал: <span
+                                class="text-blue-600 font-semibold">Потенциал ×45</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 6 — СИЛЬНЫЕ СТОРОНЫ И ВОЗМОЖНОСТИ   ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Сильные стороны и возможности</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-5 rounded-2xl" style="background:var(--blue-soft)">
+                    <div class="metric-big-blue mb-2">₽3.9B</div>
+                    <p class="text-sm font-semibold text-[#184D7A]">Масштаб производства</p>
+                    <p class="text-xs text-[#73808C] mt-1">Крупный серийный производитель авиационного оборудования —
+                        регулярная потребность в кабельных вводах, разъёмах, клеммах для шкафов автоматики.</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:var(--accent-soft)">
+                    <div class="metric-big mb-2">20+</div>
+                    <p class="text-sm font-semibold text-[#184D7A]">Типов серийных изделий</p>
+                    <p class="text-xs text-[#73808C] mt-1">Каждое изделие — десятки кабельных вводов и разъёмов.
+                        Серийное производство = повторяющийся спрос на комплектующие.</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:var(--blue-soft)">
+                    <div class="metric-big-blue">IP68</div>
+                    <p class="text-sm font-semibold text-[#184D7A]">Требования к герметичности</p>
+                    <p class="text-xs text-[#73808C] mt-1">Оборудование эксплуатируется на открытых аэродромах — дождь,
+                        снег, перепады температур. IP68 — обязательное требование.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 7 — РЕКОМЕНДАЦИИ МЕНЕДЖЕРУ           ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark p-8">
+            <div style="height:3px;width:48px;background:var(--accent);border-radius:3px;margin-bottom:12px"></div>
+            <h2 class="block-title mb-6" style="color:var(--text-on-dark)">Авторитетные рекомендации менеджеру</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">Принцип «А завтра» (Якуба)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Используй ожидание товара как точку входа:</strong><br>
+                        «Загра, я вижу, что вы ждёте поставку. У нас на складе в Санкт-Петербурге есть аналоги —
+                        доставка 1–3 дня. Если текущий поставщик задержит, вы не остановите сборку.»</p>
+                    <p class="text-xs mt-2 opacity-60">→ decision-triggers.md / closing-techniques.md</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">КЭВ — пилотная поставка (Гребенюк)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Не продавай весь каталог — дай попробовать:</strong><br>
+                        «Давайте начнём с одного изделия — подберём кабельные вводы IP68 под конкретный шкаф. Ваши
+                        инженеры протестируют, и если подойдёт — расширим номенклатуру.»</p>
+                    <p class="text-xs mt-2 opacity-60">→ objections-handling.md / opening-and-questions.md</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">Эксперт-партнёр (все авторы)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Для авиации нужен инженер, не продавец:</strong><br>
+                        АЗИМУТ — архетип Ruler/Hero. Они несут ответственность за безопасность полётов. Позиционируй
+                        себя как технического партнёра: «Мы подбираем компоненты с учётом ваших требований по рабочей
+                        температуре, вибрации и степени защиты.»</p>
+                    <p class="text-xs mt-2 opacity-60">→ communication-style.md</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">TCO-аргументация (Филиппов + Якуба)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Переводи разговор в стоимость простоя:</strong><br>
+                        «Один день простоя монтажной бригады на аэродроме стоит в разы дороже, чем разница в цене
+                        компонента. Наш склад в СПб — это страховка от таких потерь.»</p>
+                    <p class="text-xs mt-2 opacity-60">→ pain-extraction.md / decision-triggers.md</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 8 — ПЛАН РАЗГОВОРА С КЛИЕНТОМ       ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">План разговора с клиентом</h2>
+
+            <div class="strategy-step" data-step="1">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Открывашка</h3>
+                <p class="text-sm text-[#44515D] p-3 rounded-xl" style="background:var(--blue-soft)">
+                    «Загра, добрый день! Валерий, компания Альтаир. Знаю, что вы сейчас ждёте товар — хотел предложить
+                    вариант, который закроет вопрос быстрее. У нас на складе есть аналоги с доставкой за 1–3 дня. Можно
+                    обсудить?»
+                </p>
+            </div>
+
+            <div class="strategy-step" data-step="2">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Ключевые вопросы (3–5 шт.)</h3>
+                <ul class="text-sm space-y-2">
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Какие позиции по кабельным вводам
+                        и разъёмам сейчас в дефиците?»</li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Какие требования к степени защиты
+                        и рабочей температуре для вашего оборудования?» <span class="text-xs text-[#73808C]">(выявление
+                            спецификации)</span></li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Как часто случаются задержки от
+                        текущих поставщиков комплектующих?» <span class="text-xs text-[#73808C]">(усиление боли —
+                            pain-extraction.md)</span></li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Кто из инженеров утверждает
+                        спецификацию по компонентам? Было бы полезно обсудить с ним напрямую.»</li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Рассматриваете ли резервного
+                        поставщика на случай срыва сроков по текущим контрактам?» <span
+                            class="text-xs text-[#73808C]">(«А завтра» — Якуба)</span></li>
+                </ul>
+            </div>
+
+            <div class="strategy-step" data-step="3">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Основные аргументы</h3>
+                <ul class="text-sm space-y-1">
+                    <li>✅ Успешный прецедент — предыдущий заказ на ₽86K выполнен</li>
+                    <li>✅ Склад в Санкт-Петербурге — доставка 1–3 дня, а не 8 недель</li>
+                    <li>✅ Подбор аналогов IP68 под конкретные ТЗ аэродромного оборудования</li>
+                    <li>✅ Экономия 30–40% на комплектующих при подтверждённых характеристиках</li>
+                    <li>✅ Документация: паспорта качества, сертификаты соответствия</li>
+                </ul>
+            </div>
+
+            <div class="strategy-step" data-step="4">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Обработка возражений</h3>
+                <div class="space-y-3">
+                    <div class="p-3 rounded-xl border" style="border-color:var(--border)">
+                        <p class="text-sm font-semibold">«У нас утверждённая спецификация, другие компоненты не
+                            подходят»</p>
+                        <p class="text-sm text-[#73808C] mt-1">→ <em>Изоляция возражения</em>: «Понимаю. Давайте я
+                            подготовлю техническое сравнение наших аналогов с вашей текущей спецификацией — по всем
+                            ключевым параметрам. Если характеристики совпадут — ваши инженеры смогут принять решение на
+                            основе фактов.»</p>
+                    </div>
+                    <div class="p-3 rounded-xl border" style="border-color:var(--border)">
+                        <p class="text-sm font-semibold">«Мы уже работаем с проверенным поставщиком»</p>
+                        <p class="text-sm text-[#73808C] mt-1">→ <em>Резервный поставщик</em>: «Для критического
+                            оборудования всегда нужен план Б. Один сбой поставки = срыв пусконаладки на аэродроме. Мы
+                            можем быть резервным каналом со склада в СПб.»</p>
+                    </div>
+                    <div class="p-3 rounded-xl border" style="border-color:var(--border)">
+                        <p class="text-sm font-semibold">«Вышлите прайс, мы посмотрим»</p>
+                        <p class="text-sm text-[#73808C] mt-1">→ <em>КЭВ</em>: «Конечно. Чтобы прайс был точным —
+                            подскажите 3–5 позиций, которые сейчас в приоритете. Я подготовлю адресное предложение с
+                            аналогами, а не общий каталог.»</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-step" data-step="5">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Техника закрытия</h3>
+                <p class="text-sm p-3 rounded-xl" style="background:var(--accent-soft)">
+                    <strong>Сократовский метод (3 «Да»):</strong><br>
+                    «Вам ведь важно, чтобы комплектующие соответствовали требованиям по IP68 и рабочей температуре? (Да)
+                    И было бы удобно иметь резервного поставщика со склада в России? (Да) Тогда давайте я подготовлю
+                    подборку аналогов под 3–5 ваших ключевых позиций — когда удобно обсудить?»
+                </p>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 9 — NEXT BEST ACTION                 ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark p-8">
+            <div style="height:3px;width:48px;background:var(--accent);border-radius:3px;margin-bottom:12px"></div>
+            <h2 class="block-title mb-6" style="color:var(--text-on-dark)">Next Best Action</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(237,122,28,0.15)">
+                    <div class="text-2xl mb-2">📦</div>
+                    <p class="text-sm font-semibold" style="color:var(--accent)">Закрыть ожидание</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">Предложить аналог со склада СПб для
+                        текущей позиции, которую ждёт клиент</p>
+                </div>
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(255,255,255,0.08)">
+                    <div class="text-2xl mb-2">📋</div>
+                    <p class="text-sm font-semibold" style="color:var(--text-on-dark)">Таблица аналогов</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">Подготовить сравнительную таблицу
+                        IP68 кабельных вводов под оборудование АЗИМУТ</p>
+                </div>
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(255,255,255,0.08)">
+                    <div class="text-2xl mb-2">🔧</div>
+                    <p class="text-sm font-semibold" style="color:var(--text-on-dark)">Выход на инженера</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">Через Загру/Баева получить контакт
+                        конструктора для технической оценки аналогов</p>
+                </div>
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(255,255,255,0.08)">
+                    <div class="text-2xl mb-2">🎯</div>
+                    <p class="text-sm font-semibold" style="color:var(--text-on-dark)">Расширить номенклатуру</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">После пилотной поставки — предложить
+                        полный каталог под все 20+ типов изделий</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 10 — АНАЛИТИЧЕСКИЙ ПАСПОРТ           ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Аналитический паспорт</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-3">Использованные источники</h3>
+                    <table class="w-full">
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 text-[#73808C]">Bitrix24 CRM</td>
+                            <td class="py-2">Компания, 8 контактов, 1 заказ, активности</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 text-[#73808C]">Анализ сайта</td>
+                            <td class="py-2">azimut.ru (главная, о компании, каталог)</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 text-[#73808C]">Brand Intelligence</td>
+                            <td class="py-2">Архетип Ruler + Hero, voice analysis</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 text-[#73808C]">Knowledge Base</td>
+                            <td class="py-2">russian-sales-knowledge-core + 6 файлов quotes-and-frameworks</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-3">Пробелы в данных</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C]">⚠</span><span>Нет транскриптов
+                                звонков (только CRM-активности)</span></li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C]">⚠</span><span>Не известна
+                                конкретная номенклатура закупаемых компонентов</span></li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C]">⚠</span><span>Нет
+                                email-переписки в CRM</span></li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C]">⚠</span><span>Неизвестно, какие
+                                позиции клиент ждёт на складе</span></li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C]">⚠</span><span>Нет данных о
+                                текущих поставщиках компонентов АЗИМУТ</span></li>
+                    </ul>
+                    <div class="mt-4 p-3 rounded-xl" style="background:var(--accent-soft)">
+                        <p class="text-xs font-semibold text-[#ED7A1C]">Рекомендация: при следующем звонке выяснить —
+                            какие именно позиции ждёт клиент, кто утверждает спецификацию, и какие ещё изделия АЗИМУТ
+                            проектирует в этом году.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
+        <div
+            class="max-w-[1320px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#73808C] gap-4">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C] transition-colors">Скачать PDF</a>
+                <a href="#" class="hover:text-[#ED7A1C] transition-colors">Отправить в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor • v3.2</div>
+        </div>
+    </footer>
+
+    <script>
+        // === АВТОМАТИЧЕСКАЯ ДАТА АНАЛИЗА ===
+        document.getElementById('analysis-date').textContent = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        // === ACCORDION ===
+        function toggleAccordion() {
+            const c = document.getElementById('accordion-content');
+            const b = document.getElementById('toggle-btn');
+            c.classList.toggle('hidden');
+            b.innerHTML = c.classList.contains('hidden')
+                ? 'Открыть подробнее <span class="text-xl leading-none">↓</span>'
+                : 'Свернуть <span class="text-xl leading-none">↑</span>';
+        }
+    </script>
+</body>
+
+</html>
