@@ -1,0 +1,153 @@
+/* ALTAIR Deep Client Analysis Report Styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+@font-face {
+    font-family: 'EuropeExt Bold';
+    src: url('../../design/EuropeExt-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+:root {
+    /* BACKGROUND */
+    --bg: #F4F6F8;
+    --bg-soft: #F8FAFC;
+
+    /* GLASS SURFACES */
+    --glass: rgba(255, 255, 255, 0.58);
+    --glass-strong: rgba(255, 255, 255, 0.72);
+    --glass-soft: rgba(245, 247, 250, 0.82);
+    --glass-dark: rgba(19, 54, 89, 0.82);
+
+    /* BORDERS */
+    --border: rgba(129, 149, 168, 0.28);
+    --border-soft: rgba(255, 255, 255, 0.34);
+    --border-dark: rgba(255, 255, 255, 0.18);
+
+    /* TEXT */
+    --text: #44515D;
+    --text-strong: #243444;
+    --text-muted: #73808C;
+    --text-on-dark: #F3F7FB;
+
+    /* BRAND COLORS */
+    --blue: #184D7A;
+    --blue-700: #184D7A;
+    --blue-900: #0D314F;
+    --accent: #ED7A1C;
+    --accent-soft: #FFF1E4;
+
+    /* SHADOWS & RADIUS */
+    --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+    --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+    --radius-section: 24px;
+    --radius-pill: 9999px;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+}
+
+.glass {
+    background: var(--glass);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-section);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.glass-dark {
+    background: var(--glass-dark);
+    color: var(--text-on-dark);
+    border-color: var(--border-dark);
+    box-shadow: var(--shadow-md);
+}
+
+.section-title,
+.hero-title {
+    font-family: 'EuropeExt Bold', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--blue);
+}
+
+.block-title {
+    font-family: 'EuropeExt Bold', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-size: 17px;
+    line-height: 21px;
+    color: var(--blue-700);
+}
+
+.body-text {
+    font-size: 14px;
+    line-height: 22px;
+}
+
+.section-frame {
+    position: relative;
+    padding: 32px 36px;
+}
+
+.section-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border);
+    z-index: 1;
+}
+
+.section-title-wrapper {
+    position: relative;
+    display: inline-block;
+    background: var(--bg);
+    padding: 0 20px;
+    z-index: 2;
+    margin-top: -14px;
+    margin-bottom: 20px;
+}
+
+.chip {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 11.5px;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.02em;
+}
+
+.quote-block {
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-style: italic;
+    color: var(--text-strong);
+}
+
+.quote-author {
+    display: block;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    font-style: normal;
+}
+
+.accordion-content {
+    transition: all 0.3s ease;
+}
