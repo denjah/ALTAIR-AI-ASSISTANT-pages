@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Analysis — Предприятие ЭЛТЕКС — 48632</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-dark: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        body {
+            font-family: 'Montserrat', system-ui, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .glass-dark {
+            background: var(--glass-dark);
+            color: var(--text-on-dark);
+            border: 1px solid var(--border-dark);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-md);
+            backdrop-filter: blur(18px);
+        }
+
+        .glass-dark-soft {
+            background: var(--glass-dark-soft);
+            color: var(--text-on-dark);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-section);
+            backdrop-filter: blur(18px);
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue);
+        }
+
+        .section-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 4px 12px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 11.5px;
+            font-weight: 600;
+            border-radius: var(--radius-pill);
+            letter-spacing: 0.02em;
+        }
+
+        .chip-blue {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .chip-dark {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--text-on-dark);
+        }
+
+        .accent-line {
+            height: 3px;
+            width: 48px;
+            background: var(--accent);
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .metric-big {
+            font-family: 'EuropeExt Bold', sans-serif;
+            font-size: 34px;
+            line-height: 34px;
+            color: var(--accent);
+        }
+
+        .metric-big-blue {
+            font-family: 'EuropeExt Bold', sans-serif;
+            font-size: 34px;
+            line-height: 34px;
+            color: var(--blue);
+        }
+
+        .quote-mark {
+            font-size: 48px;
+            line-height: 1;
+            color: var(--accent);
+            opacity: 0.5;
+            font-family: Georgia, serif;
+        }
+
+        .pain-card {
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            margin-bottom: 16px;
+        }
+
+        .strategy-step {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        .strategy-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(237, 122, 28, 0.08);
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-right: 6px;
+            margin-bottom: 4px;
+        }
+
+        .tag-blue {
+            background: rgba(24, 77, 122, 0.08);
+            color: var(--blue);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .anim {
+            animation: fadeUp 0.4s ease forwards;
+        }
+
+        .anim-d1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .anim-d2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .anim-d3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D]" data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+    <script>
+        const canvas = document.createElement('canvas'); canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        document.getElementById('particle-bg').appendChild(canvas);
+        const ctx = canvas.getContext('2d'); let particles = []; let currentMode = 0;
+        const modes = ['solder', 'flow', 'etch']; let fade = 1.0; let nextSwitch = Date.now() + 7000;
+        class Particle { constructor() { this.reset() } reset() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 2 + 0.5; this.speedX = (Math.random() - 0.5) * 0.6; this.speedY = (Math.random() - 0.5) * 0.6; this.alpha = Math.random() * 0.4 + 0.1; this.color = Math.random() > 0.7 ? '237,122,28' : '24,77,122' } update() { this.x += this.speedX; this.y += this.speedY; if (this.x < 0 || this.x > canvas.width) this.speedX *= -1; if (this.y < 0 || this.y > canvas.height) this.speedY *= -1 } draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = `rgba(${this.color},${this.alpha * fade})`; ctx.fill() } }
+        function initParticles(n = 200) { particles = []; for (let i = 0; i < n; i++)particles.push(new Particle()) }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if (Date.now() > nextSwitch) {
+                fade -= 0.01; if (fade <= 0) { fade = 0; currentMode = (currentMode + 1) % 3; nextSwitch = Date.now() + 7000 }
+            } else if (fade < 1) { fade += 0.01 }
+            for (let p of particles) { p.update(); p.draw() }
+            requestAnimationFrame(animate)
+        }
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight }
+        window.addEventListener('resize', resize); initParticles(); animate();
+    </script>
+
+    <!-- HEADER -->
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="altair_logo.svg" alt="ALTAIR" class="h-16">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest"
+                    style="font-family:'EuropeExt Bold',sans-serif">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 space-y-8 mt-8">
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 1 — HERO: AI-ОБЗОР КЛИЕНТА         ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark p-10 anim">
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+                <div class="flex-1">
+                    <div class="chip-dark text-xs mb-3">COMPANY #48632 • TELECOM</div>
+                    <h1 class="text-3xl md:text-[42px] leading-tight font-bold mb-4"
+                        style="font-family:'EuropeExt Bold',sans-serif;color:var(--accent)">
+                        Предприятие ЭЛТЕКС
+                    </h1>
+                    <p class="text-lg leading-relaxed" style="color:var(--text-on-dark-muted)">
+                        Крупнейший российский разработчик и производитель телекоммуникационного оборудования. Полный
+                        цикл — от проектирования до серийного выпуска. 800+ разработчиков, собственное производство в
+                        Новосибирске. Слоган: <em>«Не переклеиваем, а создаём»</em>.
+                    </p>
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <span class="chip-dark">Новосибирск (GMT+7)</span>
+                        <span class="chip-dark">eltex-co.ru</span>
+                        <span class="chip-dark">Импортозамещение</span>
+                        <span class="chip-dark">ФСТЭК</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 min-w-[280px]">
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">₽7.4</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">млрд выручка</div>
+                    </div>
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">800+</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">разработчиков</div>
+                    </div>
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">2</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">сделки в CRM</div>
+                    </div>
+                    <div class="text-center p-4 rounded-2xl" style="background:rgba(255,255,255,0.08)">
+                        <div class="metric-big">19</div>
+                        <div class="text-xs mt-1" style="color:var(--text-on-dark-muted)">звонков</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 2 — КРАТКОЕ РЕЗЮМЕ СДЕЛКИ (accordion)║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass anim anim-d1">
+            <div onclick="toggleAccordion()"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5 rounded-t-3xl transition-colors">
+                <div class="block-title">Краткое резюме сделки</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2 text-sm">
+                    Открыть подробнее <span class="text-xl leading-none">↓</span>
+                </span>
+            </div>
+            <div id="accordion-content" class="px-8 py-6 hidden">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-[#184D7A] mb-3">Сделка #20084 — <span
+                                class="text-green-600">ВЫИГРАНА</span></h3>
+                        <table class="w-full text-sm">
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Направление</td>
+                                <td class="py-2 font-medium">Клеммы (DEGSON / Wanjie)</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Артикул</td>
+                                <td class="py-2 font-medium">WJ123-5.08-02P-14</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Создана</td>
+                                <td class="py-2">11 ноября 2024</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Закрыта</td>
+                                <td class="py-2">20 декабря 2024</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 text-[#73808C]">Категория</td>
+                                <td class="py-2"><span class="tag">микроэлектроника</span><span
+                                        class="tag">клеммы</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-[#184D7A] mb-3">Сделка #20052 — <span
+                                class="text-red-500">ПРОИГРАНА</span></h3>
+                        <table class="w-full text-sm">
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Сумма</td>
+                                <td class="py-2 font-medium">₽51 090</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Создана</td>
+                                <td class="py-2">6 ноября 2024</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="py-2 text-[#73808C]">Закрыта</td>
+                                <td class="py-2">28 марта 2025</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 text-[#73808C]">Статус CRM</td>
+                                <td class="py-2"><span class="tag-blue tag">На прогреве</span><span class="tag">Условный
+                                        отказ</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 rounded-2xl" style="background:var(--blue-soft)">
+                    <p class="text-sm"><strong>Контакт:</strong> Ираида Андреевна Назаревич • <a
+                            href="mailto:iraida.nazarevich@eltex-co.ru"
+                            class="text-[#184D7A] underline">iraida.nazarevich@eltex-co.ru</a> • +7 383 274-48-58</p>
+                    <p class="text-sm mt-1"><strong>Последняя активность:</strong> 7 апреля 2026 • <strong>Открытая
+                            задача:</strong> «Получить обратную связь» (20.06.2025)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 3 — ПРОФИЛЬ КЛИЕНТА                 ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8 anim anim-d2">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Профиль клиента — ЭЛТЕКС</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-2">О компании</h3>
+                    <p class="text-sm leading-relaxed">Eltex — крупнейший разработчик и производитель
+                        телеком-оборудования в России/СНГ. Полный цикл: проектирование → микроэлектроника →
+                        корпусирование → софт → серийный выпуск. Штат 800+ R&D инженеров.</p>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-2">Продуктовые линейки</h3>
+                    <div class="flex flex-wrap gap-1">
+                        <span class="tag-blue tag">Ethernet-коммутаторы MES</span>
+                        <span class="tag-blue tag">Маршрутизаторы ESR</span>
+                        <span class="tag-blue tag">GPON / xPON</span>
+                        <span class="tag-blue tag">Wi-Fi 7</span>
+                        <span class="tag-blue tag">VoIP</span>
+                        <span class="tag-blue tag">IP ATC</span>
+                        <span class="tag-blue tag">IoT</span>
+                        <span class="tag-blue tag">СКУД</span>
+                        <span class="tag-blue tag">Softswitch ECSS-10</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-2">Ключевые факты</h3>
+                    <ul class="text-sm space-y-1">
+                        <li>📍 Новосибирск (GMT+7, разница с Москвой +4ч)</li>
+                        <li>🏭 Собственное производство, полный цикл</li>
+                        <li>🛡️ Сертификация ФСТЭК, ТОРП, импортозамещение</li>
+                        <li>📡 Коммутаторы с портами 400G</li>
+                        <li>🎓 Академия Eltex + вебинары</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 4 — BRAND INTELLIGENCE               ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark-soft p-8 anim anim-d3">
+            <div style="height:3px;width:48px;background:var(--accent);border-radius:3px;margin-bottom:12px"></div>
+            <h2 class="block-title mb-6" style="color:var(--text-on-dark)">Brand Intelligence</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <div class="mb-4">
+                        <span class="chip mb-2">Архетип бренда</span>
+                        <p class="text-lg font-bold mt-2" style="color:var(--accent)">CREATOR (70%) + RULER (30%)</p>
+                    </div>
+                    <p class="text-sm leading-relaxed" style="color:var(--text-on-dark-muted)">
+                        «Не переклеиваем, а создаём» — ЭЛТЕКС позиционирует себя как <strong
+                            style="color:var(--text-on-dark)">создатель и инноватор</strong>,
+                        подчёркивая полный цикл разработки. Вторичный архетип Ruler проявляется в стремлении к лидерству
+                        на рынке импортозамещения и контроле всей цепочки от чипа до софта.
+                    </p>
+                    <div class="mt-4 space-y-2 text-sm" style="color:var(--text-on-dark-muted)">
+                        <p><strong style="color:var(--text-on-dark)">Миссия:</strong> Обеспечить технологическую
+                            независимость РФ в телеком-инфраструктуре</p>
+                        <p><strong style="color:var(--text-on-dark)">Ценности:</strong> Инновации, качество, полный
+                            цикл, независимость от импорта</p>
+                        <p><strong style="color:var(--text-on-dark)">Voice:</strong> Технический, уверенный, экспертный,
+                            без маркетинговой воды</p>
+                    </div>
+                </div>
+                <div>
+                    <span class="chip mb-3">Как использовать в продажах АЛЬТАИР</span>
+                    <ul class="text-sm space-y-3 mt-3" style="color:var(--text-on-dark-muted)">
+                        <li>🔧 <strong style="color:var(--text-on-dark)">Говори на языке инженера:</strong> ЭЛТЕКС ценит
+                            техническую экспертизу. Менеджер Альтаир = инженер-консультант, не продавец.</li>
+                        <li>🏗️ <strong style="color:var(--text-on-dark)">Подчёркивай созидание:</strong> «Мы тоже
+                            создаём решение под вашу задачу, а не просто поставляем коробки».</li>
+                        <li>⚡ <strong style="color:var(--text-on-dark)">Триггер «контроль цепочки»:</strong> Покажи, что
+                            Альтаир даёт контроль — склад в СПб, быстрая поставка, подбор аналогов.</li>
+                        <li>📊 <strong style="color:var(--text-on-dark)">TCO-аргументация:</strong> Для Creator-архетипа
+                            важны не скидки, а ценность и надёжность компонентов в конечном изделии.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 5 — КЛЮЧЕВЫЕ БОЛИ И ПОЖЕЛАНИЯ       ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Ключевые боли и пожелания</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-4">🔴 Выявленные боли</h3>
+                    <div class="pain-card">
+                        <p class="text-sm font-semibold text-[#243444]">Длительные конструкторские согласования</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">«Это всё медленное дело… Я отправлю ещё в
+                            конструкторские»</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: Звонок #421 • Приоритет: <span
+                                class="text-[#ED7A1C] font-semibold">Высокий</span></p>
+                        <p class="text-xs mt-1">→ <em>Принцип: Разбивание зеркал конфликта (Филиппов) +
+                                pain-extraction.md</em></p>
+                    </div>
+                    <div class="pain-card">
+                        <p class="text-sm font-semibold text-[#243444]">Зависимость от китайских поставщиков</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">«Заканчивается период перед Китайским Новым годом…
+                            ждём»</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: Звонок #421 • Приоритет: <span
+                                class="text-[#ED7A1C] font-semibold">Высокий</span></p>
+                        <p class="text-xs mt-1">→ <em>Принцип: «А завтра» (Якуба) + decision-triggers.md</em></p>
+                    </div>
+                    <div class="pain-card">
+                        <p class="text-sm font-semibold text-[#243444]">Трудность связи с ЛПР / отсутствие на месте</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">«Она в отпуске» / «На удалёнке» / «Сегодня нет» —
+                            8 из 19 звонков не состоялись</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: Множественные звонки • Приоритет: <span
+                                class="text-[#ED7A1C] font-semibold">Средний</span></p>
+                        <p class="text-xs mt-1">→ <em>Принцип: Follow-up с новым инфоповодом (Якуба)</em></p>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-sm text-[#184D7A] mb-4">🟢 Выявленные пожелания и сигналы</h3>
+                    <div class="pain-card" style="border-left-color: var(--blue)">
+                        <p class="text-sm font-semibold text-[#243444]">Потребность в разъёмах и клеммах</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">«Плотно работа будет вестись по разъёмам, по
+                            клемникам»</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: Звонок #578 • Сигнал: <span
+                                class="text-green-600 font-semibold">Прямой запрос</span></p>
+                    </div>
+                    <div class="pain-card" style="border-left-color: var(--blue)">
+                        <p class="text-sm font-semibold text-[#243444]">Клиент помнит Альтаир и ждёт продолжения</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">«Валерий? Валерий, это вы, да?» / «Не переживайте,
+                            я не забываю»</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: Звонки #261, #322 • Сигнал: <span
+                                class="text-green-600 font-semibold">Лояльность</span></p>
+                    </div>
+                    <div class="pain-card" style="border-left-color: var(--blue)">
+                        <p class="text-sm font-semibold text-[#243444]">Конструкторский отдел — ключевое звено</p>
+                        <p class="text-xs text-[#73808C] italic mt-1">«Как только это коснётся конкретно разъёмов, я всё
+                            вам напишу»</p>
+                        <p class="text-xs text-[#73808C] mt-1">Источник: Звонок #322 • Сигнал: <span
+                                class="text-blue-600 font-semibold">Готовность к сотрудничеству</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 6 — СИЛЬНЫЕ СТОРОНЫ И ВОЗМОЖНОСТИ   ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Сильные стороны и возможности</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="p-5 rounded-2xl" style="background:var(--blue-soft)">
+                    <div class="metric-big-blue mb-2">₽7.4B</div>
+                    <p class="text-sm font-semibold text-[#184D7A]">Масштаб закупок</p>
+                    <p class="text-xs text-[#73808C] mt-1">Крупный серийный производитель — потенциал регулярных
+                        поставок клемм и разъёмов.</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:var(--accent-soft)">
+                    <div class="metric-big mb-2">WON</div>
+                    <p class="text-sm font-semibold text-[#184D7A]">Успешная первая сделка</p>
+                    <p class="text-xs text-[#73808C] mt-1">Сделка #20084 (клеммы DEGSON/Wanjie) выиграна — прецедент
+                        создан, доверие есть.</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:var(--blue-soft)">
+                    <div class="metric-big-blue">→</div>
+                    <p class="text-sm font-semibold text-[#184D7A]">Расширение номенклатуры</p>
+                    <p class="text-xs text-[#73808C] mt-1">Переход от клемм к разъёмам — прямой запрос клиента. Ширина
+                        каталога Альтаир = конкурентное преимущество.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 7 — РЕКОМЕНДАЦИИ МЕНЕДЖЕРУ           ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark p-8">
+            <div style="height:3px;width:48px;background:var(--accent);border-radius:3px;margin-bottom:12px"></div>
+            <h2 class="block-title mb-6" style="color:var(--text-on-dark)">Авторитетные рекомендации менеджеру</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">Принцип «А завтра» (Якуба)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Используй наличие на складе в СПб как
+                            триггер:</strong><br>
+                        «Ираида Андреевна, у нас сейчас на складе в Санкт-Петербурге лежат аналоги этих разъёмов. Если
+                        завтра Китай снова задержит — у вас будет резервный источник с доставкой 1–3 дня.»</p>
+                    <p class="text-xs mt-2 opacity-60">→ decision-triggers.md / closing-techniques.md</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">КЭВ — тестовая партия (Гребенюк)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Не закрывай всю сделку, закрывай следующий
+                            шаг:</strong><br>
+                        «Давайте я отправлю 50 шт. образцов на ваш стенд — ваши конструкторы протестируют сами, без
+                        риска. Если подойдут — обсудим объём.»</p>
+                    <p class="text-xs mt-2 opacity-60">→ objections-handling.md / opening-and-questions.md</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">Эксперт-партнёр (все авторы)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Говори на языке инженера:</strong><br>
+                        ЭЛТЕКС — архетип Creator. Они разрабатывают, а не покупают готовое. Позиционируй Альтаир как
+                        такого же инженерного партнёра: «Мы подбираем аналоги под конкретные требования по IP, току,
+                        сечению — это не каталожный бизнес.»</p>
+                    <p class="text-xs mt-2 opacity-60">→ communication-style.md</p>
+                </div>
+                <div class="p-5 rounded-2xl" style="background:rgba(255,255,255,0.06)">
+                    <span class="chip mb-3">Follow-up с инфоповодом (Якуба)</span>
+                    <p class="text-sm mt-2" style="color:var(--text-on-dark-muted)"><strong
+                            style="color:var(--text-on-dark)">Никогда не звони с «Ну что, решили?»</strong><br>
+                        Каждый звонок = новая ценность. Примеры: «Появился новый аналог Wago/Wanjie с улучшенным шагом»,
+                        «Пришёл новый каталог разъёмов IP68», «Подготовил сравнительную таблицу».»</p>
+                    <p class="text-xs mt-2 opacity-60">→ opening-and-questions.md</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 8 — ПЛАН РАЗГОВОРА С КЛИЕНТОМ       ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">План разговора с клиентом</h2>
+
+            <div class="strategy-step" data-step="1">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Открывашка</h3>
+                <p class="text-sm text-[#44515D] p-3 rounded-xl" style="background:var(--blue-soft)">
+                    «Ираида Андреевна, добрый день! Валерий, Альтаир. Помню, вы говорили, что в начале года плотно
+                    будете работать по разъёмам и клеммникам. Подготовил для вас сравнительную таблицу аналогов — хотел
+                    обсудить, что сейчас актуально из номенклатуры.»
+                </p>
+            </div>
+
+            <div class="strategy-step" data-step="2">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Ключевые вопросы (3–5 шт.)</h3>
+                <ul class="text-sm space-y-2">
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Какие позиции по разъёмам сейчас в
+                        приоритете у конструкторского отдела?»</li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Как часто в этом году были
+                        задержки от текущих китайских поставщиков?» <span class="text-xs text-[#73808C]">(усиление боли
+                            — pain-extraction.md)</span></li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Какие требования по IP и рабочей
+                        температуре для новых проектов?»</li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Рассматриваете ли резервного
+                        поставщика на случай, если контейнер снова задержится?» <span class="text-xs text-[#73808C]">(«А
+                            завтра» — Якуба)</span></li>
+                    <li class="p-2 rounded-lg" style="background:var(--accent-soft)">«Если я подготовлю подборку
+                        аналогов с расчётом экономии — кому из конструкторов лучше направить?»</li>
+                </ul>
+            </div>
+
+            <div class="strategy-step" data-step="3">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Основные аргументы</h3>
+                <ul class="text-sm space-y-1">
+                    <li>✅ Успешная поставка клемм WJ123 (прецедент) — «Мы уже работали, вы знаете наше качество»</li>
+                    <li>✅ Склад в Санкт-Петербурге — доставка 1–3 дня vs. 8 недель из Китая</li>
+                    <li>✅ Подбор 100% аналогов по техническим характеристикам</li>
+                    <li>✅ Экономия 30–40% на комплектующих при сопоставимом качестве</li>
+                    <li>✅ Резервный поставщик = страховка от простоя конвейера</li>
+                </ul>
+            </div>
+
+            <div class="strategy-step" data-step="4">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Обработка возражений</h3>
+                <div class="space-y-3">
+                    <div class="p-3 rounded-xl border" style="border-color:var(--border)">
+                        <p class="text-sm font-semibold">«У нас всё долго согласовывается с конструкторами»</p>
+                        <p class="text-sm text-[#73808C] mt-1">→ <em>Разбивание зеркал</em>: «Понимаю, ответственность
+                            большая. Давайте я заранее подготовлю техническое сравнение + образцы, чтобы когда
+                            конструкторы дойдут до этого этапа — всё уже было готово. Так мы сэкономим время.»</p>
+                    </div>
+                    <div class="p-3 rounded-xl border" style="border-color:var(--border)">
+                        <p class="text-sm font-semibold">«Мы работаем с оригиналом / текущим поставщиком»</p>
+                        <p class="text-sm text-[#73808C] mt-1">→ <em>Резервный поставщик</em>: «Большинство
+                            производителей вашего уровня работают минимум с 2–3 поставщиками. Мы можем быть планом Б со
+                            склада в СПб — без риска для основной спецификации.»</p>
+                    </div>
+                    <div class="p-3 rounded-xl border" style="border-color:var(--border)">
+                        <p class="text-sm font-semibold">«Отправьте КП, мы подумаем»</p>
+                        <p class="text-sm text-[#73808C] mt-1">→ <em>КЭВ</em>: «Конечно. Чтобы КП было максимально
+                            точным — давайте я сначала подберу аналоги конкретно под ваши ТЗ. Когда удобно созвониться
+                            на 10 минут для уточнения?»</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="strategy-step" data-step="5">
+                <h3 class="font-semibold text-sm text-[#184D7A] mb-1">Техника закрытия</h3>
+                <p class="text-sm p-3 rounded-xl" style="background:var(--accent-soft)">
+                    <strong>Сократовский метод (3 «Да»):</strong><br>
+                    «Вам ведь важно, чтобы разъёмы гарантированно держали IP68? (Да) И вы хотите иметь альтернативный
+                    источник на случай задержек из Китая? (Да) Тогда давайте я соберу подборку аналогов + образцы для
+                    вашего стенда — когда удобно будет принять?»
+                </p>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 9 — NEXT BEST ACTION                 ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass-dark p-8">
+            <div style="height:3px;width:48px;background:var(--accent);border-radius:3px;margin-bottom:12px"></div>
+            <h2 class="block-title mb-6" style="color:var(--text-on-dark)">Next Best Action</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(237,122,28,0.15)">
+                    <div class="text-2xl mb-2">📋</div>
+                    <p class="text-sm font-semibold" style="color:var(--accent)">Сравнительная таблица</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">Подготовить таблицу аналогов
+                        разъёмов IP68 по ТЗ ЭЛТЕКС</p>
+                </div>
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(255,255,255,0.08)">
+                    <div class="text-2xl mb-2">📦</div>
+                    <p class="text-sm font-semibold" style="color:var(--text-on-dark)">Образцы на стенд</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">Отправить тестовую партию разъёмов
+                        для конструкторского отдела</p>
+                </div>
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(255,255,255,0.08)">
+                    <div class="text-2xl mb-2">📞</div>
+                    <p class="text-sm font-semibold" style="color:var(--text-on-dark)">Звонок с инфоповодом</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">Позвонить Ираиде Андреевне с новой
+                        подборкой аналогов</p>
+                </div>
+                <div class="p-4 rounded-2xl text-center" style="background:rgba(255,255,255,0.08)">
+                    <div class="text-2xl mb-2">🎯</div>
+                    <p class="text-sm font-semibold" style="color:var(--text-on-dark)">Выход на конструктора</p>
+                    <p class="text-xs mt-1" style="color:var(--text-on-dark-muted)">Через Ираиду получить контакт
+                        инженера для технической оценки</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ╔══════════════════════════════════════════╗ -->
+        <!-- ║ БЛОК 10 — АНАЛИТИЧЕСКИЙ ПАСПОРТ           ║ -->
+        <!-- ╚══════════════════════════════════════════╝ -->
+        <section class="glass p-8">
+            <div class="accent-line"></div>
+            <h2 class="block-title mb-6">Аналитический паспорт</h2>
+            <div class="grid md:grid-cols-2 gap-6 text-sm">
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-3">Использованные источники</h3>
+                    <table class="w-full">
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 text-[#73808C]">Bitrix24 CRM</td>
+                            <td class="py-2">Компания, 2 сделки, 1 контакт, 4 активности</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 text-[#73808C]">Транскрипты звонков</td>
+                            <td class="py-2">19 файлов (внешняя расшифровка)</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 text-[#73808C]">Анализ сайта</td>
+                            <td class="py-2">eltex-co.ru (главная, о компании, каталог)</td>
+                        </tr>
+                        <tr class="border-b border-gray-100">
+                            <td class="py-2 text-[#73808C]">Brand Intelligence</td>
+                            <td class="py-2">Архетип Creator + Ruler, voice analysis</td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 text-[#73808C]">Knowledge Base</td>
+                            <td class="py-2">russian-sales-knowledge-core + 6 файлов quotes-and-frameworks</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-3">Пробелы в данных</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2">
+                            <span class="text-[#ED7A1C]">⚠</span>
+                            <span>Нет транскриптов CoPilot в B24 (расшифровки сделаны внешней программой)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-[#ED7A1C]">⚠</span>
+                            <span>Отсутствует email-переписка в CRM</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-[#ED7A1C]">⚠</span>
+                            <span>Нет данных о текущих поставщиках разъёмов ЭЛТЕКС</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-[#ED7A1C]">⚠</span>
+                            <span>Не известна конкретная номенклатура разъёмов (IP68, шаг, ток)</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-[#ED7A1C]">⚠</span>
+                            <span>Нет контакта конструктора — только снабжение (Назаревич)</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 p-3 rounded-xl" style="background:var(--accent-soft)">
+                        <p class="text-xs font-semibold text-[#ED7A1C]">Рекомендация: при следующем звонке узнать
+                            конкретные ТЗ на разъёмы и получить контакт инженера-конструктора.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
+        <div
+            class="max-w-[1320px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#73808C] gap-4">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C] transition-colors">Скачать PDF</a>
+                <a href="#" class="hover:text-[#ED7A1C] transition-colors">Отправить в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor • v3.2</div>
+        </div>
+    </footer>
+
+    <script>
+        // === АВТОМАТИЧЕСКАЯ ДАТА АНАЛИЗА ===
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        // === ACCORDION ДЛЯ БЛОКА №2 ===
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            if (content.classList.contains('hidden')) {
+                btn.innerHTML = `Открыть подробнее <span class="text-xl leading-none">↓</span>`;
+            } else {
+                btn.innerHTML = `Скрыть <span class="text-xl leading-none">↑</span>`;
+            }
+        }
+
+        window.onload = function () { setAnalysisDate(); };
+    </script>
+</body>
+
+</html>
