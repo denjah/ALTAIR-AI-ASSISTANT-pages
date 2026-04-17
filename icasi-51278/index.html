@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Analysis — Корпорация АСИ — Lead 51278</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #F4F6F8;
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-mid: rgba(232, 236, 240, 0.88);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --border: rgba(129, 149, 168, 0.28);
+            --text: #44515D;
+            --blue: #184D7A;
+            --accent: #ED7A1C;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --radius-section: 24px;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .glass-dark {
+            background: var(--glass-dark);
+            color: #F3F7FB;
+            border-radius: var(--radius-section);
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('../design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            color: var(--blue);
+        }
+
+        .body-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #FFF1E4;
+            color: var(--accent);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 99px;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D] font-sans">
+
+    <div id="particle-bg" style="position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.78;"></div>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50 rounded-none">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="altair_logo.svg" alt="ALTAIR" class="h-12">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest uppercase">Deep Client Analysis</div>
+                <div class="text-xs text-[#73808C]">Altair AI-Sales Instructor • <span id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-10">
+
+        <!-- КРАТКОЕ РЕЗЮМЕ -->
+        <div class="glass mb-8 overflow-hidden">
+            <div onclick="toggleAccordion()"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 transition-colors">
+                <div class="block-title">Краткое резюме сделки: ООО "Корпорация АСИ"</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">
+                    Подробнее <span class="text-xl">↓</span>
+                </span>
+            </div>
+            <div id="accordion-content" class="px-8 py-6 border-t border-[rgba(129,149,168,0.1)] hidden">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 body-text">
+                    <div>
+                        <span class="text-xs font-bold uppercase text-[#73808C] block mb-1">Компания</span>
+                        <p class="font-semibold text-[#184D7A]">Корпорация АСИ (icasi.ru)</p>
+                        <p class="text-sm">Ведущий завод промышленных весов в РФ.</p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase text-[#73808C] block mb-1">Контакт</span>
+                        <p class="font-semibold">Владимир Чайкин</p>
+                        <p class="text-sm">Инженер / Закупщик</p>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase text-[#73808C] block mb-1">Ключевая боль</span>
+                        <p class="text-[#ED7A1C] font-bold">Долгие сроки и смена бренда</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- AI ОБЗОР -->
+            <div class="glass p-8">
+                <div class="accent-line w-12 h-1 bg-[#ED7A1C] mb-4"></div>
+                <div class="block-title mb-6">AI-Обзор клиента</div>
+                <div class="body-text space-y-4">
+                    <p><strong>Корпорация АСИ</strong> — это промышленный гигант из Кемерово, который заменяет западные
+                        весовые системы (Mettler Toledo, Schenck Process) на российских предприятиях. Они сами
+                        проектируют электронику и механику.</p>
+                    <p>Их оборудование работает в экстремальных условиях: угольные разрезы, ж/д пути, конвейеры с
+                        вибрацией. Любой кабель или разъем — это критическая точка отказа.</p>
+                    <p class="bg-blue-50 p-4 border-l-4 border-[#184D7A]">Клиент ищет надежное "плечо" в РФ с постоянным
+                        наличием комплектующих, чтобы не зависеть от логистических коллапсов.</p>
+                </div>
+            </div>
+
+            <!-- КЛЮЧЕВЫЕ БОЛИ -->
+            <div class="glass p-8">
+                <div class="accent-line w-12 h-1 bg-[#ED7A1C] mb-4"></div>
+                <div class="block-title mb-6">Ключевые боли и пожелания</div>
+                <div class="space-y-4 body-text">
+                    <div class="flex gap-4">
+                        <span class="text-[#ED7A1C] font-bold text-xl">01.</span>
+                        <div>
+                            <p class="font-bold italic">"смена поставщика и бренда, долгие сроки поставки"</p>
+                            <p class="text-xs text-muted mt-1">Источник: CRM / Лид 51278</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="text-[#ED7A1C] font-bold text-xl">02.</span>
+                        <div>
+                            <p class="font-bold">Высокие требования к защите (IP68)</p>
+                            <p class="text-sm text-muted">Их весы работают под дождем, снегом и в грязи. Нужна
+                                абсолютная герметичность.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <span class="text-[#ED7A1C] font-bold text-xl">03.</span>
+                        <div>
+                            <p class="font-bold">Импортозамещение "не на бумаге"</p>
+                            <p class="text-sm text-muted">Нужны аналоги Lapp/Hummel, которые не уступят по качеству, но
+                                будут дешевле и в наличии.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BRAND INTELLIGENCE -->
+        <div class="glass-dark mt-8 p-10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-10 opacity-10">
+                <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71L12 2z" />
+                </svg>
+            </div>
+            <div class="flex items-center gap-4 mb-6">
+                <span class="chip bg-[#ED7A1C] text-white">Brand Intelligence</span>
+                <div class="block-title text-[#FFF] opacity-80">Интеллект бренда клиента</div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 body-text">
+                <div>
+                    <p class="text-2xl font-bold mb-2">Архетип: <span class="text-[#ED7A1C]">Творец / Правитель</span>
+                    </p>
+                    <p class="opacity-80">АСИ воспринимает себя как инноватора, создающего эталоны точности. Они —
+                        "Альфа" в мире промышленного взвешивания.</p>
+                    <div class="mt-6 space-y-3">
+                        <p class="flex items-center gap-2"><span class="text-[#ED7A1C]">✔</span> Позиционирование:
+                            Лидерство через надежность.</p>
+                        <p class="flex items-center gap-2"><span class="text-[#ED7A1C]">✔</span> Ценности: Точность,
+                            суверенитет, технологичность.</p>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-6 rounded-xl border border-white/5">
+                    <p class="font-bold text-[#ED7A1C] mb-4">Как продавать Альтаир этому бренду:</p>
+                    <ul class="space-y-3 opacity-90 text-sm">
+                        <li>• Не "предлагайте товар", а "проектируйте решение" вместе с ними.</li>
+                        <li>• Акцент на <strong>ТСО</strong> (снижение рисков простоя производства из-за 1 разъема).
+                        </li>
+                        <li>• Используйте инженерный, плотный стиль коммуникации.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ПЛАН РАЗГОВОРА -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass p-8 md:col-span-2">
+                <div class="block-title mb-6">План разговора (Script Strategy)</div>
+                <div class="space-y-6 body-text">
+                    <div class="p-4 bg-orange-50 rounded-lg border-l-4 border-[#ED7A1C]">
+                        <p class="font-bold text-xs uppercase text-[#73808C] mb-1">Открывашка (по Филиппову)</p>
+                        <p>"Владимир, добрый день! Это [Имя], Альтаир. Изучал ваш проект по весовому контролю на РЖД —
+                            впечатляет. Звоню обсудить, как мы можем страховать ваши сроки по кабельным вводам и
+                            разъемам, чтобы вы не зависели от импорта."</p>
+                    </div>
+                    <div>
+                        <p class="font-bold mb-2">Ключевые вопросы:</p>
+                        <ul class="list-disc pl-5 space-y-1 text-sm">
+                            <li>"Какие бренды сейчас используете в конвейерных весах и на какие сроки они 'улетели'?"
+                            </li>
+                            <li>"Если мы согласуем аналоги, которые по надежности как Lapp, но лежат на складе в СПб —
+                                вы готовы рассмотреть переход?" (Гребенюк: Изоляция)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold mb-2">Аргументация:</p>
+                        <p class="text-sm">«У нас складской запас именно под тяжелый пром. Можем отправить тестовую
+                            партию за 24 часа. Экономия на закупке до 40%, но главное — 0 дней ожидания».</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass p-8 flex flex-col">
+                <div class="block-title mb-6">Next Best Action</div>
+                <div class="flex-grow space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#184D7A] text-white flex items-center justify-center font-bold">
+                            1</div>
+                        <p class="text-sm font-bold">КП на аналоги Lapp/Hummel</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#184D7A] text-white flex items-center justify-center font-bold">
+                            2</div>
+                        <p class="text-sm font-bold">Предложение тестовой партии</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#ED7A1C] text-white flex items-center justify-center font-bold">
+                            3</div>
+                        <p class="text-sm font-bold underline">КЭВ: Технический созвон</p>
+                    </div>
+                </div>
+                <button
+                    class="w-full bg-[#184D7A] text-white py-3 rounded-xl mt-6 font-bold hover:bg-[#123E64] transition-all">Сгенерировать
+                    PDF</button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="glass rounded-none border-t border-[rgba(129,149,168,0.28)] py-8 mt-12 bg-white/20">
+        <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="text-xs">v3.2 • Deep Analysis Engine</div>
+        </div>
+    </footer>
+
+    <script>
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden') ? 'Подробнее <span class="text-xl">↓</span>' : 'Скрыть <span class="text-xl">↑</span>';
+        }
+
+        setAnalysisDate();
+    </script>
+
+    <!-- Particle Background Simulation -->
+    <script>
+        const canvas = document.createElement('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        document.getElementById('particle-bg').appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(24, 77, 122, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        function init() {
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
+        }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        init();
+        animate();
+    </script>
+</body>
+
+</html>
