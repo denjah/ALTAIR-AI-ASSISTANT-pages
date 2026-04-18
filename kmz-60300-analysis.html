@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Analysis — ПАО «КМЗ» — 60300</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --accent: #ED7A1C;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --text: #44515D;
+            --text-strong: #243444;
+            --border: rgba(129, 149, 168, 0.28);
+            --surface-glass: rgba(255, 255, 255, 0.58);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F4F6F8;
+            color: var(--text);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .euro-bold {
+            font-family: 'EuropeExt Bold', 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .glass {
+            background: var(--surface-glass);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 8px 24px rgba(30, 55, 80, 0.06);
+        }
+
+        .block-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            color: var(--blue-700);
+            position: relative;
+            display: inline-block;
+            background: #F4F6F8;
+            padding: 0 12px;
+            margin-top: -12px;
+            z-index: 10;
+        }
+
+        .section-frame {
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 24px;
+            position: relative;
+            margin-bottom: 32px;
+            background: var(--surface-glass);
+        }
+
+        .dark-block {
+            background: var(--blue-900);
+            color: white;
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .accent-line {
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .chip {
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(24, 77, 122, 0.1);
+            color: var(--blue-700);
+        }
+
+        .quote-card {
+            border-left: 4px solid var(--accent);
+            background: rgba(237, 122, 28, 0.05);
+            padding: 16px 20px;
+            border-radius: 0 16px 16px 0;
+            font-style: italic;
+        }
+
+        #particle-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="particle-bg"></div>
+
+    <header class="glass sticky top-0 z-50 py-4 px-8 border-b border-[rgba(129,149,168,0.28)]">
+        <div class="max-w-[1320px] mx-auto flex items-center justify-between">
+            <img src="design/altair_logo.svg" alt="ALTAIR" class="h-14">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest euro-bold">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">ID: 60300 • ПАО «КМЗ» (ЗЕНИТ) • <span id="current-date"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pt-12 pb-20">
+
+        <!-- КРАТКОЕ РЕЗЮМЕ СДЕЛКИ -->
+        <div class="section-frame">
+            <div class="block-title">Краткое резюме сделки</div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                <div class="glass p-5">
+                    <div class="text-xs text-[#73808C] uppercase mb-1">Статус</div>
+                    <div class="font-bold text-lg text-[#184D7A]">Ожидание тендера</div>
+                    <div class="text-sm mt-2 font-medium">Результаты по микросхемам: <span class="text-[#ED7A1C]">6
+                            мая</span></div>
+                </div>
+                <div class="glass p-5">
+                    <div class="text-xs text-[#73808C] uppercase mb-1">Ключевой контакт</div>
+                    <div class="font-bold text-lg text-[#184D7A]">Мария</div>
+                    <div class="text-sm mt-2 font-medium">Закупки • Прямая коммуникация</div>
+                </div>
+                <div class="glass p-5">
+                    <div class="text-xs text-[#73808C] uppercase mb-1">Потенциальные позиции</div>
+                    <div class="font-bold text-lg text-[#184D7A]">Housings, Connectors</div>
+                    <div class="text-sm mt-2 font-medium">Замена импорта • IP68</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- ЛЕВАЯ КОЛОНКА -->
+            <div class="lg:col-span-8">
+
+                <!-- BRAND INTELLIGENCE -->
+                <div class="section-frame">
+                    <div class="block-title">Brand Intelligence</div>
+                    <div class="mt-4">
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="chip">SAGE (Мудрец)</span>
+                            <span class="chip">CREATOR (Творец)</span>
+                        </div>
+                        <p class="text-sm leading-relaxed mb-6">
+                            ПАО «КМЗ» — это флагман российского оптического приборостроения. Бренд «Зенит» ассоциируется
+                            с точностью, наукой и наследием. Культура общения — формальная, регламентированная, но
+                            экспертная. Им важны технические характеристики и доказанная надежность.
+                        </p>
+                        <div class="dark-block">
+                            <div class="accent-line"></div>
+                            <h4 class="euro-bold text-lg mb-4">Как продавать Альтаир этому бренду:</h4>
+                            <ul class="space-y-4 text-sm font-medium">
+                                <li class="flex items-start gap-3">
+                                    <span class="text-[#ED7A1C] mt-1">▶</span>
+                                    <div><span class="text-white">Технический фокус:</span> Оперируйте стандартами
+                                        (IP68, герметичность), а не просто "хорошими ценами".</div>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="text-[#ED7A1C] mt-1">▶</span>
+                                    <div><span class="text-white">Статус партнера:</span> Вы не продавец, вы эксперт по
+                                        герметичным решениям для их оптики и медицинской техники.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- АНАЛИЗ КОММУНИКАЦИЙ -->
+                <div class="section-frame">
+                    <div class="block-title">Аналитика и "Боли"</div>
+                    <div class="mt-6 space-y-6">
+                        <div class="quote-card">
+                            «У нас сейчас проходит конкурентная процедура на площадке, где есть эта же самая микросхема.
+                            Шестого числа вскрытие...»
+                            <div class="text-xs text-[#73808C] mt-2 font-bold">— Мария, отдел закупок</div>
+                        </div>
+
+                        <div class="p-4 bg-white/40 rounded-xl border border-dashed border-[#184D7A]/20">
+                            <h5 class="text-[#184D7A] font-bold text-sm mb-2 uppercase">Выявленные потребности
+                                (Сигналы):</h5>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[#ED7A1C]">●</span>
+                                    <span class="text-sm font-medium">Микросхемы (тендерный запрос)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[#ED7A1C]">●</span>
+                                    <span class="text-sm font-medium">Импортный кабель (Hyperline) — дефицит</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[#ED7A1C]">●</span>
+                                    <span class="text-sm font-medium">Корпуса (Housing) — обсуждаемый запрос</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[#ED7A1C]">●</span>
+                                    <span class="text-sm font-medium">IP68 герметизация для оптики</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА (STRATEGY) -->
+            <div class="lg:col-span-4">
+
+                <!-- ACTION PLAN -->
+                <div class="dark-block h-full">
+                    <div class="accent-line"></div>
+                    <h3 class="euro-bold text-xl mb-6">Talk Strategy v3.2</h3>
+
+                    <div class="mb-8">
+                        <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-wider">Следующий шаг (КЭВ)
+                        </h4>
+                        <p class="text-sm font-bold bg-white/10 p-4 rounded-xl mb-2">Контрольный звонок 6-7 мая</p>
+                        <p class="text-xs text-white/60 italic">Цель: обсудить результаты тендера и "зацепиться" за
+                            корпуса и разъемы.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xs uppercase text-white/50 font-bold mb-2">Открывашка</h4>
+                            <p class="text-sm leading-relaxed p-3 border border-white/20 rounded-lg italic">
+                                «Мария, добрый день. Это Валерий, Альтаир. Помню, у вас сегодня вскрытие на площадке по
+                                микросхемам. Решил уточнить, как всё прошло и не "дозрел" ли у вас запрос по корпусам и
+                                импортозамещению кабельных вводов?»
+                            </p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-xs uppercase text-white/50 font-bold mb-2">Сильные аргументы Альтаир</h4>
+                            <ul class="text-xs space-y-3">
+                                <li class="flex gap-2">
+                                    <span class="text-[#ED7A1C]">✔</span>
+                                    <div><span class="font-bold">Экономия 30-40%:</span> Важно для бюджетных закупок
+                                        Ростеха.</div>
+                                </li>
+                                <li class="flex gap-2">
+                                    <span class="text-[#ED7A1C]">✔</span>
+                                    <div><span class="font-bold">Склад в Санкт-Петербурге:</span> Никаких ожиданий
+                                        импорта по полгода.</div>
+                                </li>
+                                <li class="flex gap-2">
+                                    <span class="text-[#ED7A1C]">✔</span>
+                                    <div><span class="font-bold">IP68/IP69K:</span> Идеально для медицинских приборов
+                                        КМЗ и спецтехники.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
+        <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
+            <div>© ALTAIR • Sales Analyst AI</div>
+            <div class="text-xs">Generated for internal use only • Altair AI-Sales Instructor v3.4</div>
+        </div>
+    </footer>
+
+    <script>
+        const COUNT = 1200;
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.z = 180;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('particle-bg').appendChild(renderer.domElement);
+
+        const dummy = new THREE.Object3D();
+        const geometry = new THREE.SphereGeometry(0.3, 8, 8);
+        const material = new THREE.MeshBasicMaterial({ color: 0x184D7A, transparent: true, opacity: 0.3 });
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, COUNT);
+        scene.add(instancedMesh);
+
+        const positions = [];
+        for (let i = 0; i < COUNT; i++) {
+            positions.push(new THREE.Vector3(
+                (Math.random() - 0.5) * 600,
+                (Math.random() - 0.5) * 600,
+                (Math.random() - 0.5) * 600
+            ));
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            for (let i = 0; i < COUNT; i++) {
+                positions[i].y -= 0.1;
+                if (positions[i].y < -300) positions[i].y = 300;
+                dummy.position.copy(positions[i]);
+                dummy.updateMatrix();
+                instancedMesh.setMatrixAt(i, dummy.matrix);
+            }
+            instancedMesh.instanceMatrix.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        function setDate() {
+            const dateEl = document.getElementById('current-date');
+            const now = new Date();
+            dateEl.textContent = now.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+        }
+        setDate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+
+</html>
