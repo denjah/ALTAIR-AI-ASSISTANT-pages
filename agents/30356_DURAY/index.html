@@ -1,0 +1,364 @@
+<!-- === Report Landing Generator v3.2.1 Light Engineering + Analytical Passport === -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — ДЮРЭЙ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+        /* === ALTAIR Report Tokens v3 — Light Engineering Style === */
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --bg-pattern: rgba(33, 71, 108, 0.06);
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-mid: rgba(232, 236, 240, 0.88);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-dark: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --line-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --shadow-lg: 0 15px 40px rgba(19, 54, 89, 0.12);
+            --radius-page: 28px;
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('../design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue-700);
+        }
+
+        .accordion-header {
+            border-bottom: none !important;
+        }
+
+        .accordion-content {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title,
+        .hero-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D] font-sans" data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="../../../design/assets/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+                onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12">
+
+        <!-- БЛОК №2 — КРАТКОЕ РЕЗЮМЕ СДЕЛКИ -->
+        <div id="deal-summary" class="glass mb-8 mt-2">
+            <div onclick="toggleAccordion()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
+                <div class="block-title">Краткое резюме сделки</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее <span
+                        class="text-xl leading-none">↓</span></span>
+            </div>
+            <div id="accordion-content" class="accordion-content px-8 py-6 hidden">
+                
+<div class="space-y-4">
+    <div class="flex gap-4 mb-4">
+        <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] flex-1 shadow-sm">
+            <div class="text-xs text-[#73808C] uppercase font-bold tracking-wider mb-1">Сумма сделки</div>
+            <div class="text-2xl font-bold text-[#184D7A]">2 102 824 ₽ <span class="text-xs text-green-600 ml-2">В работе</span></div>
+        </div>
+        <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] flex-1 shadow-sm">
+            <div class="text-xs text-[#73808C] uppercase font-bold tracking-wider mb-1">Контакты</div>
+            <div class="text-sm text-[#243444] font-medium">Вадим Лизунков (рук.), Ольга Усынина, Екатерина</div>
+        </div>
+    </div>
+    <p class="text-[15px] leading-relaxed">Компания <strong>ДЮРЭЙ</strong> производит светодиодные светильники. Основная проблема — постоянный перенос коммуникации со стороны отдела снабжения ("обещают после обеда", смена ответственных). Ранее в 2021 году мы уже поставляли им образцы: кабельные вводы <strong>Ortac</strong> (SORL01-R PG7, SORL02-R PG9) и клеммники <strong>Wanjie</strong>. Текущая заявка находится на проработке у Сергея (зам. начальника ОМТС), контакт передан Ольге Усыниной. Звонок от 10.04.2026 не содержал конкретики, требуется активный follow-up для возобновления коммерческого диалога.</p>
+</div>
+
+            </div>
+        </div>
+
+        
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+    <!-- Brand Intelligence -->
+    <div class="glass p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[#ED7A1C]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#ED7A1C]/10 transition-colors"></div>
+        <div class="flex items-center gap-4 border-b border-[rgba(129,149,168,0.28)] pb-4 mb-6">
+            <div class="w-10 h-10 rounded-full bg-[#184D7A]/5 flex items-center justify-center text-[#184D7A]">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.82L18.18 20H5.82L12 5.82z"/></svg>
+            </div>
+            <h2 class="section-title text-base sm:text-lg m-0">Brand Intelligence</h2>
+        </div>
+        <p class="font-bold text-[#243444] mb-2 text-[15px]">Архетип бренда: Творец / Создатель (Creator)</p>
+        <p class="text-sm text-[#73808C] mb-4">Вторичный архетип: Правитель (Российский производитель, надежность, ГОСТы)</p>
+        <ul class="space-y-3 mb-6">
+            <li class="flex items-start gap-3">
+                <span class="text-[#ED7A1C] mt-0.5">●</span>
+                <span class="text-[14px]"><strong>Фокус:</strong> Собственное производство, надежность в жестких условиях (взрывозащита, промышленные объекты).</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <span class="text-[#ED7A1C] mt-0.5">●</span>
+                <span class="text-[14px]"><strong>Tone of voice:</strong> Профессиональный, инженерно-ориентированный, конкретный.</span>
+            </li>
+        </ul>
+        <div class="bg-white/50 p-4 rounded-xl border border-l-4 border-l-[#ED7A1C] border-[rgba(129,149,168,0.15)] shadow-sm">
+            <h4 class="text-xs uppercase font-bold text-[#ED7A1C] tracking-wide mb-2">Как продавать (Ниша Альтаир)</h4>
+            <p class="text-[14px] leading-relaxed">
+                Делайте акцент на <strong>надежность IP68 вводных устройств ORTAC</strong> для их уличных и промышленных серий. Аргументируйте возможность снижения себестоимости их светильников на <strong>30-40%</strong> за счет прямых поставок Альтаир без потери в качестве. Обязательно упоминайте наличие большого склада в СПб как гарантию бесперебойных поставок в текущих реалиях.
+            </p>
+        </div>
+    </div>
+
+    <!-- Стратегия и План разговора -->
+    <div class="glass p-8 relative overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-[#184D7A]/5 rounded-bl-[100px] -z-10 group-hover:bg-[#184D7A]/10 transition-colors"></div>
+        <div class="flex items-center gap-4 border-b border-[rgba(129,149,168,0.28)] pb-4 mb-6">
+            <div class="w-10 h-10 rounded-full bg-[#184D7A]/5 flex items-center justify-center text-[#184D7A]">
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M21 2H3c-1.1 0-2 .9-2 2v18l4-4h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h17v12z"/></svg>
+            </div>
+            <h2 class="section-title text-base sm:text-lg m-0">План разговора (Стратегия)</h2>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm">
+                <span class="text-xs uppercase font-bold text-[#184D7A] tracking-wide block mb-1">Открывашка (КЭВ)</span>
+                <p class="text-[14px]">«Ольга/Вадим, добрый день. Максим, Альтаир. Мы в 2021 передавали вам образцы вводов Ortac PG7 и PG9, сейчас Сергей (зам. нач. ОМТС) передал новую заявку вам в работу. Скажите, получилось посмотреть, какие позиции сейчас нужно заместить или удешевить, чтобы я подготовил расчет с экономией 30%?»</p>
+            </div>
+            
+            <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm">
+                <span class="text-xs uppercase font-bold text-[#184D7A] tracking-wide block mb-1">Вопросы-якоря (Изоляция возражения)</span>
+                <p class="text-[14px]">«Если я покажу, как можно собирать ваши взрывозащищенные серии с нашими клеммами Wanjie и при этом снизить TCO на этот узел — вы готовы протестировать новую партию?»</p>
+            </div>
+            
+            <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm">
+                <span class="text-xs uppercase font-bold text-[#184D7A] tracking-wide block mb-1">Работа с отговорками ("Обещали прислать")</span>
+                <p class="text-[14px]"><strong>Разбиваем зеркала:</strong> «Ольга, вижу что процесс согласования заявки затянулся со времен Екатерины. Скажите честно, есть ли принципиальные блокеры с вашей стороны, или вы просто не хотите менять текущего поставщика?» <br/><strong>Право на нет:</strong> «Если сейчас не актуально, давайте отложим этот проект, чтобы не тратить ваше время. Оставляем?»</p>
+            </div>
+            
+            <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm relative overflow-hidden">
+                <div class="absolute left-0 top-0 bottom-0 w-1 bg-[#10B981]"></div>
+                <span class="text-xs uppercase font-bold text-[#10B981] tracking-wide block mb-1">Закрытие (КЭВ)</span>
+                <p class="text-[14px]">«Давайте сделаем следующий шаг: вы скидываете спецификацию 1 случайного светильника, я за сутки собираю смету с выгодой. Если не понравится — закрываем тему. Договорились?»</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <!-- === БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ (открыт по умолчанию) === -->
+        <div id="analytical-passport" class="glass mb-8">
+            <div onclick="togglePassport()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+                <div class="block-title">Аналитический паспорт</div>
+                <span id="toggle-passport-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">
+                    Скрыть <span class="text-xl leading-none">↑</span>
+                </span>
+            </div>
+            <div id="passport-content" class="accordion-content px-8 py-6">
+                
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm text-center">
+        <span class="block text-xs uppercase font-bold text-[#73808C] tracking-wide mb-1">Сайт</span>
+        <span class="block text-[#184D7A] font-semibold text-[15px]"><a href="https://www.duray.ru" target="_blank" class="hover:text-[#ED7A1C] transition-colors">www.duray.ru</a></span>
+    </div>
+    <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm text-center">
+        <span class="block text-xs uppercase font-bold text-[#73808C] tracking-wide mb-1">Ниша / Продукт</span>
+        <span class="block text-[#243444] font-medium text-[15px]">LED Светильники (улица/пром.)</span>
+    </div>
+    <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm text-center">
+        <span class="block text-xs uppercase font-bold text-[#73808C] tracking-wide mb-1">Целевой продукт Альтаир</span>
+        <span class="block text-[#184D7A] font-medium text-[15px]">Клеммники Wanjie, Вводы Ortac</span>
+    </div>
+    <div class="bg-white/60 p-4 rounded-xl border border-[rgba(129,149,168,0.28)] shadow-sm text-center">
+        <span class="block text-xs uppercase font-bold text-[#73808C] tracking-wide mb-1">Локация</span>
+        <span class="block text-[#243444] font-semibold text-[15px]">Пермь (доставка из СПб)</span>
+    </div>
+</div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
+        <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C]">Скачать PDF</a>
+                <a href="#" class="hover:text-[#ED7A1C]">Отправить в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor • v3.2.1</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Particle system (3 режима)
+        const COUNT = 2000;
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xf4f6f8, 0.011);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.z = 160;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('particle-bg').appendChild(renderer.domElement);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+        const target = new THREE.Vector3();
+        const geometry = new THREE.SphereGeometry(0.35, 16, 16);
+        const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.78, depthTest: false });
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, COUNT);
+        scene.add(instancedMesh);
+
+        const positions = [];
+        for (let i = 0; i < COUNT; i++) {
+            positions.push(new THREE.Vector3());
+            instancedMesh.setColorAt(i, color.setHSL(0.58, 0.4, 0.65));
+        }
+
+        const mode = Math.floor(Math.random() * 3);
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.009;
+            const phase = Math.sin(time * (mode === 2 ? 0.7 : 0.55)) * 0.5 + 0.5;
+
+            for (let i = 0; i < COUNT; i++) {
+                if (mode === 0) {
+                    const density = 18;
+                    const gridX = (i % density) - density * 0.5;
+                    const gridY = Math.floor(i / density) - density * 0.5;
+                    const scatter = (1 - phase) * 140;
+                    target.set(gridX * 42 + Math.sin(time + i) * scatter, gridY * 42 + Math.cos(time * 1.2 + i) * scatter * 0.6, Math.sin(i * 0.08) * 80 * phase);
+                } else if (mode === 1) {
+                    const triCount = 22;
+                    const row = Math.floor(i / triCount);
+                    const col = i % triCount;
+                    const x = (col - triCount * 0.5) * 36;
+                    const y = (row - triCount * 0.5) * 36 * 0.866;
+                    const scatter = (1 - phase) * 160;
+                    target.set(x + (Math.random() - 0.5) * scatter, y + (Math.random() - 0.5) * scatter * 0.7, Math.cos(time * 1.1 + i) * 55 * phase);
+                } else {
+                    const chaos = 1.25;
+                    const angle = i * 0.017 + time * 1.8;
+                    const radius = 170 * phase + Math.random() * 110 * (1 - phase);
+                    target.set(Math.cos(angle) * radius * chaos, Math.sin(angle) * radius * 0.65, Math.sin(time * 2 + i) * 75 * (1 - phase));
+                }
+
+                color.setHSL(0.58, 0.38 + phase * 0.15, 0.62 + phase * 0.22);
+                positions[i].lerp(target, 0.11);
+                dummy.position.copy(positions[i]);
+                dummy.updateMatrix();
+                instancedMesh.setMatrixAt(i, dummy.matrix);
+                instancedMesh.setColorAt(i, color);
+            }
+
+            instancedMesh.instanceMatrix.needsUpdate = true;
+            instancedMesh.instanceColor.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        function togglePassport() {
+            const content = document.getElementById('passport-content');
+            const btn = document.getElementById('toggle-passport-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        window.onload = setAnalysisDate;
+    </script>
+</body>
+
+</html>
