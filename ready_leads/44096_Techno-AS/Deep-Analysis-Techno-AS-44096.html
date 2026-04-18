@@ -1,0 +1,710 @@
+<!-- === Report Landing Generator v3.2.1 Light Engineering + Analytical Passport === -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — ТЕХНО-АС</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+        /* === ALTAIR Report Tokens v3 — Light Engineering Style === */
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --bg-pattern: rgba(33, 71, 108, 0.06);
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-mid: rgba(232, 236, 240, 0.88);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-dark: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --line-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --shadow-lg: 0 15px 40px rgba(19, 54, 89, 0.12);
+            --radius-page: 28px;
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('../../../design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue-700);
+        }
+
+        .accordion-header {
+            border-bottom: none !important;
+        }
+
+        .accordion-content {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title,
+        .hero-title {
+            font-family: 'EuropeExt Bold', 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .quote-block {
+            border-left: 3px solid var(--accent);
+            padding-left: 16px;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .pain-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pain-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .strategy-highlight {
+            background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-800) 100%);
+            color: var(--text-on-dark);
+            border-radius: var(--radius-compact);
+            padding: 20px 24px;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D] font-sans" data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="../../../design/assets/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+                onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12">
+
+        <!-- HERO -->
+        <div class="glass mb-8 p-8 text-center">
+            <h1 class="hero-title text-3xl mb-3">ООО «ТЕХНО-АС»</h1>
+            <p class="text-[var(--text-muted)] text-lg">ID 44096 • г. Коломна, Московская обл. • technoac.ru</p>
+            <p class="text-[var(--accent)] font-semibold mt-2 text-base">Российский производитель трассоискателей,
+                кабелеискателей, электролабораторий и КИП</p>
+        </div>
+
+        <!-- БЛОК №2 — КРАТКОЕ РЕЗЮМЕ СДЕЛКИ (закрыт по умолчанию) -->
+        <div id="deal-summary" class="glass mb-8 mt-2">
+            <div onclick="toggleAccordion()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
+                <div class="block-title">Краткое резюме сделки</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее <span
+                        class="text-xl leading-none">↓</span></span>
+            </div>
+            <div id="accordion-content" class="accordion-content px-8 py-6 hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Клиент</div>
+                        <div class="font-semibold text-[var(--text-strong)]">ООО «ТЕХНО-АС» (ID 44096)</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Контактное лицо</div>
+                        <div class="font-semibold text-[var(--text-strong)]">Татьяна Евгеньевна / Юрьевна (Закупки)
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Сфера деятельности
+                        </div>
+                        <div class="font-semibold text-[var(--text-strong)]">Производство электролабораторий,
+                            трассоискателей, кабелеискателей, термометров контактных и КИП</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Доставка</div>
+                        <div class="font-semibold text-[var(--text-strong)]">г. Коломна, СДЭК до терминала (ул.
+                            Дзержинского, 17)</div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Текущая ситуация
+                        </div>
+                        <div class="text-[var(--text-strong)]">Закупают китайские аналоги (Burns, Dragon, Piezo).
+                            Жёсткий торг за каждый цент ($0.17–$0.19) из-за пересчёта тендеров. Проблемы с качеством от
+                            текущих OEM: путают размеры изолятора (75мм вместо 64мм) и цвета (красный вместо чёрного).
+                            Перегрузка отдела закупок из-за постоянных правок инженеров в спецификациях.</div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Конкуренты</div>
+                        <div class="text-[var(--text-strong)]">Мелкие компании (не Компел, не Литан). Конкурируем с
+                            небольшими дискаунтерами, ориентированными на китайский OEM.</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Условия оплаты</div>
+                        <div class="font-semibold text-[var(--text-strong)]">Стандарт — 100% предоплата (обсуждается с
+                            руководством). Работают по спецификации.</div>
+                    </div>
+                    <div>
+                        <div class="text-sm text-[var(--text-muted)] uppercase tracking-wide mb-1">Менеджер Альтаир
+                        </div>
+                        <div class="font-semibold text-[var(--text-strong)]">Валерий</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК №3 — BRAND INTELLIGENCE -->
+        <div class="glass mb-8 p-8">
+            <h2 class="section-title text-2xl mb-6">Brand Intelligence</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                <div class="p-5 bg-[var(--blue-soft)] rounded-[var(--radius-compact)]">
+                    <div class="text-[var(--text-muted)] text-xs uppercase tracking-wide mb-2">Архетип бренда</div>
+                    <div class="text-xl font-bold text-[var(--blue)]">Творец / Инженер</div>
+                    <div class="text-sm text-[var(--text-muted)] mt-1">Вторичный: Мудрец (Исследователь)</div>
+                </div>
+                <div class="p-5 bg-[var(--blue-soft)] rounded-[var(--radius-compact)]">
+                    <div class="text-[var(--text-muted)] text-xs uppercase tracking-wide mb-2">Tone of Voice</div>
+                    <div class="text-lg font-bold text-[var(--blue)]">Прагматичный, точный</div>
+                    <div class="text-sm text-[var(--text-muted)] mt-1">Фокус на тендерную себестоимость</div>
+                </div>
+                <div class="p-5 bg-[var(--blue-soft)] rounded-[var(--radius-compact)]">
+                    <div class="text-[var(--text-muted)] text-xs uppercase tracking-wide mb-2">Ключевые ценности</div>
+                    <div class="text-lg font-bold text-[var(--blue)]">Надёжность + Точность</div>
+                    <div class="text-sm text-[var(--text-muted)] mt-1">Российское производство высокоточных приборов
+                    </div>
+                </div>
+            </div>
+            <div
+                class="p-5 bg-[var(--accent-soft)] rounded-[var(--radius-compact)] border border-[var(--border-accent)]">
+                <h3 class="font-bold text-[var(--blue-900)] mb-3">Как использовать в продажах Альтаир:</h3>
+                <ul class="space-y-2 text-[var(--text-strong)]">
+                    <li>🔧 <strong>Говорить на языке инженера:</strong> Клиент производит высокоточное оборудование
+                        (трассоискатели, электролаборатории). Протечка из-за плохого ввода IP68 = рекламация от
+                        конечного заказчика (энерго- и теплосети).</li>
+                    <li>📊 <strong>Давать готовую табличную информацию:</strong> Отдел закупок перегружен постоянными
+                        правками инженеров. Подавать КП в формате «просто перешли инженеру» с кросс-номерами, размерами
+                        и ценами.</li>
+                    <li>🎯 <strong>Усиливать триггер «Точность ТЗ»:</strong> Текущие китайские поставщики путают размеры
+                        (75мм vs 64мм) и цвета (красный vs чёрный). Альтаир может гарантировать точное исполнение
+                        спецификации.</li>
+                    <li>🤝 <strong>Позиция эксперта-партнёра:</strong> Не «продавец», а инженер-консультант, который сам
+                        сверяет чертежи и подбирает замены.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- БЛОК №4 — АНАЛИТИКА БОЛЕЙ И ТРИГГЕРОВ -->
+        <div class="glass mb-8 p-8">
+            <h2 class="section-title text-2xl mb-6">Аналитика болей и триггеров</h2>
+            <div class="space-y-6">
+                <!-- Боль 1 -->
+                <div class="pain-card p-6 border border-[var(--border)] rounded-[var(--radius-compact)] bg-white/50">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--accent)] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            1</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-[var(--accent)] text-lg mb-2">Жёсткие лимиты бюджета (Тендерный
+                                таргет)</h3>
+                            <div class="quote-block mb-3">«Если вы вот к этому таргету ещё приблизитесь чуть-чуть... то
+                                я их у вас возьму. Именно эти позиции мне нужно.»</div>
+                            <div class="quote-block mb-3">«Ну хотя бы, ноль восемнадцать, ноль семнадцать, если можно
+                                будет.»</div>
+                            <p class="text-[var(--text)]"><strong>Анализ:</strong> Каждая копейка/цент на счету. Клиент
+                                закупает компоненты строго под выигранные тендеры. Конкуренция с мелкими дискаунтерами.
+                                Цена — решающий (но не единственный) фактор.</p>
+                            <div class="mt-3 text-sm text-[var(--blue)] font-medium">Триггер: Экономия бюджета • Сила:
+                                ★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Боль 2 -->
+                <div class="pain-card p-6 border border-[var(--border)] rounded-[var(--radius-compact)] bg-white/50">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--accent)] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            2</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-[var(--accent)] text-lg mb-2">Брак и ошибки китайских аналогов
+                            </h3>
+                            <div class="quote-block mb-3">«Нам не красный, нам чёрный изолятор нужен... Буковка Б в
+                                обозначении — это чёрное.»</div>
+                            <div class="quote-block mb-3">«Откуда они взяли семьдесят пять миллиметров, я не знаю. У нас
+                                шестьдесят четыре.»</div>
+                            <p class="text-[var(--text)]"><strong>Анализ:</strong> Текущие азиатские OEM-поставщики
+                                (Burns, Dragon, Piezo) регулярно допускают ошибки: не соблюдают размеры и цвет
+                                изолятора. Это вызывает переделки, задержки сборки и головную боль снабженца.</p>
+                            <div class="mt-3 text-sm text-[var(--blue)] font-medium">Триггер: Страх брака и рекламаций •
+                                Сила: ★★★★☆</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Боль 3 -->
+                <div class="pain-card p-6 border border-[var(--border)] rounded-[var(--radius-compact)] bg-white/50">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--accent)] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            3</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-[var(--accent)] text-lg mb-2">Перегруженность снабжения и хаос
+                                правок</h3>
+                            <div class="quote-block mb-3">«Ещё вот нас тут дёргают. Одну добавляют, другое добавляют...
+                                никак разобраться не можем.»</div>
+                            <div class="quote-block mb-3">«Пока считаем, не знаем, успеем, не успеем. Тендеры выиграли —
+                                пришлось всё пересчитывать.»</div>
+                            <p class="text-[var(--text)]"><strong>Анализ:</strong> Татьяна перегружена постоянными
+                                изменениями в спецификациях от инженеров. Частые звонки «Ну что, заявочка?» только
+                                усиливают раздражение. Нужно менять подход: забирать работу, а не «дёргать».</p>
+                            <div class="mt-3 text-sm text-[var(--blue)] font-medium">Триггер: Удобство и снижение
+                                бюрократии • Сила: ★★★★☆</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Боль 4 -->
+                <div class="pain-card p-6 border border-[var(--border)] rounded-[var(--radius-compact)] bg-white/50">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--blue)] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            4</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-[var(--blue)] text-lg mb-2">Сезонность и цикл закупок (китайские
+                                каникулы)</h3>
+                            <div class="quote-block mb-3">«Вы знаете, мы поспешили, торопились, поскольку китайцы
+                                отдыхать уходили. Уже всё разместили.»</div>
+                            <p class="text-[var(--text)]"><strong>Анализ:</strong> Клиент привязан к циклам китайского
+                                производства. Перед праздниками в Китае — массовый запас. Альтаир со складом в СПб может
+                                снять этот риск.</p>
+                            <div class="mt-3 text-sm text-[var(--blue)] font-medium">Триггер: Диверсификация рисков •
+                                Сила: ★★★☆☆</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Боль 5 -->
+                <div class="pain-card p-6 border border-[var(--border)] rounded-[var(--radius-compact)] bg-white/50">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-12 h-12 rounded-full bg-[var(--blue)] flex items-center justify-center text-white font-bold text-xl flex-shrink-0">
+                            5</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-[var(--blue)] text-lg mb-2">Сложная процедура оплаты и
+                                документооборота</h3>
+                            <div class="quote-block mb-3">«Пока я в оплату отдам, пока бухгалтерия оплатит — день-два
+                                пройдёт. Организация начинает работать сразу по спецификации.»</div>
+                            <p class="text-[var(--text)]"><strong>Анализ:</strong> Клиенту нужен счёт + спецификация (не
+                                только КП). Хочет, чтобы работа начиналась сразу по подписанной спецификации, до оплаты.
+                                Нужно подстроить делопроизводство Альтаир.</p>
+                            <div class="mt-3 text-sm text-[var(--blue)] font-medium">Триггер: Удобство документооборота
+                                • Сила: ★★★☆☆</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК №5 — ОШИБКИ МЕНЕДЖЕРА -->
+        <div class="glass mb-8 p-8 border-l-4 border-l-red-400">
+            <h2 class="section-title text-2xl mb-6 !text-red-700">Ошибки менеджера (Coaching)</h2>
+            <div class="space-y-4">
+                <div class="p-4 bg-red-50 rounded-[var(--radius-compact)] border border-red-200">
+                    <h3 class="font-bold text-red-800 mb-1">❌ Ошибка #1: однотипные звонки-«пушинг»</h3>
+                    <p class="text-red-900/80 text-sm">Многократные звонки с одним и тем же вопросом: «Заявочка
+                        сформировалась?» / «Не появились новые потребности?». Это создаёт давление, лишённое ценности.
+                        Клиент начинает избегать контакта.</p>
+                    <p class="text-red-800 font-medium mt-2 text-sm">✅ Решение: Каждое касание = новый инфоповод (свежие
+                        скидки от китайцев, новые образцы, обновлённое КП, сводная таблица).</p>
+                </div>
+                <div class="p-4 bg-red-50 rounded-[var(--radius-compact)] border border-red-200">
+                    <h3 class="font-bold text-red-800 mb-1">❌ Ошибка #2: не запрашивает целевые цены (таргеты) заранее
+                    </h3>
+                    <p class="text-red-900/80 text-sm">Менеджер узнаёт о таргете только в разговоре. Нужно запрашивать
+                        таргет-лист ДО формирования КП.</p>
+                    <p class="text-red-800 font-medium mt-2 text-sm">✅ Решение: «Пришлите ваш бенчмарк / таргет — я
+                        посчитаю сразу под ваши цифры».</p>
+                </div>
+                <div class="p-4 bg-red-50 rounded-[var(--radius-compact)] border border-red-200">
+                    <h3 class="font-bold text-red-800 mb-1">❌ Ошибка #3: не забирает работу у перегруженного снабженца
+                    </h3>
+                    <p class="text-red-900/80 text-sm">Вместо «Когда заявка будет?» нужно предлагать: «Скиньте любой
+                        список — я сам всё разберу и пришлю готовую таблицу сравнения.»</p>
+                    <p class="text-red-800 font-medium mt-2 text-sm">✅ Решение: Позиция помощника, а не «ожидающего».
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК №6 — СТРАТЕГИЯ ЗВОНКА -->
+        <div class="glass mb-8 p-8 border-l-4 border-l-[var(--accent)]">
+            <h2 class="section-title text-2xl mb-6">Стратегия следующего звонка</h2>
+
+            <div class="mb-8">
+                <h3 class="block-title mb-3">Тип клиента:</h3>
+                <div class="flex gap-3 flex-wrap">
+                    <span
+                        class="px-4 py-2 bg-[var(--blue-soft)] text-[var(--blue)] rounded-full font-semibold text-sm">Снабженец
+                        / Закупщик</span>
+                    <span
+                        class="px-4 py-2 bg-[var(--accent-soft)] text-[var(--accent)] rounded-full font-semibold text-sm">Ценовой
+                        торг</span>
+                    <span class="px-4 py-2 bg-green-50 text-green-700 rounded-full font-semibold text-sm">Перегрузка
+                        правками</span>
+                </div>
+            </div>
+
+            <!-- Открывашка -->
+            <div class="mb-8">
+                <h3 class="block-title mb-3">🎯 Рекомендуемая открывашка:</h3>
+                <div class="strategy-highlight">
+                    <p class="text-lg leading-relaxed">«Татьяна Юрьевна, добрый день. Валерий, Альтаир. Я подготовил для
+                        вас сводную таблицу с тремя позициями, где мы попали в ваш таргет $0.17. Плюс я проверил чертежи
+                        — у нас точный размер 64мм и чёрный изолятор (индекс Б), как просили ваши инженеры. Когда удобно
+                        взглянуть?»</p>
+                </div>
+            </div>
+
+            <!-- Ключевые вопросы -->
+            <div class="mb-8">
+                <h3 class="block-title mb-3">🗝️ Ключевые вопросы для разговора:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-white/60 rounded-[var(--radius-compact)] border border-[var(--border)]">
+                        <div class="text-xs text-[var(--accent)] font-bold mb-1">Квалификация</div>
+                        <p>«Какие тендеры сейчас в работе? По каким позициям идут пересчёты?»</p>
+                    </div>
+                    <div class="p-4 bg-white/60 rounded-[var(--radius-compact)] border border-[var(--border)]">
+                        <div class="text-xs text-[var(--accent)] font-bold mb-1">Выявление боли</div>
+                        <p>«Как часто за последний квартал приходилось возвращать партию из-за несоответствия ТЗ
+                            (размер, цвет)?»</p>
+                    </div>
+                    <div class="p-4 bg-white/60 rounded-[var(--radius-compact)] border border-[var(--border)]">
+                        <div class="text-xs text-[var(--accent)] font-bold mb-1">Усиление боли</div>
+                        <p>«А что происходит на сборке, когда приходят красные изоляторы вместо чёрных? Инженеры
+                            принимают или линия встаёт?»</p>
+                    </div>
+                    <div class="p-4 bg-white/60 rounded-[var(--radius-compact)] border border-[var(--border)]">
+                        <div class="text-xs text-[var(--accent)] font-bold mb-1">КЭВ (Следующий шаг)</div>
+                        <p>«Давайте я сам сделаю сводную таблицу по всем позициям с кросс-номерами и размерами. Скиньте
+                            мне текущий список — я разберу за вас.»</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Обработка возражений -->
+            <div class="mb-8">
+                <h3 class="block-title mb-3">🛡️ Обработка возражений:</h3>
+                <div class="space-y-4">
+                    <div class="p-5 bg-white/50 rounded-[var(--radius-compact)] border border-[var(--border)]">
+                        <h4 class="font-bold text-[var(--blue)] mb-2">«Дорого» / «У конкурентов дешевле на 2 цента»</h4>
+                        <p class="text-sm mb-2"><strong class="text-[var(--accent)]">Техника:</strong> Изоляция + TCO +
+                            Разбивание зеркал</p>
+                        <div class="strategy-highlight text-sm">«Согласен, разница 2 цента. Но вспомните последнюю
+                            историю с красным изолятором и 75мм вместо 64. Сколько стоила переделка? У нас — точное
+                            исполнение + склад в Питере, СДЭК до Коломны. Если приблизим остальные позиции — готовы
+                            размещать?»</div>
+                    </div>
+                    <div class="p-5 bg-white/50 rounded-[var(--radius-compact)] border border-[var(--border)]">
+                        <h4 class="font-bold text-[var(--blue)] mb-2">«Нет заявки / пока считаем / тендеры
+                            пересчитываем»</h4>
+                        <p class="text-sm mb-2"><strong class="text-[var(--accent)]">Техника:</strong> Снятие головной
+                            боли (КЭВ)</p>
+                        <div class="strategy-highlight text-sm">«Понимаю, вы сейчас перегружены пересчётами. Давайте
+                            так: скиньте мне любой промежуточный список — я сам подниму все кросс-номера, проверю
+                            габариты и посчитаю цены. Пришлю готовую таблицу — вы просто перешлёте инженерам.»</div>
+                    </div>
+                    <div class="p-5 bg-white/50 rounded-[var(--radius-compact)] border border-[var(--border)]">
+                        <h4 class="font-bold text-[var(--blue)] mb-2">«Успели закупиться до китайских каникул»</h4>
+                        <p class="text-sm mb-2"><strong class="text-[var(--accent)]">Техника:</strong> Резервный
+                            поставщик + «А завтра»</p>
+                        <div class="strategy-highlight text-sm">«Отлично, что успели. Но в следующий раз китайцы снова
+                            уйдут на каникулы — и если что-то не доедет вовремя, у нас всё есть на складе в СПб без
+                            ожидания 4–6 недель. Давайте я пока подготовлю сводку ваших ходовых позиций с нашими ценами,
+                            чтобы при следующем заказе вы сразу видели альтернативу?»</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Техника закрытия -->
+            <div>
+                <h3 class="block-title mb-3">🔒 Техника закрытия:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div
+                        class="p-5 bg-[var(--accent-soft)] rounded-[var(--radius-compact)] border border-[var(--border-accent)]">
+                        <h4 class="font-bold text-[var(--accent)] mb-2">КЭВ (Ключевой этап воронки)</h4>
+                        <p class="text-sm text-[var(--text)]">Перестать спрашивать «Когда заявка?». Забрать работу: «Я
+                            сделаю за вас сводную таблицу. Просто скиньте текущий список позиций — я подготовлю всё с
+                            кросс-номерами, размерами и ценами.»</p>
+                    </div>
+                    <div
+                        class="p-5 bg-[var(--accent-soft)] rounded-[var(--radius-compact)] border border-[var(--border-accent)]">
+                        <h4 class="font-bold text-[var(--accent)] mb-2">«А завтра» + Склад СПб</h4>
+                        <p class="text-sm text-[var(--text)]">«Следующий контейнер из Китая — через 4 недели. У нас
+                            ходовые позиции уже на складе. Давайте зарезервируем те 3 позиции, по которым мы в таргете,
+                            пока они есть?»</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК №7 — NEXT-BEST-ACTION -->
+        <div class="glass mb-8 p-8 bg-gradient-to-br from-[var(--blue-900)] to-[var(--blue-800)]">
+            <h2 class="text-2xl font-bold text-white mb-6 uppercase tracking-wider"
+                style="font-family: 'EuropeExt Bold', sans-serif;">Next-Best-Action</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-5 bg-white/10 backdrop-blur-sm rounded-[var(--radius-compact)] border border-white/15">
+                    <div class="text-[var(--accent)] font-bold text-sm mb-2">ШАГ 1 — Сейчас</div>
+                    <div class="text-white font-semibold mb-1">Подготовить сводную таблицу</div>
+                    <p class="text-white/70 text-sm">Сводка всех ранее запрошенных позиций с: кросс-номерами, ценами,
+                        габаритами (64мм!), цветом (чёрный, Б), наличием на складе СПб. Отправить на почту с инфоповодом
+                        «новые скидки».</p>
+                </div>
+                <div class="p-5 bg-white/10 backdrop-blur-sm rounded-[var(--radius-compact)] border border-white/15">
+                    <div class="text-[var(--accent)] font-bold text-sm mb-2">ШАГ 2 — В течение 2 дней</div>
+                    <div class="text-white font-semibold mb-1">Звонок с ценностью</div>
+                    <p class="text-white/70 text-sm">Позвонить НЕ с вопросом «Есть заявка?», а с конкретикой: «Татьяна,
+                        отправил таблицу, по 3 позициям попали в таргет. Скиньте текущий список — я сам разберу
+                        остальные.»</p>
+                </div>
+                <div class="p-5 bg-white/10 backdrop-blur-sm rounded-[var(--radius-compact)] border border-white/15">
+                    <div class="text-[var(--accent)] font-bold text-sm mb-2">ШАГ 3 — Следующая неделя</div>
+                    <div class="text-white font-semibold mb-1">Спецификация + Резерв</div>
+                    <p class="text-white/70 text-sm">После получения списка — выставить счёт + спецификацию (не просто
+                        КП!). Клиент хочет работать по спецификации. Предложить начать работу до оплаты по подписанной
+                        спецификации.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- === БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ (открыт по умолчанию) === -->
+        <div id="analytical-passport" class="glass mb-8">
+            <div onclick="togglePassport()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+                <div class="block-title">Аналитический паспорт</div>
+                <span id="toggle-passport-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">
+                    Скрыть <span class="text-xl leading-none">↑</span>
+                </span>
+            </div>
+            <div id="passport-content" class="accordion-content px-8 py-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 text-sm text-[var(--text-strong)]">
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">ID Компании</span>
+                        <strong>44096</strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Название</span> <strong>ООО
+                            «ТЕХНО-АС»</strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Сайт</span> <strong><a
+                                href="https://www.technoac.ru" target="_blank"
+                                class="text-[var(--blue)] hover:underline">technoac.ru</a></strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">ЛПР / Контакт</span>
+                        <strong>Татьяна Евгеньевна / Юрьевна (Закупки)</strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Доставка</span> <strong>г.
+                            Коломна, СДЭК — терминал ул. Дзержинского, 17</strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Конкуренты</span>
+                        <strong>Мелкие китайские OEM (Burns, Dragon, Piezo), не Компел, не Литан</strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Целевые цены
+                            (Таргет)</span> <strong>$0.17 – $0.19 за единицу</strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Тех. нюансы</span>
+                        <strong>Чёрный изолятор (индекс Б), длина ввода 64мм (были проблемы с 75мм от Китая)</strong>
+                    </div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Условия оплаты</span>
+                        <strong>100% предоплата (обсуждается). Работают по спецификации.</strong></div>
+                    <div><span class="text-[var(--text-muted)] block text-xs uppercase mb-1">Архетип бренда</span>
+                        <strong>Творец / Инженер (вторичный: Мудрец)</strong></div>
+                    <div class="md:col-span-2 mt-2">
+                        <hr class="border-[var(--border)]">
+                    </div>
+                    <div class="md:col-span-2 text-[var(--accent)] font-semibold text-base mt-2">
+                        Главный триггер: Попадание в таргет тендера ($0.17) + Точное исполнение ТЗ (64мм, чёрный Б) +
+                        Снятие головной боли со снабженца
+                    </div>
+                    <div class="md:col-span-2 mt-4">
+                        <div class="text-[var(--text-muted)] text-xs uppercase mb-2">Источники анализа</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-[var(--blue-soft)] text-[var(--blue)] rounded-full text-xs">Транскрипты
+                                звонков (20+ записей)</span>
+                            <span
+                                class="px-3 py-1 bg-[var(--blue-soft)] text-[var(--blue)] rounded-full text-xs">technoac.ru
+                                (Website Research)</span>
+                            <span
+                                class="px-3 py-1 bg-[var(--blue-soft)] text-[var(--blue)] rounded-full text-xs">Bitrix24
+                                CRM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
+        <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C]">Скачать PDF</a>
+                <a href="#" class="hover:text-[#ED7A1C]">Отправить в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor • v3.2.1</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Particle system (3 режима)
+        const COUNT = 2000;
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xf4f6f8, 0.011);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.z = 160;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('particle-bg').appendChild(renderer.domElement);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+        const target = new THREE.Vector3();
+        const geometry = new THREE.SphereGeometry(0.35, 16, 16);
+        const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.78, depthTest: false });
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, COUNT);
+        scene.add(instancedMesh);
+
+        const positions = [];
+        for (let i = 0; i < COUNT; i++) {
+            positions.push(new THREE.Vector3());
+            instancedMesh.setColorAt(i, color.setHSL(0.58, 0.4, 0.65));
+        }
+
+        const mode = Math.floor(Math.random() * 3);
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.009;
+            const phase = Math.sin(time * (mode === 2 ? 0.7 : 0.55)) * 0.5 + 0.5;
+
+            for (let i = 0; i < COUNT; i++) {
+                if (mode === 0) {
+                    const density = 18;
+                    const gridX = (i % density) - density * 0.5;
+                    const gridY = Math.floor(i / density) - density * 0.5;
+                    const scatter = (1 - phase) * 140;
+                    target.set(gridX * 42 + Math.sin(time + i) * scatter, gridY * 42 + Math.cos(time * 1.2 + i) * scatter * 0.6, Math.sin(i * 0.08) * 80 * phase);
+                } else if (mode === 1) {
+                    const triCount = 22;
+                    const row = Math.floor(i / triCount);
+                    const col = i % triCount;
+                    const x = (col - triCount * 0.5) * 36;
+                    const y = (row - triCount * 0.5) * 36 * 0.866;
+                    const scatter = (1 - phase) * 160;
+                    target.set(x + (Math.random() - 0.5) * scatter, y + (Math.random() - 0.5) * scatter * 0.7, Math.cos(time * 1.1 + i) * 55 * phase);
+                } else {
+                    const chaos = 1.25;
+                    const angle = i * 0.017 + time * 1.8;
+                    const radius = 170 * phase + Math.random() * 110 * (1 - phase);
+                    target.set(Math.cos(angle) * radius * chaos, Math.sin(angle) * radius * 0.65, Math.sin(time * 2 + i) * 75 * (1 - phase));
+                }
+
+                color.setHSL(0.58, 0.38 + phase * 0.15, 0.62 + phase * 0.22);
+                positions[i].lerp(target, 0.11);
+                dummy.position.copy(positions[i]);
+                dummy.updateMatrix();
+                instancedMesh.setMatrixAt(i, dummy.matrix);
+                instancedMesh.setColorAt(i, color);
+            }
+
+            instancedMesh.instanceMatrix.needsUpdate = true;
+            instancedMesh.instanceColor.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        function togglePassport() {
+            const content = document.getElementById('passport-content');
+            const btn = document.getElementById('toggle-passport-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        window.onload = setAnalysisDate;
+    </script>
+</body>
+
+</html>
