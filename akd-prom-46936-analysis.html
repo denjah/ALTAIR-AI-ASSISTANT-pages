@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Analysis — АКД-Пром — 46936</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --bg-pattern: rgba(33, 71, 108, 0.06);
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-mid: rgba(232, 236, 240, 0.88);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-dark: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --blue: #184D7A;
+            --accent: #ED7A1C;
+            --radius-section: 24px;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .glass-dark {
+            background: var(--glass-dark);
+            color: #F3F7FB;
+            border-color: var(--border-dark);
+        }
+
+        .section-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--blue);
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            color: var(--blue);
+        }
+
+        .accent-line {
+            height: 3px;
+            width: 48px;
+            background: var(--accent);
+            border-radius: 3px;
+            margin-bottom: 12px;
+        }
+
+        .chip {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(237, 122, 28, 0.1);
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: 99px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D]">
+
+    <div id="particle-bg" style="position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.5;"></div>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50 m-4">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="design/altair_logo.svg" alt="ALTAIR" class="h-16">
+            </div>
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest uppercase">Deep Client Analysis</div>
+                <div class="text-sm text-[#73808C]">АКД-Пром • ID 46936 • <span id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20">
+
+        <!-- 1. General Info -->
+        <section class="mb-12 pt-8">
+            <div class="flex flex-col md:flex-row gap-8">
+                <div class="flex-1 glass p-8">
+                    <div class="accent-line"></div>
+                    <h2 class="section-title text-2xl mb-4">Клиент: АКД-Пром</h2>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <p class="text-muted">Отрасль</p>
+                            <p class="font-semibold text-lg">Электрооборудование</p>
+                        </div>
+                        <div>
+                            <p class="text-muted">Сайт</p>
+                            <a href="http://www.akdprom.ru" target="_blank"
+                                class="text-[#ED7A1C] font-semibold text-lg hover:underline">akdprom.ru</a>
+                        </div>
+                    </div>
+                    <p class="mt-6 text-[#73808C]">Комплексный поставщик и производитель электрощитового оборудования.
+                        Партнер НПО СИЛАТ (зарядные станции). Закупают комплектующие (клеммы, разъемы) для производства
+                        и перепродажи.</p>
+                </div>
+                <div class="w-full md:w-1/3 glass-dark p-8 flex flex-col justify-center">
+                    <div class="text-center">
+                        <div class="text-5xl font-bold text-[#ED7A1C] mb-2">24</div>
+                        <div class="uppercase tracking-widest text-sm opacity-70">Сделок в CRM</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Deal Summary (Accordion) -->
+        <div id="deal-summary" class="glass mb-8 overflow-hidden">
+            <div onclick="toggleAccordion()"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 transition-colors">
+                <div class="block-title">Краткое резюме сделок и коммуникаций</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">
+                    Открыть подробнее <span class="text-xl leading-none">↓</span>
+                </span>
+            </div>
+            <div id="accordion-content" class="px-8 py-6 hidden border-t border-[rgba(129,149,168,0.15)] bg-white/30">
+                <div class="space-y-4 text-sm leading-relaxed">
+                    <p><strong>Текущий статус:</strong> Активная работа по подбору аналогов Phoenix Contact. Ключевой
+                        запрос на клеммы <strong>WJ15CDGM</strong> и заглушки <strong>Ortac</strong>.</p>
+                    <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 italic">
+                        "КОМПЛЕКСНо поставляют для разных заказчиков раз комплектующие. ОТПРАВИЛ техн инфу на клеммы,
+                        жду подтверждение по WJ и запускаю в работу."
+                    </div>
+                    <p>Основной контакт: <strong>Екатерина Шевченко</strong>. Общение плотное, клиент чувствителен к
+                        срокам ("Время теряем") и требует образцы для производственного тестирования.</p>
+                    <ul class="list-disc pl-5 space-y-1 text-gray-600">
+                        <li>Срок поставки из Китая озвучен 6-8 недель.</li>
+                        <li>По Турции (Ortac) — 5-7 недель.</li>
+                        <li>Критически важно наличие на складе в СПб для уменьшения сроков.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- 3. Brand Intelligence -->
+            <div class="glass p-8">
+                <div class="accent-line"></div>
+                <h3 class="block-title mb-6">Brand Intelligence</h3>
+                <div class="mb-4">
+                    <span class="chip mb-2">Архетип: Правитель / Опекун</span>
+                    <p class="text-sm">АКД-Пром позиционирует себя как надежный узел в цепочке поставок. Они отвечают
+                        перед своими заказчиками за качество сборки, поэтому крайне придирчивы к качеству клемм.</p>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-[#ED7A1C]/20 flex-shrink-0 flex items-center justify-center text-[#ED7A1C] text-xs font-bold">
+                            1</div>
+                        <p class="text-sm"><strong>Tone of Voice:</strong> Деловой, инженерный, требовательный. Минимум
+                            "воды", максимум ТТХ.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <div
+                            class="w-6 h-6 rounded-full bg-[#ED7A1C]/20 flex-shrink-0 flex items-center justify-center text-[#ED7A1C] text-xs font-bold">
+                            2</div>
+                        <p class="text-sm"><strong>Триггер:</strong> Экспертность Altair в подборе "болт-в-болт"
+                            аналогов мировых брендов.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Pains & Triggers -->
+            <div class="glass p-8">
+                <div class="accent-line"></div>
+                <h3 class="block-title mb-6">Боли и триггеры</h3>
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="text-xs uppercase tracking-widest text-[#ED7A1C] font-bold mb-2">Боли (Pains)</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-500 mt-1">✕</span>
+                                <span>Высокая цена Phoenix Contact съедает маржу проекта.</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-red-500 mt-1">✕</span>
+                                <span>Долгое ожидание образцов ("Время теряем").</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xs uppercase tracking-widest text-green-600 font-bold mb-2">Триггеры (Triggers)
+                        </h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-1">✓</span>
+                                <span>Экономия 35% при переходе на WJ (Китай).</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-green-500 mt-1">✓</span>
+                                <span>Бесплатные образцы со склада Altair в СПб.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Strategist Roadmap -->
+        <section class="mt-12">
+            <div class="glass-dark p-10">
+                <h3 class="section-title text-white mb-8">Стратегия: План захвата</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="text-[#ED7A1C] text-4xl font-bold mb-2">01</div>
+                        <h4 class="font-bold mb-3 uppercase text-sm">Открывашка</h4>
+                        <p class="text-sm opacity-80 italic">"Екатерина, добрый день! Поднял историю по WJ-клеммам и
+                            заглушкам Ortac для ЭЗС. У нас как раз пришла партия на склад, можем закрыть вопрос по
+                            текущим проектам без ожидания 8 недель."</p>
+                    </div>
+                    <div>
+                        <div class="text-[#ED7A1C] text-4xl font-bold mb-2">02</div>
+                        <h4 class="font-bold mb-3 uppercase text-sm">Главный аргумент</h4>
+                        <p class="text-sm opacity-80">Переход на комплектующие Altair (WJ/Ortac) дает прямую экономию до
+                            40% по сравнению с Phoenix Contact при полной совместимости посадочных мест.</p>
+                    </div>
+                    <div>
+                        <div class="text-[#ED7A1C] text-4xl font-bold mb-2">03</div>
+                        <h4 class="font-bold mb-3 uppercase text-sm">КЭВ (Следующий шаг)</h4>
+                        <p class="text-sm opacity-80">Отправка обновленного КП с учетом складских позиций и фиксация
+                            даты приезда курьера с образцами.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12 mx-4 mb-4">
+        <div
+            class="max-w-[1320px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-sm text-[#73808C] gap-4">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-[#184D7A] rounded flex items-center justify-center text-white font-bold">A</div>
+                <span>© ALTAIR • AI-Sales Instructor</span>
+            </div>
+            <div class="flex gap-6 uppercase text-xs font-bold overflow-x-auto">
+                <a href="#" class="hover:text-[#ED7A1C] whitespace-nowrap">IP68 SOLUTIONS</a>
+                <a href="#" class="hover:text-[#ED7A1C] whitespace-nowrap">CAMLOCK SYSTEMS</a>
+                <a href="#" class="hover:text-[#ED7A1C] whitespace-nowrap">EV COMPONENTS</a>
+            </div>
+            <div class="text-xs">v3.2 Light Engineering Platform</div>
+        </div>
+    </footer>
+
+    <script>
+        // --- ACCORDION ---
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            if (content.classList.contains('hidden')) {
+                btn.innerHTML = `Открыть подробнее <span class="text-xl leading-none">↓</span>`;
+            } else {
+                btn.innerHTML = `Скрыть <span class="text-xl leading-none">↑</span>`;
+            }
+        }
+
+        // --- DATE ---
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        // --- PARTICLES (SIMPLE) ---
+        function initParticles() {
+            const bg = document.getElementById('particle-bg');
+            const canvas = document.createElement('canvas');
+            bg.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            let w, h, particles = [];
+
+            function resize() {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
+            }
+
+            class P {
+                constructor() {
+                    this.x = Math.random() * w;
+                    this.y = Math.random() * h;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.r = Math.random() * 2;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > w) this.vx *= -1;
+                    if (this.y < 0 || this.y > h) this.vy *= -1;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(24, 77, 122, 0.15)';
+                    ctx.fill();
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, w, h);
+                particles.forEach(p => { p.update(); p.draw(); });
+                requestAnimationFrame(animate);
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+            for (let i = 0; i < 100; i++) particles.push(new P());
+            animate();
+        }
+
+        window.onload = () => {
+            setAnalysisDate();
+            initParticles();
+        };
+    </script>
+</body>
+
+</html>

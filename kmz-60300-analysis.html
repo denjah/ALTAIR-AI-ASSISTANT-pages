@@ -1,0 +1,398 @@
+<!-- === Report Landing Generator v3.2.1 Light Engineering + Analytical Passport === -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — ПАО «КМЗ» (ЗЕНИТ)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+        /* === ALTAIR Report Tokens v3 — Light Engineering Style === */
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --bg-pattern: rgba(33, 71, 108, 0.06);
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-mid: rgba(232, 236, 240, 0.88);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-dark: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --line-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --shadow-lg: 0 15px 40px rgba(19, 54, 89, 0.12);
+            --radius-page: 28px;
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue-700);
+        }
+
+        .accordion-header {
+            border-bottom: none !important;
+        }
+
+        .accordion-content {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title,
+        .hero-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .chip {
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 11.5px;
+            font-weight: 600;
+            background: var(--blue-soft);
+            color: var(--blue-700);
+            text-transform: uppercase;
+        }
+
+        .accent-line {
+            width: 48px;
+            height: 3px;
+            background: var(--accent);
+            margin-bottom: 16px;
+            border-radius: 2px;
+        }
+
+        .quote-box {
+            border-left: 4px solid var(--accent);
+            background: var(--accent-soft);
+            padding: 16px 20px;
+            border-radius: 0 16px 16px 0;
+            font-style: italic;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D] font-sans" data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50 m-4">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="design/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+                onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest uppercase">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12">
+
+        <!-- БЛОК №2 — КРАТКОЕ РЕЗЮМЕ СДЕЛКИ -->
+        <div id="deal-summary" class="glass mb-8 mt-2">
+            <div onclick="toggleAccordion()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
+                <div class="block-title">Краткое резюме сделки</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее <span
+                        class="text-xl leading-none">↓</span></span>
+            </div>
+            <div id="accordion-content" class="accordion-content px-8 py-6 hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4"><strong>Текущий этап:</strong> Ожидание результатов тендера (вскрытие 6-го
+                            числа). Прямая коммуникация с Марией (закупки).</p>
+                        <p class="mb-4"><strong>Предмет интереса:</strong> Микросхемы (тендер), импортный оптический
+                            кабель Hyperline, некие «корпуса» для новых приборов.</p>
+                        <p><strong>Статус в Bitrix24:</strong> Постоянный мониторинг («звоните во вторник», «напомните
+                            на почту»). Высокая лояльность контакта при отсутствии мгновенных заказов.</p>
+                    </div>
+                    <div class="bg-blue-50/50 p-6 rounded-2xl border border-blue-100">
+                        <h4 class="font-bold text-blue-800 mb-2 uppercase text-xs tracking-wider">КЭВ (Следующий
+                            маленький шаг)</h4>
+                        <p class="text-sm">Контрольный звонок 6-7 мая по итогам тендера. Фокус на допродажу
+                            <strong>корпусов</strong> и <strong>IP68-вводов</strong> под них.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT (Блоки 3-10) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Блок 3: Brand Intelligence -->
+            <div class="glass p-8">
+                <div class="accent-line"></div>
+                <h3 class="block-title mb-6">Brand Intelligence</h3>
+                <div class="flex gap-3 mb-6">
+                    <span class="chip">Архетип: Sage (Мудрец)</span>
+                    <span class="chip">Creator (Творец)</span>
+                </div>
+                <div class="space-y-4 text-sm">
+                    <p><strong>Ключевые инсайты:</strong> ПАО КМЗ — это «мозг» российского приборостроения. Ориентация
+                        на ГОСТ, Ростех, Швабе. Репутация важнее сиюминутной выгоды.</p>
+                    <p><strong>Как говорить:</strong> Используйте инженерный язык. Оперируйте классами защиты IP68/IP69K
+                        и ТТХ. Никакого «агрессивного маркетинга» — только партнерство в импортозамещении.</p>
+                </div>
+            </div>
+
+            <!-- Блок 4: Анализ болей -->
+            <div class="glass p-8">
+                <div class="accent-line"></div>
+                <h3 class="block-title mb-6">Боли и Сигналы</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-3 items-start">
+                        <span class="text-red-500 font-bold">●</span>
+                        <p class="text-sm"><strong>Дефицит специфики:</strong> Ищут кабели Hyperline, которые поставщики
+                            (в т.ч. Альтаир) отказываются везти из-за сложности логистики.</p>
+                    </div>
+                    <div class="flex gap-3 items-start">
+                        <span class="text-orange-500 font-bold">●</span>
+                        <p class="text-sm"><strong>Тендерное давление:</strong> Зависимость от площадок и длительных
+                            циклов принятия решений.</p>
+                    </div>
+                    <div class="flex gap-3 items-start">
+                        <span class="text-blue-500 font-bold">●</span>
+                        <p class="text-sm"><strong>Новые разработки:</strong> Появление в запросах «корпусов» — это
+                            прямой сигнал о запуске новой линейки приборов, где нужны герметичные вводы.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок 5: Сценарий разговора -->
+        <div class="glass p-8 mb-8 border-l-4 border-[#184D7A]">
+            <h3 class="block-title mb-8">Стратегия: План звонка (Strategist)</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase mb-3">Открывашка</h4>
+                    <p class="text-sm italic">«Мария, добрый день! Это Валерий, Альтаир. Помню, у вас сегодня вскрытие
+                        тендера по микросхемам. Решил уточнить, как результаты и не появились ли спецификации по
+                        корпусам, которые мы обсуждали в прошлый раз?»</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase mb-3">Аргумент импортозамещения</h4>
+                    <p class="text-sm">«Мы понимаем сложности с Hyperline, но под ваши новые корпуса у нас есть
+                        складские позиции кабельных вводов IP68. Это 40% экономии по сравнению с западными брендами при
+                        полной герметичности для вашей оптики».</p>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-gray-400 uppercase mb-3">Close / Переход</h4>
+                    <p class="text-sm">«Давайте я вышлю образцы под этот корпус завтра, чтобы вы могли примерить их в
+                        КБ, пока идет основной тендер?»</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- === БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ (открыт по умолчанию) === -->
+        <div id="analytical-passport" class="glass mb-8">
+            <div onclick="togglePassport()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+                <div class="block-title">Аналитический паспорт</div>
+                <span id="toggle-passport-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">
+                    Скрыть <span class="text-xl leading-none">↑</span>
+                </span>
+            </div>
+            <div id="passport-content" class="accordion-content px-8 py-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="p-6 bg-gray-50 rounded-2xl">
+                        <h5 class="font-bold text-xs uppercase mb-4 text-gray-500">Досье Компании</h5>
+                        <ul class="text-sm space-y-2">
+                            <li><strong>Холдинг:</strong> «Швабе» (Ростех)</li>
+                            <li><strong>Спектр:</strong> Оптика, Космос, Медицина</li>
+                            <li><strong>Город:</strong> Красногорск</li>
+                            <li><strong>Лояльность:</strong> Выше среднего</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl">
+                        <h5 class="font-bold text-xs uppercase mb-4 text-gray-500">Профиль закупщика</h5>
+                        <ul class="text-sm space-y-2">
+                            <li><strong>Имя:</strong> Мария</li>
+                            <li><strong>Стиль:</strong> Реактивный (ждет запросы от инженеров)</li>
+                            <li><strong>Барьер:</strong> Отсутствие четких ТЗ на старте</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 bg-orange-50 rounded-2xl border border-orange-100">
+                        <h5 class="font-bold text-xs uppercase mb-4 text-orange-600">Шпаргалка Альтаир</h5>
+                        <ul class="text-sm space-y-2">
+                            <li>● Специфика КМЗ — герметичность.</li>
+                            <li>● Крючок: «У нас склад в СПб».</li>
+                            <li>● Цель: Выйти на инженеров через Марию.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
+        <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C]">Скачать PDF</a>
+                <a href="#" class="hover:text-[#ED7A1C]">Отправить в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor • v3.2.1</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Particle system (3 режима)
+        const COUNT = 2000;
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xf4f6f8, 0.011);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.z = 160;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('particle-bg').appendChild(renderer.domElement);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+        const target = new THREE.Vector3();
+        const geometry = new THREE.SphereGeometry(0.35, 16, 16);
+        const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.78, depthTest: false });
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, COUNT);
+        scene.add(instancedMesh);
+
+        const positions = [];
+        for (let i = 0; i < COUNT; i++) {
+            positions.push(new THREE.Vector3());
+            instancedMesh.setColorAt(i, color.setHSL(0.58, 0.4, 0.65));
+        }
+
+        const mode = Math.floor(Math.random() * 3);
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.009;
+            const phase = Math.sin(time * (mode === 2 ? 0.7 : 0.55)) * 0.5 + 0.5;
+
+            for (let i = 0; i < COUNT; i++) {
+                if (mode === 0) {
+                    const density = 18;
+                    const gridX = (i % density) - density * 0.5;
+                    const gridY = Math.floor(i / density) - density * 0.5;
+                    const scatter = (1 - phase) * 140;
+                    target.set(gridX * 42 + Math.sin(time + i) * scatter, gridY * 42 + Math.cos(time * 1.2 + i) * scatter * 0.6, Math.sin(i * 0.08) * 80 * phase);
+                } else if (mode === 1) {
+                    const triCount = 22;
+                    const row = Math.floor(i / triCount);
+                    const col = i % triCount;
+                    const x = (col - triCount * 0.5) * 36;
+                    const y = (row - triCount * 0.5) * 36 * 0.866;
+                    const scatter = (1 - phase) * 160;
+                    target.set(x + (Math.random() - 0.5) * scatter, y + (Math.random() - 0.5) * scatter * 0.7, Math.cos(time * 1.1 + i) * 55 * phase);
+                } else {
+                    const chaos = 1.25;
+                    const angle = i * 0.017 + time * 1.8;
+                    const radius = 170 * phase + Math.random() * 110 * (1 - phase);
+                    target.set(Math.cos(angle) * radius * chaos, Math.sin(angle) * radius * 0.65, Math.sin(time * 2 + i) * 75 * (1 - phase));
+                }
+
+                color.setHSL(0.58, 0.38 + phase * 0.15, 0.62 + phase * 0.22);
+                positions[i].lerp(target, 0.11);
+                dummy.position.copy(positions[i]);
+                dummy.updateMatrix();
+                instancedMesh.setMatrixAt(i, dummy.matrix);
+                instancedMesh.setColorAt(i, color);
+            }
+
+            instancedMesh.instanceMatrix.needsUpdate = true;
+            instancedMesh.instanceColor.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        function togglePassport() {
+            const content = document.getElementById('passport-content');
+            const btn = document.getElementById('toggle-passport-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        window.onload = setAnalysisDate;
+    </script>
+</body>
+
+</html>

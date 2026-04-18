@@ -1,0 +1,382 @@
+<!-- === Report Landing Generator v3.2.1 Light Engineering + Analytical Passport === -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — АКД-Пром</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+        /* === ALTAIR Report Tokens v3 — Light Engineering Style === */
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --bg-pattern: rgba(33, 71, 108, 0.06);
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-mid: rgba(232, 236, 240, 0.88);
+            --glass-dark: rgba(19, 54, 89, 0.82);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-dark: rgba(255, 255, 255, 0.18);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --line-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --shadow-lg: 0 15px 40px rgba(19, 54, 89, 0.12);
+            --radius-page: 28px;
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('../../design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.2s ease;
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue-700);
+        }
+
+        .accordion-header {
+            border-bottom: none !important;
+        }
+
+        .accordion-content {
+            border-top: 1px solid var(--border);
+        }
+
+        .section-title,
+        .hero-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D] font-sans" data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50 shadow-md">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="../../design/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+                onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest uppercase mb-1">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C] font-medium">Altair AI-Sales Instructor • v3.2.1 • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12">
+
+        <!-- БЛОК №2 — КРАТКОЕ РЕЗЮМЕ СДЕЛКИ -->
+        <div id="deal-summary" class="glass mb-8 mt-2">
+            <div onclick="toggleAccordion()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl transition-all">
+                <div class="block-title">02. Краткое резюме сделки (АКД-Пром)</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-semibold flex items-center gap-2">Открыть подробнее
+                    <span class="text-xl leading-none">↓</span></span>
+            </div>
+            <div id="accordion-content"
+                class="accordion-content px-8 py-6 hidden bg-white/30 backdrop-blur-md rounded-b-3xl">
+                <div class="space-y-4 text-sm leading-relaxed">
+                    <p><strong>Текущий фокус:</strong> Импортозамещение Phoenix Contact. Основной продукт — клеммные
+                        разъемы и кабельные вводы (Ortac) для производства ЭЗС.</p>
+                    <div class="bg-blue-50/70 p-5 rounded-2xl border border-blue-100 shadow-sm italic text-[#184D7A]">
+                        "Екатерина активно подбирает аналоги. Есть прямой запрос на WJ15CDGM-3.81. Оригиналы Phoenix
+                        идут 8-10 недель, Altair дает решение из наличия."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN CONTENT BLOCKS -->
+        <section class="mb-8">
+            <div class="glass p-8">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-8 w-1 bg-[#ED7A1C] rounded-full"></div>
+                    <h3 class="block-title tracking-widest">03. Brand Intelligence & Context</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <span
+                            class="inline-block px-4 py-1 bg-[#ED7A1C]/10 text-[#ED7A1C] text-[10px] font-bold rounded-full mb-4 uppercase tracking-widest">Архетип:
+                            Эвримен / Эксперт</span>
+                        <p class="text-sm leading-relaxed text-[#44515D]">АКД-Пром — практичный партнер. Им нужно
+                            «рабочее решение здесь и сейчас». Это идеальное окно для Altair, чтобы зайти с качественным
+                            Китаем (WJ).</p>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="p-4 bg-[#184D7A]/5 rounded-2xl border border-[#184D7A]/10">
+                            <p class="text-[10px] font-bold text-[#184D7A] uppercase mb-1 tracking-wider">Trigger</p>
+                            <p class="text-xs text-[#73808C]">Усталость от срывов Phoenix Contact и потребность в
+                                прогнозируемых поставках.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. Strategist Goal (ФИКСАЦИЯ ТЕМНЫХ ФОНОВ У БЛОКОВ) -->
+        <section class="mb-8">
+            <div class="glass-dark p-10 rounded-[32px] border border-white/20 shadow-xl overflow-hidden relative">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#ED7A1C]/15 blur-[120px] rounded-full -mr-32 -mt-32">
+                </div>
+                <h3 class="section-title text-white mb-8 tracking-[0.1em]">10. План действий (Roadmap)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    <!-- ИСПОЛЬЗУЕМ ТЕМНЫЕ ФОНЫ: bg-black/40 или bg-[#0D314F]/60 -->
+                    <div
+                        class="p-8 bg-[#0D314F]/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#ED7A1C]/30 hover:scale-[1.02] duration-300">
+                        <div
+                            class="w-16 h-16 bg-[#ED7A1C] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#ED7A1C]/20">
+                            <span class="text-white text-3xl font-bold">🎯</span>
+                        </div>
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-3">Цель №1: Образцы</h4>
+                        <p class="text-[11px] text-[#AAB4BE] leading-relaxed">Закрыть сделку на образцы WJ15CDGM.
+                            Получить официальный фидбек от инженеров НПО СИЛАТ по качеству литья и контакта. Фиксация в
+                            качестве одобренного поставщика.</p>
+                    </div>
+
+                    <div
+                        class="p-8 bg-[#0D314F]/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#ED7A1C]/30 hover:scale-[1.02] duration-300">
+                        <div
+                            class="w-16 h-16 bg-[#184D7A] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-black/20">
+                            <span class="text-white text-3xl font-bold">📄</span>
+                        </div>
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-3">Аргументация</h4>
+                        <p class="text-[11px] text-[#AAB4BE] leading-relaxed">Подготовить расчет экономики: сравнение
+                            счетов Phoenix vs WJ. Показать выгоду в 40% на годовом объеме (от 1.5 млн руб). Подкрепить
+                            сертификатами WJ.</p>
+                    </div>
+
+                    <div
+                        class="p-8 bg-[#0D314F]/60 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl transition-all hover:border-[#ED7A1C]/30 hover:scale-[1.02] duration-300">
+                        <div
+                            class="w-16 h-16 bg-[#ED7A1C] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#ED7A1C]/20">
+                            <span class="text-white text-3xl font-bold">🤝</span>
+                        </div>
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm mb-3">КЭВ: Склад</h4>
+                        <p class="text-[11px] text-[#AAB4BE] leading-relaxed">Согласовать схему «Складской резерв в
+                            СПб». Подписать график поставок на 6 месяцев, гарантирующий отсутствие простоев линии НПО
+                            СИЛАТ.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ (ПО НОВОМУ ШАБЛОНУ ВНИЗУ) === -->
+        <div id="analytical-passport" class="glass mb-8">
+            <div onclick="togglePassport()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5 rounded-t-3xl text-[#184D7A]">
+                <div class="block-title">11. Аналитический паспорт объекта</div>
+                <span id="toggle-passport-btn" class="text-[#ED7A1C] font-semibold flex items-center gap-2">
+                    Скрыть <span class="text-xl leading-none">↑</span>
+                </span>
+            </div>
+            <div id="passport-content" class="accordion-content px-8 py-10 bg-white/40 backdrop-blur-sm rounded-b-3xl">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-sm">
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-[10px] uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest opacity-80">
+                                Юридический профиль</h4>
+                            <div class="p-5 bg-white shadow-sm rounded-2xl border border-white/60">
+                                <p class="text-[#184D7A] font-extrabold text-base mb-1">ООО "АКД-ПРОМ"</p>
+                                <p class="text-[11px] text-[#73808C]">ИНН: 7814766570</p>
+                                <p class="text-[11px] text-[#73808C]">Регион: Санкт-Петербург</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-[10px] uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest opacity-80">
+                                Decision Maker</h4>
+                            <div class="p-5 bg-white shadow-sm rounded-2xl border border-white/60">
+                                <p class="font-bold text-[#184D7A]">Екатерина Шевченко</p>
+                                <p class="text-[11px] text-[#73808C] mt-2 italic leading-relaxed">Обладает полномочиями
+                                    по подбору технических аналогов и согласованию цен.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gradient-to-br from-[#123E64] to-[#184D7A] p-7 rounded-[32px] shadow-xl relative overflow-hidden group">
+                        <div class="absolute -top-4 -right-4 w-20 h-20 bg-white/10 rounded-full blur-2xl"></div>
+                        <h4 class="text-[10px] uppercase text-white/60 font-bold mb-5 tracking-widest">AI Рекомендация
+                        </h4>
+                        <p class="text-xs italic text-white leading-relaxed font-medium">"Вход через ЭЗС — это ключ к
+                            масштабу. Спрос будет стабильно расти. Обеспечьте наличие WJ на складе в СПб под их объем, и
+                            конкуренты выпадут из цепочки."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer
+        class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12 bg-white/10 backdrop-blur-md font-medium text-[#73808C]">
+        <div
+            class="max-w-[1320px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center text-[11px] gap-4">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-[#184D7A]">© ALTAIR</span>
+                <span class="opacity-30">|</span>
+                <span>AI-Sales Instructor</span>
+            </div>
+            <div class="opacity-60 uppercase tracking-widest font-bold">Generated v3.2.1 • STABLE ENVIRONMENT</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        function togglePassport() {
+            const content = document.getElementById('passport-content');
+            const btn = document.getElementById('toggle-passport-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        // Particle system (3 режима)
+        const COUNT = 2200;
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xf4f6f8, 0.012);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+        camera.position.z = 160;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('particle-bg').appendChild(renderer.domElement);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+        const target = new THREE.Vector3();
+        const geometry = new THREE.SphereGeometry(0.35, 12, 12);
+        const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.65, depthTest: false });
+        const instancedMesh = new THREE.InstancedMesh(geometry, material, COUNT);
+        scene.add(instancedMesh);
+
+        const positions = [];
+        for (let i = 0; i < COUNT; i++) {
+            positions.push(new THREE.Vector3());
+            instancedMesh.setColorAt(i, color.setHSL(0.58, 0.4, 0.65));
+        }
+
+        const mode = Math.floor(Math.random() * 3);
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.008;
+            const phase = Math.sin(time * (mode === 2 ? 0.7 : 0.55)) * 0.5 + 0.5;
+
+            for (let i = 0; i < COUNT; i++) {
+                if (mode === 0) {
+                    const density = 20;
+                    const gridX = (i % density) - density * 0.5;
+                    const gridY = Math.floor(i / density) - density * 0.5;
+                    const scatter = (1 - phase) * 140;
+                    target.set(gridX * 45 + Math.sin(time + i) * scatter, gridY * 45 + Math.cos(time * 1.2 + i) * scatter * 0.6, Math.sin(i * 0.08) * 85 * phase);
+                } else if (mode === 1) {
+                    const triCount = 24;
+                    const row = Math.floor(i / triCount);
+                    const col = i % triCount;
+                    const x = (col - triCount * 0.5) * 38;
+                    const y = (row - triCount * 0.5) * 38 * 0.866;
+                    const scatter = (1 - phase) * 160;
+                    target.set(x + (Math.random() - 0.5) * scatter, y + (Math.random() - 0.5) * scatter * 0.7, Math.cos(time * 1.1 + i) * 60 * phase);
+                } else {
+                    const chaos = 1.3;
+                    const angle = i * 0.015 + time * 1.6;
+                    const radius = 180 * phase + Math.random() * 120 * (1 - phase);
+                    target.set(Math.cos(angle) * radius * chaos, Math.sin(angle) * radius * 0.65, Math.sin(time * 1.8 + i) * 80 * (1 - phase));
+                }
+
+                color.setHSL(0.58, 0.40 + phase * 0.15, 0.65 + phase * 0.20);
+                positions[i].lerp(target, 0.1);
+                dummy.position.copy(positions[i]);
+                dummy.updateMatrix();
+                instancedMesh.setMatrixAt(i, dummy.matrix);
+                instancedMesh.setColorAt(i, color);
+            }
+
+            instancedMesh.instanceMatrix.needsUpdate = true;
+            instancedMesh.instanceColor.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        window.onload = setAnalysisDate;
+    </script>
+</body>
+
+</html>
