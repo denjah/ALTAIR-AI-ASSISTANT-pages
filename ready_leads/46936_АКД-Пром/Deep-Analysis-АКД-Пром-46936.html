@@ -53,7 +53,7 @@
 
         @font-face {
             font-family: 'EuropeExt Bold';
-            src: url('./design/EuropeExt-Bold.otf') format('opentype');
+            src: url('../../design/EuropeExt-Bold.otf') format('opentype');
             font-weight: 700;
             font-style: normal;
             font-display: swap;
@@ -107,9 +107,8 @@
             <img src="../../design/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
                 onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
             <div class="text-right">
-                <div class="text-[#184D7A] font-bold text-xl tracking-widest text-[EuropeExt Bold]">DEEP CLIENT ANALYSIS
-                </div>
-                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest uppercase">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • v3.2.1 • <span
                         id="analysis-date"></span></div>
             </div>
         </div>
@@ -121,34 +120,32 @@
         <div id="deal-summary" class="glass mb-8 mt-2">
             <div onclick="toggleAccordion()"
                 class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
-                <div class="block-title">Краткое резюме сделки</div>
+                <div class="block-title">02. Краткое резюме сделки (АКД-Пром)</div>
                 <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее <span
                         class="text-xl leading-none">↓</span></span>
             </div>
             <div id="accordion-content" class="accordion-content px-8 py-6 hidden">
                 <div class="space-y-4 text-sm leading-relaxed">
-                    <p><strong>Текущий статус:</strong> Активная работа по подбору аналогов Phoenix Contact. Ключевой
-                        запрос на клеммы <strong>WJ15CDGM</strong> и заглушки <strong>Ortac</strong>.</p>
+                    <p><strong>Текущий фокус:</strong> Импортозамещение Phoenix Contact. Основной продукт — клеммные
+                        разъемы и кабельные вводы (Ortac) для производства ЭЗС.</p>
                     <div class="bg-blue-50/50 p-4 rounded-xl border border-blue-100 italic">
-                        "КОМПЛЕКСНо поставляют для разных заказчиков раз комплектующие. ОТПРАВИЛ техн инфу на клеммы,
-                        жду подтверждение по WJ и запускаю в работу."
+                        "Екатерина активно подбирает аналоги. Есть прямой запрос на WJ15CDGM-3.81. Оригиналы Phoenix
+                        идут 8-10 недель, Altair дает решение из наличия."
                     </div>
-                    <p>Основной контакт: <strong>Екатерина Шевченко</strong>. Общение плотное, клиент чувствителен к
-                        срокам ("Время теряем") и требует образцы для производственного тестирования.</p>
                     <ul class="list-disc pl-5 space-y-1 text-gray-600">
-                        <li>Срок поставки из Китая озвучен 6-8 недель.</li>
-                        <li>По Турции (Ortac) — 5-7 недель.</li>
-                        <li>Критически важно наличие на складе в СПб для уменьшения сроков.</li>
+                        <li><strong>Клиент:</strong> Комплексный поставщик, работает под проекты НПО СИЛАТ.</li>
+                        <li><strong>Контакт:</strong> Екатерина Шевченко (akd-prom@yandex.ru).</li>
+                        <li><strong>Стадия:</strong> Тестирование образцов / Согласование спецификации.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- === НОВЫЙ БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ === -->
+        <!-- === БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ === -->
         <div id="analytical-passport" class="glass mb-8">
             <div onclick="togglePassport()"
                 class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
-                <div class="block-title">Аналитический паспорт</div>
+                <div class="block-title">11. Аналитический паспорт объекта</div>
                 <span id="toggle-passport-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">
                     Открыть подробнее <span class="text-xl leading-none">↓</span>
                 </span>
@@ -157,172 +154,127 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
                     <div class="space-y-6">
                         <div>
-                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Профиль клиента
-                            </h4>
-                            <div class="space-y-1">
-                                <p><strong>ООО "АКД-ПРОМ"</strong></p>
-                                <p>ИНН: 7814766570</p>
-                                <p>ОКВЭД: Торговля оптовая электротоварами</p>
-                            </div>
+                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Профиль</h4>
+                            <p><strong>ООО "АКД-ПРОМ"</strong></p>
+                            <p>ИНН: 7814766570</p>
+                            <p>Регион: Санкт-Петербург</p>
                         </div>
                         <div>
-                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Связи</h4>
-                            <p>Ключевой партнер: <strong>НПО СИЛАТ</strong> (пр-во ЭЗС)</p>
-                            <p class="text-xs text-[#73808C] mt-2">Высокая вероятность масштабирования через проекты
-                                зарядной инфраструктуры.</p>
+                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Специализация
+                            </h4>
+                            <p>Поставки промышленной электротехники, комплектация щитового оборудования.</p>
                         </div>
                     </div>
                     <div class="space-y-6">
                         <div>
-                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Лица,
-                                принимающие решения</h4>
-                            <div class="space-y-1">
-                                <p><strong>Екатерина Шевченко</strong></p>
-                                <p class="text-xs text-[#73808C]">Менеджер по закупкам / ключевой контакт</p>
-                                <p>Email: akd-prom@yandex.ru</p>
-                            </div>
+                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Decision Maker
+                            </h4>
+                            <p>Екатерина Шевченко</p>
+                            <p class="text-xs text-[#73808C]">Высокая лояльность при соблюдении сроков отгрузки.</p>
                         </div>
                         <div>
-                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Финансовый
-                                потенциал</h4>
-                            <p class="text-2xl font-bold text-[#184D7A]">~1.5 - 3 млн ₽ / год</p>
-                            <p class="text-xs text-[#73808C] mt-1">Оценка на базе объема производства ЭЗС.</p>
+                            <h4 class="text-xs uppercase text-[#ED7A1C] font-bold mb-3 tracking-widest">Партнеры</h4>
+                            <p>НПО СИЛАТ (Силовая электроника / ЭЗС)</p>
                         </div>
                     </div>
                     <div class="bg-[#184D7A]/5 p-6 rounded-2xl border border-[#184D7A]/10">
-                        <h4 class="text-xs uppercase text-[#184D7A] font-bold mb-4 tracking-widest">AI Recommendation
-                        </h4>
-                        <p class="italic text-[#184D7A]">"Клиент находится в стадии активного импортозамещения.
-                            Требуется жесткий контроль сроков поставки образцов. Если Altair обеспечит складское наличие
-                            под их объем, конкуренты будут вытеснены полностью."</p>
+                        <h4 class="text-xs uppercase text-[#184D7A] font-bold mb-4 tracking-widest">AI Анализ</h4>
+                        <p class="text-xs italic text-[#184D7A]">"Вход через ЭЗС (зарядные станции) — это ключ к
+                            долгосрочному контракту. Спрос на разъемы WJ будет стабильно расти пропорционально
+                            федеральной программе развертывания инфраструктуры."</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- MAIN CONTENT BLOCKS -->
+        <!-- 03. Brand & Context -->
         <section class="mb-8">
             <div class="glass p-8">
                 <div class="flex items-center gap-3 mb-6">
                     <div class="h-8 w-1 bg-[#ED7A1C]"></div>
-                    <h3 class="block-title">03. Brand Intelligence</h3>
+                    <h3 class="block-title">03. Brand Intelligence & Context</h3>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         <span
-                            class="inline-block px-3 py-1 bg-[#ED7A1C]/10 text-[#ED7A1C] text-xs font-bold rounded-full mb-4 uppercase tracking-wider">Архетип:
-                            Правитель / Опекун</span>
-                        <p class="text-sm text-[#73808C]">АКД-Пром позиционирует себя как надежный узел в цепочке
-                            поставок для критически важного оборудования (ЭЗС). Они ценят системность, точность
-                            спецификаций и прогнозируемость.</p>
+                            class="inline-block px-3 py-1 bg-[#ED7A1C]/10 text-[#ED7A1C] text-xs font-bold rounded-full mb-4 uppercase tracking-wider uppercase">Архетип:
+                            Эвримен (Свой парень) / Эксперт</span>
+                        <p class="text-sm">АКД-Пром — практичный партнер. Они не гонятся за брендами ради брендов, им
+                            нужно «рабочее решение здесь и сейчас». Это идеальное окно для Altair, чтобы зайти с
+                            качественным Китаем (WJ).</p>
                     </div>
+                    <div>
+                        <ul class="space-y-3 text-xs">
+                            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#ED7A1C]"></span>
+                                <span><strong>Trigger:</strong> Усталость от срывов Phoenix Contact.</span></li>
+                            <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-[#ED7A1C]"></span>
+                                <span><strong>Value:</strong> Инженерная поддержка в подборе аналогов.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04. Pains & Objections -->
+        <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="glass p-8">
+                    <div class="accent-line w-full h-[1px] bg-[#184D7A]/10 mb-6"></div>
+                    <h3 class="block-title mb-6">04. Боли (Pains)</h3>
                     <div class="space-y-4">
-                        <div class="p-4 bg-white/40 rounded-xl border border-white/60">
-                            <p class="font-bold text-[#184D7A] text-sm mb-1 uppercase tracking-tight">Tone of Voice</p>
-                            <p class="text-xs text-[#73808C]">Инженерно-деловой, сухой, ориентированный на сроки и
-                                технические соответствия. Никакой лишней лирики.</p>
+                        <div class="p-4 bg-red-50/50 rounded-xl">
+                            <p class="text-sm font-bold text-red-700 mb-1">Время — самый дорогой ресурс</p>
+                            <p class="text-xs text-[#73808C]">«Время теряем» — цитата Екатерины. Простой производства
+                                из-за отсутствия клемм — главный страх.</p>
+                        </div>
+                        <div class="p-4 bg-red-50/50 rounded-xl">
+                            <p class="text-sm font-bold text-red-700 mb-1">Маржинальность</p>
+                            <p class="text-xs text-[#73808C]">Phoenix Contact стал слишком дорог. Проекты по ЭЗС требуют
+                                оптимизации себестоимости.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass p-8">
+                    <div class="accent-line w-full h-[1px] bg-[#184D7A]/10 mb-6"></div>
+                    <h3 class="block-title mb-6">07. Возражения & Ответы</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-100">
+                            <p class="text-xs font-bold text-amber-800 uppercase mb-1">«А это встанет в наши платы?»</p>
+                            <p class="text-xs text-amber-900 italic">«WJ — это полный функциональный аналог Phoenix.
+                                Отправляем образцы прямо завтра, чтобы вы лично убедились в посадке.»</p>
+                        </div>
+                        <div class="p-4 bg-amber-50/50 rounded-xl border border-amber-100">
+                            <p class="text-xs font-bold text-amber-800 uppercase mb-1">«Нам нужны объемы в наличии»</p>
+                            <p class="text-xs text-amber-900 italic">«Зарезервируем под вас транш на складе в СПб. При
+                                фиксации графика отгрузок — поставка день-в-день.»</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="mb-8">
-            <div class="glass p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-8 w-1 bg-[#ED7A1C]"></div>
-                    <h3 class="block-title">04. Боли и Триггеры</h3>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-red-50/30 p-6 rounded-2xl border border-red-100">
-                        <h4 class="text-red-700 font-bold text-sm mb-4 uppercase tracking-widest">Боли (Pains)</h4>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex gap-2"><span>⚠️</span> <span>Долгое ожидание запчастей от крупных брендов
-                                    (до 6-8 недель).</span></li>
-                            <li class="flex gap-2"><span>⚠️</span> <span>Проблемы с логистикой Phoenix Contact в текущих
-                                    условиях.</span></li>
-                            <li class="flex gap-2"><span>⚠️</span> <span>Риск остановки сборки зарядных станций НПО
-                                    СИЛАТ из-за нехватки разъемов.</span></li>
-                        </ul>
-                    </div>
-                    <div class="bg-green-50/30 p-6 rounded-2xl border border-green-100">
-                        <h4 class="text-green-700 font-bold text-sm mb-4 uppercase tracking-widest">Триггеры (Triggers)
-                        </h4>
-                        <ul class="space-y-3 text-sm">
-                            <li class="flex gap-2"><span>✅</span> <span>Наличие аналогов WJ со склада в СПб (отгрузка за
-                                    2-3 дня).</span></li>
-                            <li class="flex gap-2"><span>✅</span> <span>Финансовая выгода: -30-40% от цены Phoenix
-                                    Contact при идентичном качестве.</span></li>
-                            <li class="flex gap-2"><span>✅</span> <span>Бесплатные образцы для "примерки" в
-                                    корпус.</span></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="mb-8">
-            <div class="glass p-8">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="h-8 w-1 bg-[#ED7A1C]"></div>
-                    <h3 class="block-title">05. Стратегическое замещение</h3>
-                </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm">
-                        <thead>
-                            <tr class="border-b border-[#184D7A]/10">
-                                <th class="pb-3 font-bold text-[#184D7A]">Параметр</th>
-                                <th class="pb-3 font-bold text-gray-400">Phoenix Contact (Текущий)</th>
-                                <th class="pb-3 font-bold text-[#ED7A1C]">WJ / Altair (Решение)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-[#73808C]">
-                            <tr class="border-b border-gray-50">
-                                <td class="py-3 font-semibold">Цена</td>
-                                <td class="py-3">Высокая (Premium)</td>
-                                <td class="py-3 text-[#ED7A1C] font-semibold">-40% Экономия</td>
-                            </tr>
-                            <tr class="border-b border-gray-50">
-                                <td class="py-3 font-semibold">Срок поставки</td>
-                                <td class="py-3">8-12 недель</td>
-                                <td class="py-3 text-[#ED7A1C] font-semibold">Склад (2 дня)</td>
-                            </tr>
-                            <tr class="border-b border-gray-50">
-                                <td class="py-3 font-semibold">Совместимость</td>
-                                <td class="py-3">Эталон</td>
-                                <td class="py-3">Полная (Bolt-on)</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
+        <!-- 10. Strategist Goal -->
         <section class="mb-8">
             <div class="glass-dark p-10 rounded-3xl">
-                <h3 class="section-title text-white mb-8">10. План захвата и Next Steps</h3>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div class="p-5 bg-white/10 rounded-2xl border border-white/10">
-                        <div class="text-[#ED7A1C] text-3xl font-bold mb-2">01</div>
-                        <h5 class="text-white font-bold text-xs uppercase mb-2">Открывашка</h5>
-                        <p class="text-xs text-white/70 italic">"Екатерина, клеммы WJ по вашему ТЗ приехали. Можем
-                            отправить курьером завтра?"</p>
+                <h3 class="section-title text-white mb-8">10. План действий (Roadmap)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="space-y-4">
+                        <div class="text-[#ED7A1C] text-5xl font-bold">🎯</div>
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm">Цель №1</h4>
+                        <p class="text-xs text-white/70">Закрыть сделку на образцы WJ15CDGM. Получить фидбек от
+                            инженеров НПО СИЛАТ.</p>
                     </div>
-                    <div class="p-5 bg-white/10 rounded-2xl border border-white/10">
-                        <div class="text-[#ED7A1C] text-3xl font-bold mb-2">02</div>
-                        <h5 class="text-white font-bold text-xs uppercase mb-2">Аргумент №1</h5>
-                        <p class="text-xs text-white/70">Экономия 40% бюджета комплектации без изменения конструктива
-                            плат.</p>
+                    <div class="space-y-4">
+                        <div class="text-[#ED7A1C] text-5xl font-bold">📄</div>
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm">Документы</h4>
+                        <p class="text-xs text-white/70">Подготовить сравнительную таблицу (WJ vs Phoenix) с колонкой
+                            «Экономия 40%».</p>
                     </div>
-                    <div class="p-5 bg-white/10 rounded-2xl border border-white/10">
-                        <div class="text-[#ED7A1C] text-3xl font-bold mb-2">03</div>
-                        <h5 class="text-white font-bold text-xs uppercase mb-2">Аргумент №2</h5>
-                        <p class="text-xs text-white/70">Бесплатное хранение годового запаса на нашем складе в СПб.</p>
-                    </div>
-                    <div class="p-5 bg-white/10 rounded-2xl border border-white/10">
-                        <div class="text-[#ED7A1C] text-3xl font-bold mb-2">04</div>
-                        <h5 class="text-white font-bold text-xs uppercase mb-2">КЭВ</h5>
-                        <p class="text-xs text-white/70">Согласование спецификации на первую серийную партию.</p>
+                    <div class="space-y-4">
+                        <div class="text-[#ED7A1C] text-5xl font-bold">🤝</div>
+                        <h4 class="text-white font-bold uppercase tracking-widest text-sm">КЭВ</h4>
+                        <p class="text-xs text-white/70">Визит (или Zoom-колл) с презентацией кабельных вводов Ortac как
+                            доп. опции.</p>
                     </div>
                 </div>
             </div>
@@ -331,7 +283,7 @@
 
     <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
         <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
-            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div>© ALTAIR • AI-Sales Instructor</div>
             <div class="flex gap-6">
                 <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C]">Скачать PDF</a>
                 <a href="#" class="hover:text-[#ED7A1C]">Отправить в Bitrix24</a>
@@ -342,6 +294,31 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        function setAnalysisDate() {
+            const dateEl = document.getElementById('analysis-date');
+            const date = new Date();
+            const options = { day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
+        }
+
+        function toggleAccordion() {
+            const content = document.getElementById('accordion-content');
+            const btn = document.getElementById('toggle-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        function togglePassport() {
+            const content = document.getElementById('passport-content');
+            const btn = document.getElementById('toggle-passport-btn');
+            content.classList.toggle('hidden');
+            btn.innerHTML = content.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
         // Particle system (3 режима)
         const COUNT = 2000;
         const scene = new THREE.Scene();
@@ -416,31 +393,6 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
-
-        function setAnalysisDate() {
-            const dateEl = document.getElementById('analysis-date');
-            const date = new Date();
-            const options = { day: 'numeric', month: 'long', year: 'numeric' };
-            dateEl.textContent = date.toLocaleDateString('ru-RU', options);
-        }
-
-        function toggleAccordion() {
-            const content = document.getElementById('accordion-content');
-            const btn = document.getElementById('toggle-btn');
-            content.classList.toggle('hidden');
-            btn.innerHTML = content.classList.contains('hidden')
-                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
-                : `Скрыть <span class="text-xl leading-none">↑</span>`;
-        }
-
-        function togglePassport() {
-            const content = document.getElementById('passport-content');
-            const btn = document.getElementById('toggle-passport-btn');
-            content.classList.toggle('hidden');
-            btn.innerHTML = content.classList.contains('hidden')
-                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
-                : `Скрыть <span class="text-xl leading-none">↑</span>`;
-        }
 
         window.onload = setAnalysisDate;
     </script>
