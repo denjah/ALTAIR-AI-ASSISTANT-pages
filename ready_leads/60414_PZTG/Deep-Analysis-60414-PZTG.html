@@ -1,0 +1,522 @@
+<!-- === Report Landing Generator v3.2.1 Light Engineering + Analytical Passport === -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — ПЕНЗЕНСКИЙ ЗАВОД ТЕЛЕМА ГИНО</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-on-dark: #F3F7FB;
+            --blue: #184D7A;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('../../design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+            transition: all .2s ease;
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue-700);
+        }
+
+        .section-title,
+        .hero-title {
+            font-family: 'EuropeExt Bold', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .accordion-header {
+            border-bottom: none !important;
+        }
+
+        .accordion-content {
+            border-top: 1px solid var(--border);
+        }
+
+        .metric-card {
+            background: var(--glass-strong);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-compact);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: 'EuropeExt Bold', sans-serif;
+            font-size: 28px;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .metric-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: .06em;
+        }
+
+        .tag {
+            display: inline-block;
+            background: var(--blue-soft);
+            color: var(--blue-700);
+            padding: 4px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            margin: 3px;
+        }
+
+        .tag-accent {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .quote-block {
+            border-left: 4px solid var(--accent);
+            padding: 12px 20px;
+            background: var(--accent-soft);
+            border-radius: 0 var(--radius-compact) var(--radius-compact) 0;
+            margin: 10px 0;
+            font-style: italic;
+            color: var(--text-strong);
+        }
+
+        .step-card {
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-compact);
+            padding: 20px 24px;
+            margin: 8px 0;
+        }
+
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 12px;
+        }
+
+        .risk-high {
+            border-left: 4px solid #e74c3c;
+        }
+
+        .risk-med {
+            border-left: 4px solid #f39c12;
+        }
+
+        .risk-low {
+            border-left: 4px solid #27ae60;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--blue-soft);
+            color: var(--blue-700);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        tr:hover td {
+            background: rgba(237, 122, 28, 0.04);
+        }
+    </style>
+</head>
+
+<body class="bg-[#F4F6F8] text-[#44515D] font-sans" data-theme="light">
+
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="../../design/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+                onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • Автоматический ИИ-отчёт • <span
+                        id="analysis-date"></span></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12">
+
+        <!-- БЛОК №1 — HERO -->
+        <section class="glass mb-8 px-8 py-10 text-center">
+            <h1 class="hero-title text-3xl mb-3">ПЕНЗЕНСКИЙ ЗАВОД ТЕЛЕМА ГИНО (ООО «ПЗТГ»)</h1>
+            <p class="text-[#73808C] text-base mb-6">ID 60414 • Пенза • Производство промышленных резисторов</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+                <div class="metric-card">
+                    <div class="metric-value">>1 млрд</div>
+                    <div class="metric-label">Выручка (руб.)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Hot</div>
+                    <div class="metric-label">Статус лида</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">60414</div>
+                    <div class="metric-label">ID сделки</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">Новый</div>
+                    <div class="metric-label">В воронке</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК №2 — КРАТКОЕ РЕЗЮМЕ -->
+        <div id="deal-summary" class="glass mb-8 mt-2">
+            <div onclick="toggleAccordion()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
+                <div class="block-title">Краткое резюме сделки</div>
+                <span id="toggle-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее <span
+                        class="text-xl leading-none">↓</span></span>
+            </div>
+            <div id="accordion-content" class="accordion-content px-8 py-6 hidden">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-bold text-[#184D7A] mb-2">Компания</h3>
+                        <p>Пензенский завод Телема Гино (ПЗТГ) — производитель резисторов специального назначения
+                            (тормозные, заземления, пусковые, демпфирующие) и контакторов. Активно сотрудничает с РЖД,
+                            судостроением, энергосетями.</p>
+                        <p class="mt-2"><strong>Отрасли:</strong> Ж/Д транспорт, Судостроение, Энергетика</p>
+                        <p><strong>URL:</strong> pztg.ru</p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-[#184D7A] mb-2">Контактное лицо</h3>
+                        <p>Отдел закупок / ОМТС</p>
+                        <p class="mt-2"><strong>Комментарий:</strong> Первичный анализ лида. Возможны поставки кабельных
+                            вводов и разъёмов для резисторов заземления и тяговых модулей для подвижного состава.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- БЛОК №3 — ПРОФИЛЬ КЛИЕНТА -->
+        <section class="glass mb-8 px-8 py-8">
+            <div class="block-title mb-5">Профиль клиента</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-2">О компании & Продукция</h3>
+                    <p>ПЗТГ входит в контур локализации глобальных брендов Telema и Gino. Предприятие имеет полный цикл
+                        механической и лазерной обработки металла, изготавливает нагрузочные модули, пусковые реостаты и
+                        системы нейтрального заземления для высоковольтного оборудования.</p>
+                    <h4 class="font-semibold mt-3 mb-1">Основные направления сбыта ПЗТГ:</h4>
+                    <ul class="list-disc pl-5 space-y-1 text-sm">
+                        <li>Железнодорожное машиностроение (РЖД, ТМХ)</li>
+                        <li>Судостроение (Морской регистр)</li>
+                        <li>Горнодобывающая промышленность (тяжелые экскаваторы и карьерные самосвалы)</li>
+                        <li>Городской электротранспорт (трамваи, троллейбусы)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-2">Потенциал для Альтаир</h3>
+                    <div class="space-y-2">
+                        <div class="tag">Кабельные вводы IP68</div>
+                        <div class="tag">Герметичные разъёмы</div>
+                        <div class="tag">Штекеры и контакты</div>
+                        <div class="tag tag-accent">Устойчивость к вибрациям (Ж/Д)</div>
+                        <div class="tag tag-accent">Морской регистр</div>
+                    </div>
+                    <div class="mt-4 p-4 bg-[#EAF2F8] rounded-2xl text-sm">
+                        <strong>⚡ Ключевой инсайт:</strong> Компоненты для Ж/Д машиностроения и городской тяги
+                        (тормозные резисторы для трамваев/электричек) работают в условиях постоянной вибрации и высокой
+                        влажности (подвагонное пространство). Им категорически требуются кабельные вводы IP68, стойкие к
+                        динамическим нагрузкам.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК №6 — BRAND INTELLIGENCE -->
+        <section class="glass mb-8 px-8 py-8">
+            <div class="block-title mb-5">Brand Intelligence</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-2">Архетип бренда</h3>
+                    <div class="text-2xl font-bold text-[#ED7A1C] mb-1">⚙️ Творец-Инженер</div>
+                    <p class="text-sm text-[#73808C] mb-3">Вторичный: Правитель (ГОСТы, сертификация ISO)</p>
+                    <p class="text-sm">Предприятие ориентировано на "кастомные" решения — «возможность проектирования
+                        резисторов на заказ по ТЗ». Они любят технические подробности и гордятся своей конструкторской
+                        школой.</p>
+                    <h4 class="font-semibold mt-4 mb-2">Ключевые ценности:</h4>
+                    <ul class="text-sm space-y-1">
+                        <li>🎯 Индивидуальный подход к ТЗ</li>
+                        <li>🎯 Локализация («русский паспорт» с зарубежным качеством)</li>
+                        <li>🎯 Система Менеджмента Качества (ISO 9001, IRIS)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-[#184D7A] mb-2">Как использовать в продажах Альтаир</h3>
+                    <div class="step-card"><strong>Тон общения:</strong> Общение на равных от инженера к инженеру.
+                        Оперируйте техническими терминами, характеристиками (сопротивление изоляции, вибростойкость).
+                    </div>
+                    <div class="step-card"><strong>Триггеры:</strong> Наличие аналогов Harting/Lapp на складе в СПб.
+                        Подтвержденный опыт использования в машиностроении. Экономия 30% на себестоимости одного узла!
+                    </div>
+                    <div class="step-card"><strong>Анти-паттерны:</strong> Избегайте общих маркетинговых фраз. Они
+                        инженеры — им нужны даташиты, чертежи (2D/3D модели) и образцы для тестирования.</div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- БЛОК №7 — БОЛИ И ВОЗРАЖЕНИЯ -->
+        <section class="glass mb-8 px-8 py-8">
+            <div class="block-title mb-5">Боли, триггеры и возражения</div>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="step-card risk-med">
+                    <h4 class="font-bold text-sm mb-2">⚠️ «Заложены европейские комплектующие»</h4>
+                    <p class="text-sm">Они годами работали по лицензии Telema/Gino (Италия/Германия) и привыкли к
+                        европейским разъемам.</p>
+                    <p class="text-xs text-[#73808C] mt-2">Связь: Разбивание зеркал, Точный кросс-референс</p>
+                </div>
+                <div class="step-card risk-med">
+                    <h4 class="font-bold text-sm mb-2">📦 Долгие сроки пересогласования ТЗ</h4>
+                    <p class="text-sm">Поставка на РЖД требует строгих регламентов, внести замену в КД (конструкторскую
+                        документацию) — это время.</p>
+                    <p class="text-xs text-[#73808C] mt-2">Связь: КЭВ (начать пересогласование с 1 тестовой партией)</p>
+                </div>
+                <div class="step-card risk-low">
+                    <h4 class="font-bold text-sm mb-2">✅ Потребность в снижении себестоимости</h4>
+                    <p class="text-sm">В условиях импортозамещения им нужно снизить стоимость сборки тормозных
+                        резисторов.</p>
+                    <p class="text-xs text-[#73808C] mt-2">Связь: TCO + Экономия 30-40%</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК №8 — СТРАТЕГИЧЕСКИЙ ПЛАН РАЗГОВОРА -->
+        <section class="glass mb-8 px-8 py-8">
+            <div class="block-title mb-5">Стратегический план первого звонка</div>
+            <div class="step-card"><span class="step-num">1</span><strong>Открывашка:</strong> «Добрый день. Это
+                Альтаир. Мы специализируемся на поставках герметичных кабельных вводов IP68 и промышленных разъемов. На
+                вашем производстве (тормозные и пусковые резисторы) часто стоят дорогие европейские коннекторы.»</div>
+            <div class="step-card"><span class="step-num">2</span><strong>Квалификация:</strong> «Скажите, по текущим
+                сборкам для Ж/Д и кранового оборудования — какие разъемы сейчас используете в КД (Harting, Weidmuller)?
+                Есть задача снизить себестоимость узла без потери вибростойкости?»</div>
+            <div class="step-card"><span class="step-num">3</span><strong>Ценностный удар:</strong> «Мы можем закрыть
+                потребность прямо со склада в Санкт-Петербурге. Наши аналоги полностью стыкуются по посадочным местам,
+                выдерживают тряску подвагонного оборудования и экономят вам 30-40% бюджета закупки.»</div>
+            <div class="step-card"><span class="step-num">4</span><strong>Изоляция:</strong> «Если наши образцы успешно
+                пройдут стендовые испытания в вашем тех.отделе — мы сможем зафиксировать спецификацию на год вперёд?»
+            </div>
+            <div class="step-card"><span class="step-num">5</span><strong>КЭВ / Close:</strong> «Давайте мы сегодня
+                вышлем вам таблицу кросс-референса по самым ходовым позициям, а вы посмотрите, что из этого можно
+                отправить к вам на тест. Договорились?»</div>
+        </section>
+
+        <!-- БЛОК №9 — NBA -->
+        <section class="glass mb-8 px-8 py-8 border-l-4 border-[#ED7A1C]">
+            <div class="block-title mb-4">🎯 Next Best Action</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-[#ED7A1C] text-lg mb-3">Действия НЕМЕДЛЕННО</h3>
+                    <ol class="space-y-2 text-sm">
+                        <li><strong>1.</strong> Выйти на главного конструктора или начальника ОМТС ООО "ПЗТГ"</li>
+                        <li><strong>2.</strong> Предложить услугу подбора полных аналогов европейских разъемов и вводов
+                            с экономией</li>
+                        <li><strong>3.</strong> Подготовить презентацию с акцентом на вибростойкость и IP68 защиту для
+                            Ж/Д сектора</li>
+                    </ol>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] text-lg mb-3">Среднесрочные действия</h3>
+                    <ol class="space-y-2 text-sm">
+                        <li><strong>4.</strong> Отгрузить тестовые образцы для испытаний в лаборатории завода</li>
+                        <li><strong>5.</strong> Запросить ТЗ на новые разработки компании (нагрузочные модули, фильтры)
+                        </li>
+                        <li><strong>6.</strong> Ввести компоненты Альтаир в типовую спецификацию ПЗТГ</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- БЛОК №10 — СКОРИНГ -->
+        <section class="glass mb-8 px-8 py-8">
+            <div class="block-title mb-5">Скоринг клиента</div>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div class="metric-card">
+                    <div class="metric-value">9/10</div>
+                    <div class="metric-label">Потенциал</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">?/10</div>
+                    <div class="metric-label">Вовлечённость</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">?/10</div>
+                    <div class="metric-label">Готовность</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">8/10</div>
+                    <div class="metric-label">Управляемость</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value" style="color:#f39c12;">MEDIUM</div>
+                    <div class="metric-label">Приоритет</div>
+                </div>
+            </div>
+            <p class="text-sm text-[#73808C] mt-4 text-center">Крупный производственный завод (Ж/Д, Энергетика).
+                Огромный потенциал по разъемам и вводам.</p>
+        </section>
+
+        <!-- БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ -->
+        <div id="analytical-passport" class="glass mb-8">
+            <div onclick="togglePassport()"
+                class="accordion-header px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+                <div class="block-title">Аналитический паспорт</div>
+                <span id="toggle-passport-btn" class="text-[#ED7A1C] font-medium flex items-center gap-2">Скрыть <span
+                        class="text-xl leading-none">↑</span></span>
+            </div>
+            <div id="passport-content" class="accordion-content px-8 py-6">
+                <div class="grid md:grid-cols-2 gap-6 text-sm">
+                    <div>
+                        <h4 class="font-bold text-[#184D7A] mb-2">Карточка компании</h4>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="font-semibold">ID CRM</td>
+                                    <td>60414</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Название</td>
+                                    <td>ООО «ПЗТГ» (Пензенский завод Телема Гино)</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Тип</td>
+                                    <td>LEAD / PROSPECT</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Отрасль</td>
+                                    <td>МАШИНОСТРОЕНИЕ (Ж/Д, Судостроение)</td>
+                                </tr>
+                                <tr>
+                                    <td class="font-semibold">Продукция</td>
+                                    <td>Резисторы, контакторы, демпферы</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-[#184D7A] mb-2">Стратегия Альтаир</h4>
+                        <h4 class="font-bold text-[#184D7A] mt-4 mb-2">Применённые принципы</h4>
+                        <div><span class="tag">TCO</span><span class="tag">Разбивание зеркал</span><span
+                                class="tag">КЭВ</span><span class="tag tag-accent">Эксперт-инженер</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-12">
+        <div class="max-w-[1320px] mx-auto px-8 flex justify-between items-center text-sm text-[#73808C]">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print()" class="hover:text-[#ED7A1C]">Скачать PDF</a>
+                <a href="#" class="hover:text-[#ED7A1C]">Отправить в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor • v3.2.1 • PZTG-60414</div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        const COUNT = 2000; const scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0xf4f6f8, .011);
+        const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, .1, 2000); camera.position.z = 160;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); renderer.setSize(innerWidth, innerHeight);
+        renderer.setClearColor(0, 0); document.getElementById('particle-bg').appendChild(renderer.domElement);
+        const dummy = new THREE.Object3D(), color = new THREE.Color(), target = new THREE.Vector3();
+        const geo = new THREE.SphereGeometry(.35, 16, 16), mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: .78, depthTest: false });
+        const im = new THREE.InstancedMesh(geo, mat, COUNT); scene.add(im);
+        const positions = []; for (let i = 0; i < COUNT; i++) { positions.push(new THREE.Vector3()); im.setColorAt(i, color.setHSL(.58, .4, .65)); }
+        const mode = Math.floor(Math.random() * 3); let time = 0;
+        function animate() {
+            requestAnimationFrame(animate); time += .009; const p = Math.sin(time * (mode === 2 ? .7 : .55)) * .5 + .5;
+            for (let i = 0; i < COUNT; i++) {
+                if (mode === 0) { const d = 18, gx = (i % d) - d * .5, gy = Math.floor(i / d) - d * .5, s = (1 - p) * 140; target.set(gx * 42 + Math.sin(time + i) * s, gy * 42 + Math.cos(time * 1.2 + i) * s * .6, Math.sin(i * .08) * 80 * p); } else if (mode === 1) { const t = 22, r = Math.floor(i / t), c = i % t, x = (c - t * .5) * 36, y = (r - t * .5) * 36 * .866, s = (1 - p) * 160; target.set(x + (Math.random() - .5) * s, y + (Math.random() - .5) * s * .7, Math.cos(time * 1.1 + i) * 55 * p); } else { const ch = 1.25, a = i * .017 + time * 1.8, rd = 170 * p + Math.random() * 110 * (1 - p); target.set(Math.cos(a) * rd * ch, Math.sin(a) * rd * .65, Math.sin(time * 2 + i) * 75 * (1 - p)); }
+                color.setHSL(.58, .38 + p * .15, .62 + p * .22); positions[i].lerp(target, .11); dummy.position.copy(positions[i]); dummy.updateMatrix(); im.setMatrixAt(i, dummy.matrix); im.setColorAt(i, color);
+            }
+            im.instanceMatrix.needsUpdate = true; im.instanceColor.needsUpdate = true; renderer.render(scene, camera);
+        } animate();
+        addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+        function setAnalysisDate() { document.getElementById('analysis-date').textContent = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }); }
+        function toggleAccordion() { const c = document.getElementById('accordion-content'), b = document.getElementById('toggle-btn'); c.classList.toggle('hidden'); b.innerHTML = c.classList.contains('hidden') ? 'Открыть подробнее <span class="text-xl leading-none">↓</span>' : 'Скрыть <span class="text-xl leading-none">↑</span>'; }
+        function togglePassport() { const c = document.getElementById('passport-content'), b = document.getElementById('toggle-passport-btn'); c.classList.toggle('hidden'); b.innerHTML = c.classList.contains('hidden') ? 'Открыть подробнее <span class="text-xl leading-none">↓</span>' : 'Скрыть <span class="text-xl leading-none">↑</span>'; }
+        onload = setAnalysisDate;
+    </script>
+</body>
+
+</html>
