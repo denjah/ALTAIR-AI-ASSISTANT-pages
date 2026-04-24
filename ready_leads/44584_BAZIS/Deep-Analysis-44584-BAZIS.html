@@ -1,0 +1,802 @@
+<!-- === Report Landing Generator v3.3 — Deep Client Analysis — ООО БАЗИС === -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — ООО БАЗИС | ALTAIR</title>
+    <meta name="description"
+        content="Полный аналитический отчёт по клиенту ООО БАЗИС (ID 44584) — Altair AI-Sales Instructor">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-dark: rgba(19, 54, 89, 0.88);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --green: #2A9D5C;
+            --green-soft: #E6F7ED;
+            --red: #C0392B;
+            --red-soft: #FDEDED;
+            --yellow: #E7A817;
+            --yellow-soft: #FFF8E7;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --shadow-lg: 0 15px 40px rgba(19, 54, 89, 0.12);
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('../../design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+            transition: all .25s ease;
+        }
+
+        .glass:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .glass-dark {
+            background: var(--glass-dark);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-lg);
+            color: var(--text-on-dark);
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue-700);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .badge-green {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        .badge-accent {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .badge-blue {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .badge-yellow {
+            background: var(--yellow-soft);
+            color: var(--yellow);
+        }
+
+        .badge-red {
+            background: var(--red-soft);
+            color: var(--red);
+        }
+
+        .stat-card {
+            background: var(--glass-strong);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            padding: 24px;
+            text-align: center;
+            transition: all .25s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-accent);
+        }
+
+        .stat-value {
+            font-family: 'EuropeExt Bold', sans-serif;
+            font-size: 32px;
+            color: var(--blue);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--accent-soft);
+            position: absolute;
+            left: -7px;
+            top: 6px;
+        }
+
+        .quote-block {
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            background: var(--accent-soft);
+            border-radius: 0 var(--radius-compact) var(--radius-compact) 0;
+            font-style: italic;
+            color: var(--text-strong);
+        }
+
+        .action-card {
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-card);
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(255, 255, 255, 0.9) 100%);
+        }
+
+        .accordion-content {
+            border-top: 1px solid var(--border);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp .5s ease forwards;
+            opacity: 0;
+        }
+
+        @media print {
+
+            .glass,
+            .glass-dark {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            #particle-bg {
+                display: none !important;
+            }
+
+            header {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+    <!-- HEADER -->
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="../../design/assets/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+                onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest"
+                    style="font-family:'EuropeExt Bold',sans-serif;">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • v3.3 • <span id="analysis-date"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12 space-y-8">
+
+        <!-- ═══════ БЛОК №1 — HERO ═══════ -->
+        <section class="glass-dark p-10 animate-in" style="animation-delay:.1s">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <div class="text-sm tracking-widest mb-2"
+                        style="color:var(--accent);font-family:'EuropeExt Bold',sans-serif;">КЛИЕНТ #44584</div>
+                    <h1 class="text-3xl md:text-4xl font-bold leading-tight"
+                        style="font-family:'EuropeExt Bold',sans-serif;">ООО «БАЗИС»</h1>
+                    <p class="mt-3 text-lg" style="color:var(--text-on-dark-muted);">Разработка и производство
+                        LED-светильников, источников тока и преобразователей напряжения • г. Воронеж</p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <span class="badge badge-yellow">⚡ ПРОИЗВОДИТЕЛЬ LED</span>
+                    <span class="badge badge-red">ПОТЕРЯННЫЙ КЛИЕНТ</span>
+                    <span class="badge badge-blue">ЦФО (Воронеж)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №2 — KPI DASHBOARD ═══════ -->
+        <section class="animate-in" style="animation-delay:.2s">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stat-card">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Всего сделок</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color:var(--red);">0</div>
+                    <div class="stat-label">Выигранных (WON)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">210K ₽</div>
+                    <div class="stat-label">Суммарная opportunity</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3+ г.</div>
+                    <div class="stat-label">В CRM с июня 2022</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №3 — КРАТКОЕ РЕЗЮМЕ (accordion, closed) ═══════ -->
+        <section id="deal-summary" class="glass animate-in" style="animation-delay:.25s">
+            <div onclick="toggleAccordion('summary')"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
+                <div class="block-title">Краткое резюме клиента</div>
+                <span id="toggle-summary" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее
+                    <span class="text-xl leading-none">↓</span></span>
+            </div>
+            <div id="content-summary" class="accordion-content px-8 py-6 hidden">
+                <div class="space-y-4 text-[15px] leading-relaxed">
+                    <p><strong>ООО «БАЗИС»</strong> — российский производитель радиоэлектронной продукции и светодиодной
+                        светотехники (промышленное, уличное, парковое, архитектурное, специальное, внутреннее
+                        освещение). Также выпускает <strong>источники тока (драйверы) для светодиодов</strong> и
+                        <strong>преобразователи напряжения</strong>. Компания основана в 2004 г., более 20 лет на рынке.
+                    </p>
+                    <p><strong>ИНН:</strong> 3664058684 | <strong>ОГРН:</strong> 1043600046247 | <strong>Адрес
+                            офиса:</strong> 394033, г. Воронеж, Ленинский пр-т, 160а, оф. 306 |
+                        <strong>Производство:</strong> г. Воронеж, ул. Переверткина, 47</p>
+                    <p><strong>Телефоны:</strong> +7 (473) 296-98-41, -42, -43 | <strong>Email:</strong> info@bazis.su |
+                        <strong>Сайт:</strong> bazis.su (bazis.vrn.ru — старый домен)</p>
+                    <p><strong>Ключевой контекст для Альтаир:</strong> В 2022 г. клиент отправил образцы кабельных
+                        вводов ОРТАК и Китай — понравились P0707, запрашивал 20 000 шт. Далее сделка была потеряна,
+                        клиент ушёл к другому поставщику. С 2024 г. менеджеры пытаются вернуть контакт, но «клиент не
+                        идёт на контакт».</p>
+                    <p><strong>Примечание CRM:</strong> «Антон в отпуск еще ушел, звонить через 2 недели, закупок пока
+                        никаких не будет говорит.»</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №4 — О ПРЕДПРИЯТИИ ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.3s">
+            <div class="block-title mb-6">О предприятии</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Профиль деятельности</h3>
+                    <ul class="space-y-2 text-[15px]">
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Специальное
+                            освещение (взрывозащищённое, охранное)</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Уличное и парковое
+                            LED-освещение</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Промышленное
+                            освещение (цеха, склады)</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Внутреннее и
+                            архитектурное освещение</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Источники тока
+                            (драйверы) для светодиодов — собственная разработка</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Преобразователи
+                            напряжения (DC/DC, AC/DC)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Ключевые факты</h3>
+                    <div class="space-y-3 text-[15px]">
+                        <div class="flex gap-3 items-start"><span
+                                class="badge badge-accent text-[11px]">ЗАВОД</span><span>Собственное производство в
+                                Воронеже, ул. Переверткина, 47</span></div>
+                        <div class="flex gap-3 items-start"><span
+                                class="badge badge-blue text-[11px]">ОПЫТ</span><span>На рынке с 2004 г. — более 20 лет
+                                разработки и производства</span></div>
+                        <div class="flex gap-3 items-start"><span
+                                class="badge badge-green text-[11px]">ПОРТФЕЛЬ</span><span>Полный цикл: от специальных
+                                до архитектурных светильников + электроника</span></div>
+                        <div class="flex gap-3 items-start"><span
+                                class="badge badge-yellow text-[11px]">ДИЛЕРЫ</span><span>Развитая дилерская сеть
+                                (раздел «Дилеры» на сайте)</span></div>
+                        <div class="flex gap-3 items-start"><span
+                                class="badge badge-accent text-[11px]">ЭЛЕКТРОНИКА</span><span>Сами разрабатывают
+                                драйверы и преобразователи → глубокая экспертиза в компонентах</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №5 — BRAND INTELLIGENCE ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.35s">
+            <div class="block-title mb-6">Brand Intelligence</div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="md:col-span-2">
+                    <div class="mb-4">
+                        <strong class="text-[#184D7A]">Архетип бренда:</strong>
+                        <span class="badge badge-accent ml-2">Creator (Творец)</span>
+                        <span class="badge badge-blue ml-1">Sage (Мудрец)</span>
+                    </div>
+                    <p class="text-[15px] mb-4">Российский производитель с 20-летней историей и глубокой инженерной
+                        экспертизой. Ценности: <strong>собственные разработки, полный цикл производства (от электроники
+                            до корпусов), техническая надёжность</strong>. Tone of voice — инженерно-технический,
+                        консервативный, ориентированный на ТЗ и спецификации.</p>
+                    <h3 class="font-bold text-[#184D7A] mb-2 mt-4">Триггеры для Альтаир</h3>
+                    <ul class="space-y-2 text-[15px]">
+                        <li>✅ Кабельные вводы IP68 — критичны для уличных/промышленных/специальных светильников</li>
+                        <li>✅ Объём: запрос на 20 000 шт P0707 — серийное производство, огромный потенциал</li>
+                        <li>✅ Собственные драйверы → понимают качество компонентов, готовы тестировать</li>
+                        <li>✅ Уже оценили образцы ОРТАК — понравились P0707</li>
+                        <li>✅ Экономия 30–40% vs. текущий поставщик — ключевой аргумент</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Как продавать Creator/Sage</h3>
+                    <div class="space-y-3 text-[14px]">
+                        <div class="p-4 rounded-2xl" style="background:var(--blue-soft);"><strong>Язык:</strong> Строго
+                            технический. Парт-номера, спецификации, IP-классы, сертификаты, протоколы испытаний.</div>
+                        <div class="p-4 rounded-2xl" style="background:var(--accent-soft);"><strong>Аргументы:</strong>
+                            TCO, качество (Турция vs Китай), сертификация, срок службы, гарантия 2 года. Для них важна
+                            доказательная база.</div>
+                        <div class="p-4 rounded-2xl" style="background:var(--green-soft);"><strong>Позиция:</strong>
+                            Коллега-инженер, а не продавец. «Мы знаем, как работают ваши светильники, и предлагаем
+                            компоненты, которые усилят изделие».</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №6 — ХРОНОЛОГИЯ ВЗАИМОДЕЙСТВИЯ ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.4s">
+            <div class="block-title mb-6">Хронология взаимодействия</div>
+            <div class="relative pl-6 border-l-2 border-[#ED7A1C]/30 space-y-6">
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Октябрь 2022</div>
+                        <div class="font-semibold text-[#184D7A]">Первый контакт → Образцы ОРТАК и Китай</div>
+                        <p class="text-sm text-[#44515D]">Отправлены образцы кабельных вводов ОРТАК и китайских
+                            аналогов. Клиенту понравились P0707 — запросил 20 000 штук. Сделка #12236 на 210 420 ₽ →
+                            LOSE.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Май 2023</div>
+                        <div class="font-semibold text-[#184D7A]">Переговоры с Антоном и генеральным директором</div>
+                        <p class="text-sm text-[#44515D]">Антон (Баскаков) говорит, что закупают у другого поставщика,
+                            но готовы рассмотреть Альтаир. Просит прислать письмо с позициями и ценами. Гендиректор
+                            подтвердил: «всё через образцы, решение принимают коллегиально».</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Май 2024</div>
+                        <div class="font-semibold text-[#184D7A]">Попытка реактивации — «закупок пока нет»</div>
+                        <p class="text-sm text-[#44515D]">Антон сообщил, что закупок нет. «Через месяц позвонить, не
+                            раньше!!» Задача в CRM: «выяснить по закупке каб. вводов».</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Август 2024</div>
+                        <div class="font-semibold text-[#184D7A]">Антон в отпуске — пауза</div>
+                        <p class="text-sm text-[#44515D]">«В отпуске на 2 недели, звонить в начале сентября». Задача:
+                            «выяснить по закупке кв».</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Сентябрь – Ноябрь 2025</div>
+                        <div class="font-semibold text-[#184D7A]">Смена менеджера → попытки дозвониться</div>
+                        <p class="text-sm text-[#44515D]">Новый ответственный (ID 418) ставит задачи: «Получить
+                            информацию о клиенте», «Позвонить повторно». Последняя коммуникация: 13.11.2025.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot" style="background:var(--red);border-color:var(--red-soft);"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Декабрь 2025</div>
+                        <div class="font-semibold" style="color:var(--red);">Финал — «Клиент не идёт на контакт»</div>
+                        <p class="text-sm text-[#44515D]">Последний комментарий в CRM: «Клиент не идет на контакт».
+                            Сделка #13538 на 210 420 ₽ → LOSE. Клиент остаётся в статусе CUSTOMER, но фактически
+                            «спящий».</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №7 — КОНТАКТНАЯ КАРТА ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.45s">
+            <div class="block-title mb-6">Контактная карта</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Ключевые контакты</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl border border-[rgba(129,149,168,0.28)]">
+                            <div class="font-semibold text-[#184D7A]">⭐ Харин Иван Викторович</div>
+                            <div class="text-sm text-[#73808C]">Директор • sales@bazis.vrn.ru • 8 (906) 584-62-64</div>
+                            <div class="text-xs mt-1 text-[#9DA8B2]">Гендиректор. Принимает финальные решения. «Всё
+                                через образцы». Решение коллегиальное.</div>
+                        </div>
+                        <div class="p-4 rounded-2xl border border-[rgba(129,149,168,0.28)]">
+                            <div class="font-semibold text-[#184D7A]">Антон Баскаков</div>
+                            <div class="text-sm text-[#73808C]">Закупки/снабжение • baskakov@bazis.vrn.ru • +7 (905)
+                                049-37-50</div>
+                            <div class="text-xs mt-1 text-[#9DA8B2]">Основное контактное лицо по закупкам. Говорил
+                                «закупают у другого поставщика», но готов рассмотреть. Часто уходит в отпуск.</div>
+                        </div>
+                        <div class="p-4 rounded-2xl border border-[rgba(129,149,168,0.28)]">
+                            <div class="font-semibold text-[#184D7A]">Ганичев Сергей Владимирович</div>
+                            <div class="text-sm text-[#73808C]">Роль не уточнена • 4109599@mail.ru • 8 (920) 250-30-65,
+                                8 (910) 389-22-13</div>
+                            <div class="text-xs mt-1 text-[#9DA8B2]">Альтернативный контакт. Возможно, техническое
+                                направление или производство.</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Каналы связи</h3>
+                    <div class="space-y-3 text-[14px]">
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--blue-soft);"><span
+                                class="font-medium">Телефон (компания)</span><span class="font-mono">+7 (473)
+                                296-98-41</span></div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--accent-soft);"><span
+                                class="font-medium">Email (общий)</span><span>sales@bazis.vrn.ru</span></div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--green-soft);"><span
+                                class="font-medium">Email (Антон)</span><span>baskakov@bazis.vrn.ru</span></div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--blue-soft);"><span
+                                class="font-medium">Email (info)</span><span>info@bazis.su</span></div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--accent-soft);"><span
+                                class="font-medium">Сайт</span><a href="https://bazis.su" target="_blank"
+                                class="text-[#ED7A1C] underline">bazis.su</a></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №8 — АНАЛИЗ БОЛЕЙ И ПОТРЕБНОСТЕЙ ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.5s">
+            <div class="block-title mb-6">Анализ болей и потребностей</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Выявленные боли</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl" style="background:var(--red-soft);">
+                            <div class="font-semibold mb-1" style="color:var(--red);">⚠ Зависимость от одного поставщика
+                                КВ</div>
+                            <p class="text-sm">Закупают кабельные вводы у другого поставщика. Альтаир был рассмотрен, но
+                                «не дожали» — сделка потеряна. Клиент готов был рассматривать альтернативу.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:var(--yellow-soft);">
+                            <div class="font-semibold mb-1" style="color:var(--yellow);">⚠ Серийное производство →
+                                объёмы</div>
+                            <p class="text-sm">Запрос на 20 000 шт P0707 показывает серийное потребление. Потребность в
+                                стабильных поставках в нужных объёмах. Текущий поставщик закрывает, но конкуренция по
+                                цене жива.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:var(--blue-soft);">
+                            <div class="font-semibold mb-1" style="color:var(--blue);">⚠ Процесс принятия решения через
+                                образцы</div>
+                            <p class="text-sm">Гендиректор чётко сказал: «всё через образцы». Решение коллегиальное —
+                                нужен консенсус. Нельзя продавать «по каталогу» — только через физическое тестирование.
+                            </p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:var(--accent-soft);">
+                            <div class="font-semibold mb-1" style="color:var(--accent);">⚠ Потеря контакта</div>
+                            <p class="text-sm">С декабря 2025 клиент не отвечает. Возможные причины: неактуальный
+                                контакт (Антон), нет текущих закупок, негативный опыт с менеджером, или конкурент
+                                зафиксировал условия.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Точные цитаты из CRM</h3>
+                    <div class="space-y-4">
+                        <div class="quote-block">«Отправлял образцы кабельных вводов ОРТАК и Китай. Итого понравились
+                            P0707, запросил 20 000 штук»<div class="text-xs mt-2 text-[#73808C]">— Менеджер, 14.10.2022
+                                (timeline сделки #12236)</div>
+                        </div>
+                        <div class="quote-block">«Антон говорит, что закупают у другого поставщика, нас может
+                            рассмотреть, нужно отправить письмо, потом можно обсудить позиции и цены»<div
+                                class="text-xs mt-2 text-[#73808C]">— Менеджер, 24.05.2023</div>
+                        </div>
+                        <div class="quote-block">«Общался с ген. директором, он говорит, что все через образцы, позиции
+                            взять у Антона, он с общей почты КП посмотрит, решение может принять как он, так и коллеги»
+                            <div class="text-xs mt-2 text-[#73808C]">— Менеджер, 30.05.2023</div>
+                        </div>
+                        <div class="quote-block">«Антон сказал, что пока закупок нет. Через месяц позвонить, не
+                            раньше!!»<div class="text-xs mt-2 text-[#73808C]">— Менеджер, 22.05.2024</div>
+                        </div>
+                        <div class="quote-block">«Клиент не идёт на контакт»<div class="text-xs mt-2 text-[#73808C]">—
+                                Менеджер (новый), 19.12.2025</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №9 — СТРАТЕГИЯ СДЕЛКИ ═══════ -->
+        <section class="glass-dark p-8 animate-in" style="animation-delay:.55s">
+            <div class="block-title mb-6" style="color:var(--accent);">Стратегия возврата клиента (Strategist)</div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold mb-3" style="color:var(--accent-strong);">Диагноз ситуации</h3>
+                    <p class="text-[15px] mb-4" style="color:var(--text-on-dark-muted);">БАЗИС — серийный
+                        LED-производитель с 20-летним опытом и разработкой собственных драйверов. В 2022 г.
+                        протестировали наши образцы — понравились P0707 (запрос на 20 000 шт!). Но сделка была потеряна
+                        из-за: (1) наличия действующего поставщика, (2) медленного follow-up, (3) отсутствия ценового
+                        давления. Сейчас клиент «спящий» — не отвечает. Нужна <strong>стратегия пробивания через новый
+                            канал</strong>.</p>
+                    <h3 class="font-bold mb-3 mt-6" style="color:var(--accent-strong);">TCO-аргументация</h3>
+                    <ul class="space-y-2 text-[15px]" style="color:var(--text-on-dark-muted);">
+                        <li>→ P0707 ORTAC (Турция) vs. китайский аналог: гарантия 2 года vs. 1 год</li>
+                        <li>→ Экономия 30–40% на вводах IP68 vs. IEK/Dekraft/Legrand</li>
+                        <li>→ Склад в СПб — доставка за 3-5 дней (CDEK/Деловые линии)</li>
+                        <li>→ При объёме 20 000 шт/партия — спеццена + бесплатная доставка</li>
+                        <li>→ Собственная электроника БАЗИС → они понимают разницу в качестве компонентов</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3" style="color:var(--accent-strong);">Скрипт звонка (реактивация)</h3>
+                    <div class="space-y-4 text-[14px]">
+                        <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);">
+                            <div class="font-bold mb-1" style="color:var(--accent);">Стратегия входа: через Ганичева или
+                                info@bazis.su</div>
+                            <p style="color:var(--text-on-dark-muted);">Антон (Баскаков) не отвечает → выйти через
+                                Ганичева С.В. или через общую почту info@bazis.su с техническим вопросом, не
+                                коммерческим. Либо напрямую к директору Харину И.В.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);">
+                            <div class="font-bold mb-1" style="color:var(--accent);">Открывашка (эксперт, не продавец)
+                            </div>
+                            <p style="color:var(--text-on-dark-muted);">«Иван Викторович, здравствуйте. Мы — Альтаир,
+                                поставщик кабельных вводов IP68. В 2022 году вы тестировали наши ORTAC P0707 и они вам
+                                подошли. С тех пор мы расширили склад в СПб и снизили цены на 15%. Хотел уточнить —
+                                актуальна ли потребность в кабельных вводах для вашего производства?»</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);">
+                            <div class="font-bold mb-1" style="color:var(--accent);">Вопрос-крючок</div>
+                            <p style="color:var(--text-on-dark-muted);">«Подскажите, вы по-прежнему используете P0707
+                                или перешли на другую модель? Мы сейчас поставляем прямо со склада без предоплаты для
+                                постоянных партнёров — могу прислать актуальный прайс под ваши объёмы.»</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:rgba(42,157,92,0.15);">
+                            <div class="font-bold mb-1" style="color:var(--green);">КЭВ (Ключевой Этап Воронки)</div>
+                            <p style="color:var(--text-on-dark-muted);">Отправить бесплатную тестовую партию P0707
+                                (50–100 шт) + новые модели ORTAC с вентиляцией. Доставка за счёт Альтаир. Это снимает
+                                все барьеры и возвращает контакт.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №10 — NEXT BEST ACTION ═══════ -->
+        <section class="animate-in" style="animation-delay:.6s">
+            <div class="block-title mb-6 px-2">Next Best Action</div>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="action-card">
+                    <div class="text-3xl mb-3">📧</div>
+                    <div class="font-bold text-[#184D7A] mb-2">Письмо через info@bazis.su</div>
+                    <p class="text-sm text-[#44515D]">Обойти «молчащего» Антона. Отправить техническое письмо на
+                        info@bazis.su с темой «Обновление по кабельным вводам P0707 для производства БАЗИС». Приложить
+                        актуальный прайс + фото новых моделей.</p>
+                    <div class="badge badge-accent mt-3 text-[11px]">ПРИОРИТЕТ: ВЫСОКИЙ</div>
+                </div>
+                <div class="action-card">
+                    <div class="text-3xl mb-3">📞</div>
+                    <div class="font-bold text-[#184D7A] mb-2">Звонок директору Харину И.В.</div>
+                    <p class="text-sm text-[#44515D]">Прямой выход на ЛПР. Напомнить: «В 2022 г. вам понравились P0707,
+                        запрашивали 20 000 шт. Мы готовы отправить бесплатные образцы + снизили цены». Цель: получить
+                        согласие на тестовую партию.</p>
+                    <div class="badge badge-blue mt-3 text-[11px]">ПРИОРИТЕТ: ВЫСОКИЙ</div>
+                </div>
+                <div class="action-card">
+                    <div class="text-3xl mb-3">📦</div>
+                    <div class="font-bold text-[#184D7A] mb-2">Бесплатная тестовая партия P0707</div>
+                    <p class="text-sm text-[#44515D]">50–100 шт P0707 + 10 шт ORTAC с вентиляцией → ТК СДЭК до двери.
+                        Без предоплаты. Это снимет главный барьер («всё через образцы») и вернёт диалог. Потенциал: 20
+                        000 шт/партия.</p>
+                    <div class="badge badge-green mt-3 text-[11px]">СТРАТЕГИЧЕСКАЯ ЦЕЛЬ</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ ═══════ -->
+        <section id="analytical-passport" class="glass animate-in" style="animation-delay:.65s">
+            <div onclick="toggleAccordion('passport')"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+                <div class="block-title">Аналитический паспорт</div>
+                <span id="toggle-passport" class="text-[#ED7A1C] font-medium flex items-center gap-2">Скрыть <span
+                        class="text-xl leading-none">↑</span></span>
+            </div>
+            <div id="content-passport" class="accordion-content px-8 py-6">
+                <table class="w-full text-sm text-left">
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A] w-1/3">ID Компании</th>
+                        <td class="py-3 px-4">44584</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Полное наименование</th>
+                        <td class="py-3 px-4">Общество с ограниченной ответственностью «БАЗИС»</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">ИНН</th>
+                        <td class="py-3 px-4">3664058684</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">ОГРН</th>
+                        <td class="py-3 px-4">1043600046247</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Сфера</th>
+                        <td class="py-3 px-4">Производство LED-светотехники, источников тока, преобразователей
+                            напряжения</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Год основания</th>
+                        <td class="py-3 px-4">2004</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Адрес (офис)</th>
+                        <td class="py-3 px-4">394033, г. Воронеж, Ленинский пр-т, 160а, оф. 306</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Адрес (производство)</th>
+                        <td class="py-3 px-4">394063, г. Воронеж, ул. Переверткина, 47</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Сайт</th>
+                        <td class="py-3 px-4"><a href="https://bazis.su" target="_blank"
+                                class="text-[#ED7A1C] underline">bazis.su</a> (bazis.vrn.ru — старый домен)</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Статус в CRM</th>
+                        <td class="py-3 px-4"><span class="badge badge-red">CUSTOMER (0 WON, 2 LOSE)</span></td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Суммарная opportunity</th>
+                        <td class="py-3 px-4">210 420 ₽ (2 сделки, обе LOSE)</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Ключевая позиция</th>
+                        <td class="py-3 px-4">Кабельные вводы P0707 ORTAC — запрос на 20 000 шт</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Последняя коммуникация</th>
+                        <td class="py-3 px-4">13.11.2025</td>
+                    </tr>
+                    <tr>
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Статус контакта</th>
+                        <td class="py-3 px-4"><span class="badge badge-red">НЕ ИДЁТ НА КОНТАКТ</span></td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-4">
+        <div
+            class="max-w-[1320px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#73808C]">
+            <div>&copy; ALTAIR &bull; Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print();return false;"
+                    class="hover:text-[#ED7A1C] transition-colors">&#128424; Скачать PDF</a>
+                <a href="https://altaircom.bitrix24.ru/crm/company/details/44584/" target="_blank"
+                    class="hover:text-[#ED7A1C] transition-colors">&nearr; Открыть в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor &bull; v3.3 &bull; Deep Client Analysis</div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Particle Background
+        const COUNT = 2000; const scene = new THREE.Scene(); scene.fog = new THREE.FogExp2(0xf4f6f8, 0.011);
+        const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 2000); camera.position.z = 160;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); renderer.setSize(innerWidth, innerHeight); renderer.setClearColor(0x000000, 0);
+        document.getElementById('particle-bg').appendChild(renderer.domElement);
+        const dummy = new THREE.Object3D(); const color = new THREE.Color(); const target = new THREE.Vector3();
+        const geo = new THREE.SphereGeometry(0.35, 16, 16); const mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.78, depthTest: false });
+        const mesh = new THREE.InstancedMesh(geo, mat, COUNT); scene.add(mesh);
+        const positions = []; for (let i = 0; i < COUNT; i++) { positions.push(new THREE.Vector3()); mesh.setColorAt(i, color.setHSL(0.58, 0.4, 0.65)); }
+        const mode = Math.floor(Math.random() * 3); let time = 0;
+        function animate() {
+            requestAnimationFrame(animate); time += 0.003;
+            for (let i = 0; i < COUNT; i++) {
+                const p = positions[i];
+                if (mode === 0) { const a = i * 0.618 * 6.28, r = Math.sqrt(i / COUNT) * 120; target.set(Math.cos(a + time * 0.4) * r, Math.sin(a + time * 0.4) * r, Math.sin(i * 0.01 + time) * 30); }
+                else if (mode === 1) { const t2 = i / COUNT * 6.28 * 4 + time; target.set(Math.cos(t2) * 60 + Math.cos(time + i * 0.01) * 20, i / COUNT * 200 - 100, Math.sin(t2) * 60 + Math.sin(time + i * 0.01) * 20); }
+                else { const phi = Math.acos(1 - 2 * (i + 0.5) / COUNT), theta = Math.PI * (1 + Math.sqrt(5)) * i + time * 0.3; const r2 = 70 + Math.sin(time * 2 + i * 0.01) * 10; target.set(r2 * Math.sin(phi) * Math.cos(theta), r2 * Math.sin(phi) * Math.sin(theta), r2 * Math.cos(phi)); }
+                p.lerp(target, 0.02); dummy.position.copy(p); dummy.updateMatrix(); mesh.setMatrixAt(i, dummy.matrix);
+            }
+            mesh.instanceMatrix.needsUpdate = true; renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => { camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight); });
+
+        // Accordion
+        function toggleAccordion(id) {
+            const c = document.getElementById('content-' + id); const t = document.getElementById('toggle-' + id);
+            c.classList.toggle('hidden');
+            t.innerHTML = c.classList.contains('hidden') ? 'Открыть подробнее <span class="text-xl leading-none">&darr;</span>' : 'Скрыть <span class="text-xl leading-none">&uarr;</span>';
+        }
+
+        // Date
+        document.getElementById('analysis-date').textContent = new Date().toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+        // Animate on scroll
+        const obs = new IntersectionObserver((entries) => { entries.forEach(e => { if (e.isIntersecting) e.target.style.animationPlayState = 'running'; }); }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-in').forEach(el => { el.style.animationPlayState = 'paused'; obs.observe(el); });
+    </script>
+</body>
+
+</html>
