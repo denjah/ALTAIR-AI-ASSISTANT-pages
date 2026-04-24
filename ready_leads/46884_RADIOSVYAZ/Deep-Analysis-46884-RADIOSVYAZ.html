@@ -1,0 +1,864 @@
+<!-- === Report Landing Generator v3.3 — Deep Client Analysis — НПП РАДИОСВЯЗЬ === -->
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — АО НПП РАДИОСВЯЗЬ | ALTAIR</title>
+    <meta name="description"
+        content="Полный аналитический отчёт по клиенту АО НПП Радиосвязь (ID 46884) — Altair AI-Sales Instructor">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg: #F4F6F8;
+            --bg-soft: #F8FAFC;
+            --glass: rgba(255, 255, 255, 0.58);
+            --glass-strong: rgba(255, 255, 255, 0.72);
+            --glass-soft: rgba(245, 247, 250, 0.82);
+            --glass-mid: rgba(232, 236, 240, 0.88);
+            --glass-dark: rgba(19, 54, 89, 0.88);
+            --glass-dark-soft: rgba(30, 74, 117, 0.72);
+            --border: rgba(129, 149, 168, 0.28);
+            --border-soft: rgba(255, 255, 255, 0.34);
+            --border-accent: rgba(237, 122, 28, 0.55);
+            --text: #44515D;
+            --text-strong: #243444;
+            --text-muted: #73808C;
+            --text-faint: #9DA8B2;
+            --text-on-dark: #F3F7FB;
+            --text-on-dark-muted: rgba(243, 247, 251, 0.72);
+            --blue: #184D7A;
+            --blue-700: #184D7A;
+            --blue-800: #123E64;
+            --blue-900: #0D314F;
+            --blue-soft: #EAF2F8;
+            --accent: #ED7A1C;
+            --accent-hover: #D96A10;
+            --accent-soft: #FFF1E4;
+            --accent-strong: #F29A49;
+            --green: #2A9D5C;
+            --green-soft: #E6F7ED;
+            --red: #C0392B;
+            --red-soft: #FDEDED;
+            --yellow: #E7A817;
+            --yellow-soft: #FFF8E7;
+            --shadow-sm: 0 8px 24px rgba(30, 55, 80, 0.06);
+            --shadow-md: 0 10px 30px rgba(30, 55, 80, 0.10);
+            --shadow-lg: 0 15px 40px rgba(19, 54, 89, 0.12);
+            --radius-section: 24px;
+            --radius-card: 20px;
+            --radius-compact: 16px;
+            --radius-pill: 9999px;
+        }
+
+        @font-face {
+            font-family: 'EuropeExt Bold';
+            src: url('../../design/EuropeExt-Bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass {
+            background: var(--glass);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s ease;
+        }
+
+        .glass:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .glass-dark {
+            background: var(--glass-dark);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: var(--radius-section);
+            box-shadow: var(--shadow-lg);
+            color: var(--text-on-dark);
+        }
+
+        .block-title {
+            font-family: 'EuropeExt Bold', 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            font-size: 17px;
+            line-height: 21px;
+            color: var(--blue-700);
+        }
+
+        .section-title {
+            font-family: 'EuropeExt Bold', 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--blue);
+        }
+
+        .accordion-content {
+            border-top: 1px solid var(--border);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 14px;
+            border-radius: var(--radius-pill);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .badge-green {
+            background: var(--green-soft);
+            color: var(--green);
+        }
+
+        .badge-accent {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .badge-blue {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .badge-yellow {
+            background: var(--yellow-soft);
+            color: var(--yellow);
+        }
+
+        .stat-card {
+            background: var(--glass-strong);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-card);
+            padding: 24px;
+            text-align: center;
+            transition: all 0.25s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--border-accent);
+        }
+
+        .stat-value {
+            font-family: 'EuropeExt Bold', sans-serif;
+            font-size: 32px;
+            color: var(--blue);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .timeline-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 3px solid var(--accent-soft);
+            position: absolute;
+            left: -7px;
+            top: 6px;
+        }
+
+        .kpi-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: var(--blue-soft);
+            overflow: hidden;
+        }
+
+        .kpi-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+            transition: width 1.2s ease;
+        }
+
+        .quote-block {
+            border-left: 4px solid var(--accent);
+            padding: 16px 20px;
+            background: var(--accent-soft);
+            border-radius: 0 var(--radius-compact) var(--radius-compact) 0;
+            font-style: italic;
+            color: var(--text-strong);
+        }
+
+        .action-card {
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-card);
+            padding: 20px 24px;
+            background: linear-gradient(135deg, var(--accent-soft) 0%, rgba(255, 255, 255, 0.9) 100%);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @media print {
+
+            .glass,
+            .glass-dark {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+            }
+
+            #particle-bg {
+                display: none !important;
+            }
+
+            header {
+                position: relative;
+            }
+        }
+    </style>
+</head>
+
+<body data-theme="light">
+
+    <!-- PARTICLE BACKGROUND -->
+    <div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+    <!-- HEADER -->
+    <header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+        <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+            <img src="../../design/assets/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+                onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+            <div class="text-right">
+                <div class="text-[#184D7A] font-bold text-xl tracking-widest"
+                    style="font-family:'EuropeExt Bold',sans-serif;">DEEP CLIENT ANALYSIS</div>
+                <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • v3.3 • <span id="analysis-date"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12 space-y-8">
+
+        <!-- ═══════ БЛОК №1 — HERO ═══════ -->
+        <section class="glass-dark p-10 animate-in" style="animation-delay:.1s">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+                <div>
+                    <div class="text-sm tracking-widest mb-2"
+                        style="color:var(--accent);font-family:'EuropeExt Bold',sans-serif;">КЛИЕНТ #46884</div>
+                    <h1 class="text-3xl md:text-4xl font-bold leading-tight"
+                        style="font-family:'EuropeExt Bold',sans-serif;">
+                        АО «НПП РАДИОСВЯЗЬ»
+                    </h1>
+                    <p class="mt-3 text-lg" style="color:var(--text-on-dark-muted);">Холдинг «Росэлектроника» •
+                        Госкорпорация «Ростех» • г. Красноярск</p>
+                </div>
+                <div class="flex flex-wrap gap-3">
+                    <span class="badge badge-green">★ ПОСТОЯННЫЙ КЛИЕНТ</span>
+                    <span class="badge badge-accent">ОПК / РОСТЕХ</span>
+                    <span class="badge badge-blue">ЮЖНЫЙ ФО (Ростов)</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №2 — KPI DASHBOARD ═══════ -->
+        <section class="animate-in" style="animation-delay:.2s">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="stat-card">
+                    <div class="stat-value">57+</div>
+                    <div class="stat-label">Всего сделок</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" style="color:var(--green);">52</div>
+                    <div class="stat-label">Выигранных (WON)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">≈3.7M ₽</div>
+                    <div class="stat-label">Суммарный оборот</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">4 года</div>
+                    <div class="stat-label">Срок сотрудничества</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №3 — КРАТКОЕ РЕЗЮМЕ (accordion, closed) ═══════ -->
+        <section id="deal-summary" class="glass animate-in" style="animation-delay:.25s">
+            <div onclick="toggleAccordion('summary')"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
+                <div class="block-title">Краткое резюме клиента</div>
+                <span id="toggle-summary" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее
+                    <span class="text-xl leading-none">↓</span></span>
+            </div>
+            <div id="content-summary" class="accordion-content px-8 py-6 hidden">
+                <div class="space-y-4 text-[15px] leading-relaxed">
+                    <p><strong>АО «НПП «Радиосвязь»</strong> — стратегическое предприятие ОПК, входит в холдинг
+                        «Росэлектроника» госкорпорации «Ростех». Основные направления: разработка и производство
+                        наземных помехозащищённых станций спутниковой и тропосферной связи для МО, ФСО, ФСБ. По многим
+                        позициям — <strong>единственный поставщик</strong> в РФ.</p>
+                    <p><strong>Адрес:</strong> 660021, г. Красноярск, ул. Декабристов, 19 | Филиал: г. Ростов-на-Дону,
+                        ул. Нансена, 148А</p>
+                    <p><strong>Численность:</strong> ~1 490 сотрудников | <strong>ИНН:</strong> 6161038937 |
+                        <strong>Генеральный директор:</strong> Ринат Гайсеевич Галеев</p>
+                    <p><strong>Ключевая потребность от Альтаир:</strong> Регулярные поставки кабельных вводов (клапанов)
+                        <strong>SOMBVP4UH / OMBVP4UH</strong> партиями свыше 1 500 шт. Также интерес к
+                        металлоэлектрическим разъёмам.</p>
+                    <p><strong>Ответственный менеджер:</strong> Васильев Максим (sales5@altaircom.ru) |
+                        <strong>Последняя активность:</strong> 17.04.2026</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №4 — О ПРЕДПРИЯТИИ ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.3s">
+            <div class="block-title mb-6">О предприятии</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Профиль деятельности</h3>
+                    <ul class="space-y-2 text-[15px]">
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Наземные станции
+                            спутниковой связи (тропосферные, помехозащищённые)</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Навигационные
+                            комплексы с фазовой навигацией</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Датчики слабых
+                            магнитных полей</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Озонаторы серии
+                            «Гроза» (гражданская продукция)</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Фильтры,
+                            диплексеры, дуплексеры, фильтры РСВ</li>
+                        <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Системы
+                            автоматизированной посадки ВС</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Ключевые факты</h3>
+                    <div class="space-y-3 text-[15px]">
+                        <div class="flex gap-3 items-start">
+                            <span class="badge badge-accent text-[11px]">ОПК</span>
+                            <span>Единственный поставщик по ряду позиций для МО РФ</span>
+                        </div>
+                        <div class="flex gap-3 items-start">
+                            <span class="badge badge-blue text-[11px]">РОСТЕХ</span>
+                            <span>100% акций — АО «ОПК» (структура Ростеха)</span>
+                        </div>
+                        <div class="flex gap-3 items-start">
+                            <span class="badge badge-green text-[11px]">ГОЗ</span>
+                            <span>Основной объём — государственный оборонный заказ</span>
+                        </div>
+                        <div class="flex gap-3 items-start">
+                            <span class="badge badge-yellow text-[11px]">СВО</span>
+                            <span>Раздел «Агитационные материалы СВО» на сайте — прямая связь с текущими задачами</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №5 — BRAND INTELLIGENCE ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.35s">
+            <div class="block-title mb-6">Brand Intelligence</div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="md:col-span-2">
+                    <div class="mb-4">
+                        <strong class="text-[#184D7A]">Архетип бренда:</strong>
+                        <span class="badge badge-accent ml-2">Hero (Герой)</span>
+                        <span class="badge badge-blue ml-1">Ruler (Правитель)</span>
+                    </div>
+                    <p class="text-[15px] mb-4">Государственное оборонное предприятие, выполняющее стратегическую миссию
+                        обеспечения связи для армии и спецслужб. Ценности: <strong>безотказность, технологическое
+                            лидерство, выполнение долга перед государством</strong>. Tone of voice — формальный,
+                        техничный, требовательный к качеству и соответствию ГОСТам.</p>
+
+                    <h3 class="font-bold text-[#184D7A] mb-2 mt-4">Триггеры для Альтаир</h3>
+                    <ul class="space-y-2 text-[15px]">
+                        <li>✅ Безотказность оборудования в экстремальных условиях (−60°C … +80°C)</li>
+                        <li>✅ 100% соответствие IP68, ГОСТ, документация для ВП МО</li>
+                        <li>✅ Долгосрочное партнёрство без срывов сроков поставок</li>
+                        <li>✅ Стабильный запас на складе в СПб — «всегда в наличии»</li>
+                        <li>✅ Прозрачность ценообразования (TCO-аргументация)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Как продавать Hero/Ruler</h3>
+                    <div class="space-y-3 text-[14px]">
+                        <div class="p-4 rounded-2xl" style="background:var(--blue-soft);">
+                            <strong>Язык:</strong> Технический, конкретный, с цифрами. Без «продающего» флёра.
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:var(--accent-soft);">
+                            <strong>Аргументы:</strong> Надёжность, сроки, наличие, документация. Ноль допущений —
+                            только факты.
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:var(--green-soft);">
+                            <strong>Позиция:</strong> Партнёр-эксперт, а не продавец. «Мы обеспечиваем вашу цепочку
+                            поставок».
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №6 — ИСТОРИЯ ВЗАИМОДЕЙСТВИЯ (Timeline) ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.4s">
+            <div class="block-title mb-6">Хронология взаимодействия</div>
+            <div class="relative pl-6 border-l-2 border-[#ED7A1C]/30 space-y-6">
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Июнь 2022</div>
+                        <div class="font-semibold text-[#184D7A]">Первый контакт</div>
+                        <p class="text-sm text-[#44515D]">Входящее письмо «АО НПП Радиосвязь» — запрос на SOMBVP4UH 1500
+                            шт. Создана карточка компании через email-tracker.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Июнь – Октябрь 2022</div>
+                        <div class="font-semibold text-[#184D7A]">Активные поставки — 8 сделок WON</div>
+                        <p class="text-sm text-[#44515D]">Серия успешных отгрузок: 2 207 ₽ → 210 012 ₽ → 62 025 ₽ → 10
+                            080 ₽ → 41 300 ₽ → 21 540 ₽. Контактное лицо — Гойда Ирина (Экономист ОМТР).</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Март 2023</div>
+                        <div class="font-semibold text-[#184D7A]">Переход на Продедович Ольгу (Начальник бюро ОМТР)
+                        </div>
+                        <p class="text-sm text-[#44515D]">Новый контакт пишет: «Добрый день!» — запрос на очередную
+                            партию клапанов. Альтаир отвечает: «90 шт в наличии на складе в СПб, 10 шт под заказ 6
+                            недель». Клиент соглашается забрать 90.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Ноябрь 2023 – Январь 2024</div>
+                        <div class="font-semibold text-[#184D7A]">Массовые поставки — 30+ сделок</div>
+                        <p class="text-sm text-[#44515D]">Пакетные заказы по ~49 000–50 000 ₽ каждый. Систематические
+                            закупки клапанов SOMBVP4UH для производственных линий.</p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">2024 – 2025</div>
+                        <div class="font-semibold text-[#184D7A]">Расширение контактов</div>
+                        <p class="text-sm text-[#44515D]">Появились новые контакты: Косолапова Екатерина, Оверчук Ольга,
+                            Глазунова Нина. Задача в CRM: «уточнить по заявкам по м/э, обещала дать контакты коллег».
+                        </p>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="timeline-dot" style="background:var(--green);border-color:var(--green-soft);"></div>
+                    <div class="ml-6">
+                        <div class="text-xs text-[#73808C] font-medium">Апрель 2026</div>
+                        <div class="font-semibold" style="color:var(--green);">Последняя активность — 17.04.2026</div>
+                        <p class="text-sm text-[#44515D]">Клиент активен. В CRM заметка: «планируется заказ OMBVP4UH
+                            100шт, ждём заказ». Статус — CUSTOMER.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №7 — КОНТАКТНАЯ КАРТА ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.45s">
+            <div class="block-title mb-6">Контактная карта</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Ключевые контакты</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl border border border-[rgba(129,149,168,0.28)]">
+                            <div class="font-semibold text-[#184D7A]">Гойда Ирина</div>
+                            <div class="text-sm text-[#73808C]">Экономист ОМТР • zakupki@krtz.su • (391) 204-11-03</div>
+                            <div class="text-xs mt-1 text-[#9DA8B2]">Основной контакт для закупок с 2022 года</div>
+                        </div>
+                        <div class="p-4 rounded-2xl border border border-[rgba(129,149,168,0.28)]">
+                            <div class="font-semibold text-[#184D7A]">Продедович Ольга</div>
+                            <div class="text-sm text-[#73808C]">Начальник бюро ОМТР • zakupki@krtz.su • (391) 204-11-03
+                            </div>
+                            <div class="text-xs mt-1 text-[#9DA8B2]">Принимает решения по объёму заказов с 2023 года
+                            </div>
+                        </div>
+                        <div class="p-4 rounded-2xl border border border-[rgba(129,149,168,0.28)]">
+                            <div class="font-semibold text-[#184D7A]">Косолапова Екатерина / Оверчук Ольга / Глазунова
+                                Нина</div>
+                            <div class="text-sm text-[#73808C]">Новые контакты • Потенциал расширения номенклатуры</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Каналы связи</h3>
+                    <div class="space-y-3 text-[14px]">
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--blue-soft);">
+                            <span class="font-medium">Телефон (основной)</span>
+                            <span class="font-mono">+7 (391) 204-11-03</span>
+                        </div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--accent-soft);">
+                            <span class="font-medium">Email (закупки)</span>
+                            <span>zakupki@krtz.su</span>
+                        </div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--green-soft);">
+                            <span class="font-medium">Email (общий)</span>
+                            <span>info@krtz.su</span>
+                        </div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--blue-soft);">
+                            <span class="font-medium">Филиал Ростов</span>
+                            <span class="font-mono">+7 (863) 250-61-89</span>
+                        </div>
+                        <div class="flex justify-between p-3 rounded-xl" style="background:var(--accent-soft);">
+                            <span class="font-medium">Сайт</span>
+                            <a href="https://krtz.su" target="_blank" class="text-[#ED7A1C] underline">krtz.su</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №8 — АНАЛИЗ БОЛЕЙ И ПОТРЕБНОСТЕЙ ═══════ -->
+        <section class="glass p-8 animate-in" style="animation-delay:.5s">
+            <div class="block-title mb-6">Анализ болей и потребностей</div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Выявленные боли</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl" style="background:var(--red-soft);">
+                            <div class="font-semibold mb-1" style="color:var(--red);">⚠ Стабильность поставок</div>
+                            <p class="text-sm">Как предприятие ОПК с ГОЗ, любые задержки в комплектующих парализуют
+                                производство. Нужен поставщик со складом.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:var(--yellow-soft);">
+                            <div class="font-semibold mb-1" style="color:var(--yellow);">⚠ Замена импорта</div>
+                            <p class="text-sm">Санкционное давление → потребность в надёжных российских/дружественных
+                                поставщиках герметичных компонентов.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:var(--blue-soft);">
+                            <div class="font-semibold mb-1" style="color:var(--blue);">⚠ Документация ВП МО</div>
+                            <p class="text-sm">Всё закупаемое оборудование проходит военную приёмку — нужна полная
+                                техдокументация и сертификаты.</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-bold text-[#184D7A] mb-3">Точные цитаты из CRM</h3>
+                    <div class="space-y-4">
+                        <div class="quote-block">
+                            «Максим, давайте мы заберём 90 шт., а потом когда нам надо будет мы закажем больше.»
+                            <div class="text-xs mt-2 text-[#73808C]">— Продедович Ольга, 31.03.2023</div>
+                        </div>
+                        <div class="quote-block">
+                            «По вашей позиции приехал запас на склад 1000 шт SOMBVP4UH-R — это тот же клапан, что вы
+                            заказываете обычно.»
+                            <div class="text-xs mt-2 text-[#73808C]">— Васильев Максим → Ольга, 30.03.2023</div>
+                        </div>
+                        <div class="quote-block">
+                            «Уточнить по заявкам по м/э, обещала дать контакты коллег»
+                            <div class="text-xs mt-2 text-[#73808C]">— Задача в CRM, 11.10.2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №9 — СТРАТЕГИЯ СДЕЛКИ ═══════ -->
+        <section class="glass-dark p-8 animate-in" style="animation-delay:.55s">
+            <div class="block-title mb-6" style="color:var(--accent);">Стратегия сделки (Strategist)</div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold mb-3" style="color:var(--accent-strong);">TCO-стратегия</h3>
+                    <p class="text-[15px] mb-4" style="color:var(--text-on-dark-muted);">Клиент покупает кабельные вводы
+                        OMBVP4UH сотнями штук. Наша задача — закрепить Альтаир как единственного поставщика данной
+                        позиции, показать экономию 30–40% vs. альтернативные каналы, гарантировать наличие на складе в
+                        СПб и быструю доставку в Красноярск.</p>
+
+                    <h3 class="font-bold mb-3 mt-6" style="color:var(--accent-strong);">Вектор расширения</h3>
+                    <ul class="space-y-2 text-[15px]" style="color:var(--text-on-dark-muted);">
+                        <li>→ Металлоэлектрические разъёмы (задача из CRM: «уточнить по заявкам по м/э»)</li>
+                        <li>→ Герметичные разъёмы IP68 для новых оборонных разработок</li>
+                        <li>→ Выход на новых ЛПР через контакты Косолаповой и Глазуновой</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold mb-3" style="color:var(--accent-strong);">Скрипт звонка</h3>
+                    <div class="space-y-4 text-[14px]">
+                        <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);">
+                            <div class="font-bold mb-1" style="color:var(--accent);">Открывашка</div>
+                            <p style="color:var(--text-on-dark-muted);">«Ольга, добрый день, это [Имя] из Альтаир. Звоню
+                                по вашему плановому заказу клапанов OMBVP4UH — мы зарезервировали партию на складе в
+                                Санкт-Петербурге. Хочу уточнить объём и сроки на ближайший квартал, чтобы держать ваш
+                                запас.»</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);">
+                            <div class="font-bold mb-1" style="color:var(--accent);">Вопрос-крючок</div>
+                            <p style="color:var(--text-on-dark-muted);">«Какие ещё герметичные компоненты вы сейчас
+                                закладываете в новые изделия? Мы расширили линейку — готов прислать каталог с ценами для
+                                вашего ОТК.»</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);">
+                            <div class="font-bold mb-1" style="color:var(--accent);">КЭВ (Ключевой Этап Воронки)</div>
+                            <p style="color:var(--text-on-dark-muted);">Предложить бесплатные образцы новых разъёмов
+                                IP68 на тест в их лабораторию. Доставка курьером за 2 дня из СПб в Красноярск.</p>
+                        </div>
+                        <div class="p-4 rounded-2xl" style="background:rgba(42,157,92,0.15);">
+                            <div class="font-bold mb-1" style="color:var(--green);">Закрытие</div>
+                            <p style="color:var(--text-on-dark-muted);">«Давайте зафиксируем объём на Q3 — я подготовлю
+                                спецификацию и счёт к завтрашнему утру. Так мы гарантируем цену и наличие.»</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №10 — NEXT BEST ACTION ═══════ -->
+        <section class="animate-in" style="animation-delay:.6s">
+            <div class="block-title mb-6 px-2">Next Best Action</div>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="action-card">
+                    <div class="text-3xl mb-3">📞</div>
+                    <div class="font-bold text-[#184D7A] mb-2">Позвонить Ольге Продедович</div>
+                    <p class="text-sm text-[#44515D]">Уточнить объём планового заказа OMBVP4UH 100 шт (заметка из CRM).
+                        Предложить резервирование на складе.</p>
+                    <div class="badge badge-accent mt-3 text-[11px]">ПРИОРИТЕТ: ВЫСОКИЙ</div>
+                </div>
+                <div class="action-card">
+                    <div class="text-3xl mb-3">📋</div>
+                    <div class="font-bold text-[#184D7A] mb-2">Расширить номенклатуру</div>
+                    <p class="text-sm text-[#44515D]">Отправить каталог металлоэлектрических разъёмов. Получить контакты
+                        «коллег» (задача из CRM от 11.10.2024).</p>
+                    <div class="badge badge-blue mt-3 text-[11px]">ПРИОРИТЕТ: СРЕДНИЙ</div>
+                </div>
+                <div class="action-card">
+                    <div class="text-3xl mb-3">🎯</div>
+                    <div class="font-bold text-[#184D7A] mb-2">Годовой контракт</div>
+                    <p class="text-sm text-[#44515D]">Предложить рамочный договор на годовые поставки с фиксированной
+                        ценой. Аргумент: стабильность для ГОЗ + экономия 30–40%.</p>
+                    <div class="badge badge-green mt-3 text-[11px]">СТРАТЕГИЧЕСКАЯ ЦЕЛЬ</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════ БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ ═══════ -->
+        <section id="analytical-passport" class="glass animate-in" style="animation-delay:.65s">
+            <div onclick="toggleAccordion('passport')"
+                class="px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+                <div class="block-title">Аналитический паспорт</div>
+                <span id="toggle-passport" class="text-[#ED7A1C] font-medium flex items-center gap-2">Скрыть <span
+                        class="text-xl leading-none">↑</span></span>
+            </div>
+            <div id="content-passport" class="accordion-content px-8 py-6">
+                <table class="w-full text-sm text-left">
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A] w-1/3">ID Компании</th>
+                        <td class="py-3 px-4">46884</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Полное наименование</th>
+                        <td class="py-3 px-4">Акционерное Общество «Научно-Производственное Предприятие «Радиосвязь»
+                        </td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">ИНН</th>
+                        <td class="py-3 px-4">6161038937</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Генеральный директор</th>
+                        <td class="py-3 px-4">Галеев Ринат Гайсеевич</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Холдинг</th>
+                        <td class="py-3 px-4">АО «ОПК» → Росэлектроника → Ростех</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Сфера</th>
+                        <td class="py-3 px-4">ОПК, Радиоэлектроника, Спутниковая связь</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Численность</th>
+                        <td class="py-3 px-4">~1 490 сотрудников</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Адрес (Красноярск)</th>
+                        <td class="py-3 px-4">660021, г. Красноярск, ул. Декабристов, 19</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Адрес (Ростов-н/Д)</th>
+                        <td class="py-3 px-4">Ростовская обл., Ростов-на-Дону, ул. Нансена, 148А</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Сайт</th>
+                        <td class="py-3 px-4"><a href="https://krtz.su" target="_blank"
+                                class="text-[#ED7A1C] underline">krtz.su</a> • <a href="http://radiornd.ru"
+                                target="_blank" class="text-[#ED7A1C] underline">radiornd.ru</a></td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Статус в CRM</th>
+                        <td class="py-3 px-4"><span class="badge badge-green">CUSTOMER</span></td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Суммарный оборот</th>
+                        <td class="py-3 px-4">≈3 696 351 ₽ (52 сделки WON)</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Ключевая позиция</th>
+                        <td class="py-3 px-4">SOMBVP4UH / OMBVP4UH (кабельные вводы / клапаны)</td>
+                    </tr>
+                    <tr class="border-b border-[rgba(129,149,168,0.28)]">
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Ответственный менеджер</th>
+                        <td class="py-3 px-4">Чеботарев Сергей Иванович</td>
+                    </tr>
+                    <tr>
+                        <th class="py-3 px-4 font-semibold text-[#184D7A]">Последняя активность</th>
+                        <td class="py-3 px-4">17.04.2026</td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-4">
+        <div
+            class="max-w-[1320px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#73808C]">
+            <div>© ALTAIR • Altair AI-Sales Instructor</div>
+            <div class="flex gap-6">
+                <a href="#" onclick="window.print();return false;" class="hover:text-[#ED7A1C] transition-colors">🖨
+                    Скачать PDF</a>
+                <a href="https://altaircom.bitrix24.ru/crm/company/details/46884/" target="_blank"
+                    class="hover:text-[#ED7A1C] transition-colors">↗ Открыть в Bitrix24</a>
+            </div>
+            <div class="text-xs">Сгенерировано Altair AI-Sales Instructor • v3.3 • Deep Client Analysis</div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // ── Particle Background ──
+        const COUNT = 2000;
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xf4f6f8, 0.011);
+        const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 2000);
+        camera.position.z = 160;
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setSize(innerWidth, innerHeight);
+        renderer.setClearColor(0x000000, 0);
+        document.getElementById('particle-bg').appendChild(renderer.domElement);
+
+        const dummy = new THREE.Object3D();
+        const color = new THREE.Color();
+        const target = new THREE.Vector3();
+        const geo = new THREE.SphereGeometry(0.35, 16, 16);
+        const mat = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.78, depthTest: false });
+        const mesh = new THREE.InstancedMesh(geo, mat, COUNT);
+        scene.add(mesh);
+
+        const positions = [];
+        for (let i = 0; i < COUNT; i++) {
+            positions.push(new THREE.Vector3());
+            mesh.setColorAt(i, color.setHSL(0.58, 0.4, 0.65));
+        }
+
+        const mode = Math.floor(Math.random() * 3);
+        let time = 0;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.009;
+            const phase = Math.sin(time * (mode === 2 ? 0.7 : 0.55)) * 0.5 + 0.5;
+            for (let i = 0; i < COUNT; i++) {
+                if (mode === 0) {
+                    const d = 18, gx = (i % d) - d * .5, gy = Math.floor(i / d) - d * .5, s = (1 - phase) * 140;
+                    target.set(gx * 42 + Math.sin(time + i) * s, gy * 42 + Math.cos(time * 1.2 + i) * s * .6, Math.sin(i * .08) * 80 * phase);
+                } else if (mode === 1) {
+                    const tc = 22, row = Math.floor(i / tc), col = i % tc, x = (col - tc * .5) * 36, y = (row - tc * .5) * 36 * .866, s = (1 - phase) * 160;
+                    target.set(x + (Math.random() - .5) * s, y + (Math.random() - .5) * s * .7, Math.cos(time * 1.1 + i) * 55 * phase);
+                } else {
+                    const a = i * .017 + time * 1.8, r = 170 * phase + Math.random() * 110 * (1 - phase);
+                    target.set(Math.cos(a) * r * 1.25, Math.sin(a) * r * .65, Math.sin(time * 2 + i) * 75 * (1 - phase));
+                }
+                color.setHSL(0.58, 0.38 + phase * 0.15, 0.62 + phase * 0.22);
+                positions[i].lerp(target, 0.11);
+                dummy.position.copy(positions[i]);
+                dummy.updateMatrix();
+                mesh.setMatrixAt(i, dummy.matrix);
+                mesh.setColorAt(i, color);
+            }
+            mesh.instanceMatrix.needsUpdate = true;
+            mesh.instanceColor.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        addEventListener('resize', () => {
+            camera.aspect = innerWidth / innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(innerWidth, innerHeight);
+        });
+
+        // ── Accordion ──
+        function toggleAccordion(id) {
+            const c = document.getElementById('content-' + id);
+            const b = document.getElementById('toggle-' + id);
+            c.classList.toggle('hidden');
+            b.innerHTML = c.classList.contains('hidden')
+                ? `Открыть подробнее <span class="text-xl leading-none">↓</span>`
+                : `Скрыть <span class="text-xl leading-none">↑</span>`;
+        }
+
+        // ── Date ──
+        document.getElementById('analysis-date').textContent =
+            new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        // ── Scroll animations ──
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.style.animationPlayState = 'running';
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-in').forEach(el => {
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
