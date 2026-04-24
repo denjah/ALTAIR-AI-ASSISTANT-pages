@@ -1,0 +1,452 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Generate Deep Client Analysis HTML for ВЕЛАР (ID 47650)"""
+
+import os, codecs
+
+OUT = os.path.join(os.path.dirname(__file__), '..', 'ready_leads', '47650_VELAR', 'Deep-Analysis-47650-VELAR.html')
+
+html = r'''<!-- === Report Landing Generator v3.3 — Deep Client Analysis — ООО ВЕЛАР === -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deep Client Analysis — ООО ВЕЛАР | ALTAIR</title>
+    <meta name="description" content="Полный аналитический отчёт по клиенту ООО ВЕЛАР (ID 47650) — Altair AI-Sales Instructor">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        :root {
+            --bg:#F4F6F8;--bg-soft:#F8FAFC;--glass:rgba(255,255,255,0.58);--glass-strong:rgba(255,255,255,0.72);
+            --glass-dark:rgba(19,54,89,0.88);--border:rgba(129,149,168,0.28);--border-accent:rgba(237,122,28,0.55);
+            --text:#44515D;--text-strong:#243444;--text-muted:#73808C;--text-faint:#9DA8B2;
+            --text-on-dark:#F3F7FB;--text-on-dark-muted:rgba(243,247,251,0.72);
+            --blue:#184D7A;--blue-700:#184D7A;--blue-800:#123E64;--blue-soft:#EAF2F8;
+            --accent:#ED7A1C;--accent-hover:#D96A10;--accent-soft:#FFF1E4;--accent-strong:#F29A49;
+            --green:#2A9D5C;--green-soft:#E6F7ED;--red:#C0392B;--red-soft:#FDEDED;
+            --yellow:#E7A817;--yellow-soft:#FFF8E7;
+            --shadow-sm:0 8px 24px rgba(30,55,80,0.06);--shadow-md:0 10px 30px rgba(30,55,80,0.10);
+            --shadow-lg:0 15px 40px rgba(19,54,89,0.12);
+            --radius-section:24px;--radius-card:20px;--radius-compact:16px;--radius-pill:9999px;
+        }
+        @font-face{font-family:'EuropeExt Bold';src:url('../../design/EuropeExt-Bold.otf') format('opentype');font-weight:700;font-style:normal;font-display:swap;}
+        *{box-sizing:border-box;}
+        body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);margin:0;-webkit-font-smoothing:antialiased;}
+        .glass{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--border);border-radius:var(--radius-section);box-shadow:var(--shadow-sm);transition:all .25s ease;}
+        .glass:hover{box-shadow:var(--shadow-md);}
+        .glass-dark{background:var(--glass-dark);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-section);box-shadow:var(--shadow-lg);color:var(--text-on-dark);}
+        .block-title{font-family:'EuropeExt Bold','Montserrat',sans-serif;text-transform:uppercase;letter-spacing:0.04em;font-size:17px;line-height:21px;color:var(--blue-700);}
+        .badge{display:inline-flex;align-items:center;padding:4px 14px;border-radius:var(--radius-pill);font-size:12px;font-weight:600;letter-spacing:0.04em;}
+        .badge-green{background:var(--green-soft);color:var(--green);}
+        .badge-accent{background:var(--accent-soft);color:var(--accent);}
+        .badge-blue{background:var(--blue-soft);color:var(--blue);}
+        .badge-yellow{background:var(--yellow-soft);color:var(--yellow);}
+        .badge-red{background:var(--red-soft);color:var(--red);}
+        .stat-card{background:var(--glass-strong);border:1px solid var(--border);border-radius:var(--radius-card);padding:24px;text-align:center;transition:all .25s ease;}
+        .stat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--border-accent);}
+        .stat-value{font-family:'EuropeExt Bold',sans-serif;font-size:32px;color:var(--blue);line-height:1.1;}
+        .stat-label{font-size:13px;color:var(--text-muted);margin-top:6px;}
+        .timeline-dot{width:14px;height:14px;border-radius:50%;background:var(--accent);border:3px solid var(--accent-soft);position:absolute;left:-7px;top:6px;}
+        .quote-block{border-left:4px solid var(--accent);padding:16px 20px;background:var(--accent-soft);border-radius:0 var(--radius-compact) var(--radius-compact) 0;font-style:italic;color:var(--text-strong);}
+        .action-card{border:2px solid var(--accent);border-radius:var(--radius-card);padding:20px 24px;background:linear-gradient(135deg,var(--accent-soft) 0%,rgba(255,255,255,0.9) 100%);}
+        .accordion-content{border-top:1px solid var(--border);}
+        @keyframes fadeInUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+        .animate-in{animation:fadeInUp .5s ease forwards;opacity:0;}
+        @media print{.glass,.glass-dark{backdrop-filter:none;-webkit-backdrop-filter:none;}#particle-bg{display:none!important;}header{position:relative;}}
+    </style>
+</head>
+<body data-theme="light">
+
+<!-- PARTICLE BACKGROUND -->
+<div id="particle-bg" style="position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:0.78;"></div>
+
+<!-- HEADER -->
+<header class="glass border-b border-[rgba(129,149,168,0.28)] py-5 sticky top-0 z-50">
+    <div class="max-w-[1320px] mx-auto px-8 flex items-center justify-between">
+        <img src="../../design/assets/altair_logo.svg" alt="ALTAIR" class="h-[72px] w-auto object-contain"
+            onerror="this.src='https://altaircom.ru/wp-content/uploads/2024/05/altair_logo.svg';">
+        <div class="text-right">
+            <div class="text-[#184D7A] font-bold text-xl tracking-widest" style="font-family:'EuropeExt Bold',sans-serif;">DEEP CLIENT ANALYSIS</div>
+            <div class="text-sm text-[#73808C]">Altair AI-Sales Instructor • v3.3 • <span id="analysis-date"></span></div>
+        </div>
+    </div>
+</header>
+
+<main class="max-w-[1320px] mx-auto px-8 pb-20 pt-12 space-y-8">
+
+    <!-- ═══════ БЛОК №1 — HERO ═══════ -->
+    <section class="glass-dark p-10 animate-in" style="animation-delay:.1s">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+                <div class="text-sm tracking-widest mb-2" style="color:var(--accent);font-family:'EuropeExt Bold',sans-serif;">КЛИЕНТ #47650</div>
+                <h1 class="text-3xl md:text-4xl font-bold leading-tight" style="font-family:'EuropeExt Bold',sans-serif;">ООО «ВЕЛАР»</h1>
+                <p class="mt-3 text-lg" style="color:var(--text-on-dark-muted);">Разработка и производство светодиодного освещения • г. Ростов-на-Дону</p>
+            </div>
+            <div class="flex flex-wrap gap-3">
+                <span class="badge badge-yellow">⚡ ПРОИЗВОДИТЕЛЬ LED</span>
+                <span class="badge badge-accent">ПОТЕНЦИАЛЬНЫЙ КЛИЕНТ</span>
+                <span class="badge badge-blue">ЮФО (Ростов-на-Дону)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №2 — KPI DASHBOARD ═══════ -->
+    <section class="animate-in" style="animation-delay:.2s">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="stat-card">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Всего сделок</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" style="color:var(--red);">0</div>
+                <div class="stat-label">Выигранных (WON)</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">289M ₽</div>
+                <div class="stat-label">Выручка компании</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">3.5 г.</div>
+                <div class="stat-label">В CRM с окт. 2022</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №3 — КРАТКОЕ РЕЗЮМЕ (accordion, closed) ═══════ -->
+    <section id="deal-summary" class="glass animate-in" style="animation-delay:.25s">
+        <div onclick="toggleAccordion('summary')" class="px-8 py-5 flex items-center justify-between cursor-pointer hover:bg-[#ED7A1C]/5 rounded-t-3xl">
+            <div class="block-title">Краткое резюме клиента</div>
+            <span id="toggle-summary" class="text-[#ED7A1C] font-medium flex items-center gap-2">Открыть подробнее <span class="text-xl leading-none">↓</span></span>
+        </div>
+        <div id="content-summary" class="accordion-content px-8 py-6 hidden">
+            <div class="space-y-4 text-[15px] leading-relaxed">
+                <p><strong>ООО «ВЕЛАР»</strong> — завод-производитель энергоэффективных светодиодных светильников, осветительных комплексов, декоративных опор и систем управления освещением. Основан в 2018 г. Выпускает продукцию под собственным брендом: промышленные (VL-STERN, VL-LUMOS, VL-VERTIKAL), парковые, мачтовые (VL-PRIME, VL-TERRA, VL-ARENA), уличные светильники. Активно участвует в выставках (SPORT B2B, СТРОЙ-VOLGA).</p>
+                <p><strong>Адрес:</strong> 344116, Ростовская обл., г. Ростов-на-Дону, пр. Стачки, 71 | <strong>ИНН:</strong> 6168101803 | <strong>ОГРН:</strong> 1186196006479</p>
+                <p><strong>Выручка:</strong> 289 000 000 ₽ | <strong>Телефон:</strong> +7 (863) 229-21-71 | <strong>Сайт:</strong> velar-lt.ru | <strong>Email:</strong> sale@velar-lt.ru</p>
+                <p><strong>Ключевые потребности от Альтаир:</strong> Блоки питания MW/Inventronics, кабельные коннекторы (самозажимные), сальники MG12 с вентиляцией и без, светодиоды и платы. Также ранее запрашивали кабельные вводы IP68 и образцы ORTAC с вентиляцией.</p>
+                <p><strong>Ответственный менеджер:</strong> Васильев Максим (sales5@altaircom.ru) | <strong>Последняя коммуникация:</strong> 23.04.2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №4 — О ПРЕДПРИЯТИИ ═══════ -->
+    <section class="glass p-8 animate-in" style="animation-delay:.3s">
+        <div class="block-title mb-6">О предприятии</div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <h3 class="font-bold text-[#184D7A] mb-3">Профиль деятельности</h3>
+                <ul class="space-y-2 text-[15px]">
+                    <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Промышленное LED-освещение (VL-STERN S, VL-LUMOS, VL-VERTIKAL)</li>
+                    <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Мачтовые прожекторы для спортивных объектов (VL-PRIME, VL-ARENA, VL-TERRA B)</li>
+                    <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Парковое и уличное освещение + декоративные опоры (VL-STOTTE, VL-PARK)</li>
+                    <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Системы управления освещением (VL-CONTROL)</li>
+                    <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Малые архитектурные формы, мачты и опоры</li>
+                    <li class="flex items-start gap-2"><span class="text-[#ED7A1C] mt-1">▸</span> Программа «Аккредитованный партнёр» для монтажных организаций</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-[#184D7A] mb-3">Ключевые факты</h3>
+                <div class="space-y-3 text-[15px]">
+                    <div class="flex gap-3 items-start"><span class="badge badge-accent text-[11px]">ЗАВОД</span><span>Собственное производство в Ростове-на-Дону</span></div>
+                    <div class="flex gap-3 items-start"><span class="badge badge-blue text-[11px]">ПОРТФЕЛЬ</span><span>Широкая линейка: от 10Вт до 1200Вт, мачтовые до ТВ-трансляций</span></div>
+                    <div class="flex gap-3 items-start"><span class="badge badge-green text-[11px]">СПОРТ</span><span>Специализация на освещении стадионов и спортивных сооружений</span></div>
+                    <div class="flex gap-3 items-start"><span class="badge badge-yellow text-[11px]">РЕГИОНЫ</span><span>Проекты по всей России: Ростов, Рязань, Челябинск, Донецк (ДНР)</span></div>
+                    <div class="flex gap-3 items-start"><span class="badge badge-accent text-[11px]">ВЫСТАВКИ</span><span>SPORT B2B EXPO 2025, СТРОЙ-VOLGA'25, конференции по портам</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №5 — BRAND INTELLIGENCE ═══════ -->
+    <section class="glass p-8 animate-in" style="animation-delay:.35s">
+        <div class="block-title mb-6">Brand Intelligence</div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="md:col-span-2">
+                <div class="mb-4">
+                    <strong class="text-[#184D7A]">Архетип бренда:</strong>
+                    <span class="badge badge-accent ml-2">Creator (Творец)</span>
+                    <span class="badge badge-blue ml-1">Builder (Строитель)</span>
+                </div>
+                <p class="text-[15px] mb-4">Российский производитель светодиодного освещения с фокусом на инновации и собственные инженерные решения. Ценности: <strong>технологичность, качество, энергоэффективность, полный цикл «от проекта до монтажа»</strong>. Tone of voice — профессиональный, инженерный, с акцентом на решения под ключ.</p>
+                <h3 class="font-bold text-[#184D7A] mb-2 mt-4">Триггеры для Альтаир</h3>
+                <ul class="space-y-2 text-[15px]">
+                    <li>✅ Качество компонентов — IP68 вводы критичны для уличных/промышленных светильников</li>
+                    <li>✅ Вентиляционные кабельные вводы — ключевой компонент для LED-корпусов (отвод тепла/конденсата)</li>
+                    <li>✅ Самозажимные коннекторы — ускорение сборки на производстве</li>
+                    <li>✅ Блоки питания MW/Inventronics — основной расходник для LED-производства</li>
+                    <li>✅ Экономия 30–40% vs. текущие поставщики (IEK/Dekraft)</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold text-[#184D7A] mb-3">Как продавать Creator/Builder</h3>
+                <div class="space-y-3 text-[14px]">
+                    <div class="p-4 rounded-2xl" style="background:var(--blue-soft);"><strong>Язык:</strong> Инженерный, с парт-номерами и спецификациями. Говорить на их языке.</div>
+                    <div class="p-4 rounded-2xl" style="background:var(--accent-soft);"><strong>Аргументы:</strong> TCO, качество компонентов для их конечных изделий, надёжность поставок.</div>
+                    <div class="p-4 rounded-2xl" style="background:var(--green-soft);"><strong>Позиция:</strong> Партнёр по комплектации производства. «Мы усиливаем ваш продукт».</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №6 — ХРОНОЛОГИЯ ВЗАИМОДЕЙСТВИЯ ═══════ -->
+    <section class="glass p-8 animate-in" style="animation-delay:.4s">
+        <div class="block-title mb-6">Хронология взаимодействия</div>
+        <div class="relative pl-6 border-l-2 border-[#ED7A1C]/30 space-y-6">
+            <div class="relative">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                    <div class="text-xs text-[#73808C] font-medium">Октябрь 2022</div>
+                    <div class="font-semibold text-[#184D7A]">Первый контакт — Мирошникова Екатерина (логистика)</div>
+                    <p class="text-sm text-[#44515D]">Входящий запрос: Сальник М16 IP68 — 500 шт, Сальник MG20 IP68 — 200 шт. Максим предложил ORTAC ORL02 по 12,80₽ и OMRL04 по 15,10₽. Сделка #12266 на 3 020₽ → LOSE.</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                    <div class="text-xs text-[#73808C] font-medium">Апрель 2023</div>
+                    <div class="font-semibold text-[#184D7A]">Образцы ORTAC с вентиляцией → Суковатов Владислав</div>
+                    <p class="text-sm text-[#44515D]">Отправлены образцы: SOMVGB01 (2шт), OMVGL02 (1шт), OMBVG01 (1шт), OMBVG02 (1шт) — кабельные вводы с вентиляцией. Адрес: Ростов, пр. Стачки 71, оф. 201. ТК: СДЭК.</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                    <div class="text-xs text-[#73808C] font-medium">Сентябрь 2023 — Август 2024</div>
+                    <div class="font-semibold text-[#184D7A]">Запросы обратной связи по образцам — без ответа</div>
+                    <p class="text-sm text-[#44515D]">Максим дважды писал Владиславу: «Удалось ли протестировать?» и «Пошли ли в проект/разработку?». Ответов не получено. Сделка #13308 → LOSE.</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                    <div class="text-xs text-[#73808C] font-medium">Сентябрь 2024</div>
+                    <div class="font-semibold text-[#184D7A]">Реактивация — звонки и новая сделка</div>
+                    <p class="text-sm text-[#44515D]">Исходящие звонки на +7(863)229-21-71. Сделка #19180 на 29 696₽ → LOSE (ноябрь 2024).</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="timeline-dot"></div>
+                <div class="ml-6">
+                    <div class="text-xs text-[#73808C] font-medium">Июнь – Август 2025</div>
+                    <div class="font-semibold text-[#184D7A]">Прорыв! Ивченко Алиса — руководитель отдела снабжения</div>
+                    <p class="text-sm text-[#44515D]">Владислав Суковатов переслал презентации Альтаира коллегам (Антон Щербак, Алиса Ивченко). Алиса прислала конкретный запрос: блоки питания MW/Inventronics, кабельные коннекторы (самозажимные), сальники MG12 с вентиляцией, светодиоды и платы. КП на разъёмы отправлено 05.08. Алиса подтвердила получение. Сделка #24192 на 216 655₽ → LOSE.</p>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="timeline-dot" style="background:var(--accent);border-color:var(--accent-soft);"></div>
+                <div class="ml-6">
+                    <div class="text-xs text-[#73808C] font-medium">Сентябрь 2025 — Апрель 2026</div>
+                    <div class="font-semibold" style="color:var(--accent);">Текущий статус — сделка #24960 (57 560₽) LOSE 22.04.2026</div>
+                    <p class="text-sm text-[#44515D]">Задача в CRM: «выяснить по запросу и дать КП на вентиляцию». Последняя активность 23.04.2026. Клиент по-прежнему интересуется, но NDA на сделки не закрыто.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №7 — КОНТАКТНАЯ КАРТА ═══════ -->
+    <section class="glass p-8 animate-in" style="animation-delay:.45s">
+        <div class="block-title mb-6">Контактная карта</div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <h3 class="font-bold text-[#184D7A] mb-3">Ключевые контакты</h3>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-2xl border border-[rgba(129,149,168,0.28)]">
+                        <div class="font-semibold text-[#184D7A]">⭐ Ивченко Алиса Александровна</div>
+                        <div class="text-sm text-[#73808C]">Руководитель отдела снабжения • snab@velar-lt.ru • +7 (928) 185-93-68</div>
+                        <div class="text-xs mt-1 text-[#9DA8B2]">Главный ЛПР по закупкам. Прислала детальный запрос. Подтвердила получение КП.</div>
+                    </div>
+                    <div class="p-4 rounded-2xl border border-[rgba(129,149,168,0.28)]">
+                        <div class="font-semibold text-[#184D7A]">Суковатов Владислав</div>
+                        <div class="text-sm text-[#73808C]">Руководство / принимает стратегические решения • svv@velar-lt.ru • +7 (928) 122-85-38</div>
+                        <div class="text-xs mt-1 text-[#9DA8B2]">Первоначально работал с Альтаир. Переслал презентации коллегам. Инициатор рассмотрения.</div>
+                    </div>
+                    <div class="p-4 rounded-2xl border border-[rgba(129,149,168,0.28)]">
+                        <div class="font-semibold text-[#184D7A]">Мирошникова Екатерина</div>
+                        <div class="text-sm text-[#73808C]">Логистика • logist@velar-lt.ru • +7 (928) 122-78-25</div>
+                        <div class="text-xs mt-1 text-[#9DA8B2]">Первый контакт в 2022 г. Делала запросы на сальники.</div>
+                    </div>
+                    <div class="p-4 rounded-2xl border border-[rgba(129,149,168,0.28)]">
+                        <div class="font-semibold text-[#184D7A]">Щербак Антон</div>
+                        <div class="text-sm text-[#73808C]">shcherbak@velar-lt.ru • Роль не уточнена (вероятно, инженерия/конструкторский отдел)</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-[#184D7A] mb-3">Каналы связи</h3>
+                <div class="space-y-3 text-[14px]">
+                    <div class="flex justify-between p-3 rounded-xl" style="background:var(--blue-soft);"><span class="font-medium">Телефон (компания)</span><span class="font-mono">+7 (863) 229-21-71</span></div>
+                    <div class="flex justify-between p-3 rounded-xl" style="background:var(--accent-soft);"><span class="font-medium">Email (снабжение)</span><span>snab@velar-lt.ru</span></div>
+                    <div class="flex justify-between p-3 rounded-xl" style="background:var(--green-soft);"><span class="font-medium">Email (продажи)</span><span>sale@velar-lt.ru</span></div>
+                    <div class="flex justify-between p-3 rounded-xl" style="background:var(--blue-soft);"><span class="font-medium">Алиса (моб.)</span><span class="font-mono">+7 (928) 185-93-68</span></div>
+                    <div class="flex justify-between p-3 rounded-xl" style="background:var(--accent-soft);"><span class="font-medium">Сайт</span><a href="https://velar-lt.ru" target="_blank" class="text-[#ED7A1C] underline">velar-lt.ru</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №8 — АНАЛИЗ БОЛЕЙ И ПОТРЕБНОСТЕЙ ═══════ -->
+    <section class="glass p-8 animate-in" style="animation-delay:.5s">
+        <div class="block-title mb-6">Анализ болей и потребностей</div>
+        <div class="grid md:grid-cols-2 gap-6">
+            <div>
+                <h3 class="font-bold text-[#184D7A] mb-3">Выявленные боли</h3>
+                <div class="space-y-4">
+                    <div class="p-4 rounded-2xl" style="background:var(--red-soft);"><div class="font-semibold mb-1" style="color:var(--red);">⚠ Вентиляция корпусов LED</div><p class="text-sm">Сальники MG12 с вентиляцией — критическая позиция. Текущий поставщик IEK/Dekraft не даёт нужной конфигурации (в сборе, без заглушки, с клапаном).</p></div>
+                    <div class="p-4 rounded-2xl" style="background:var(--yellow-soft);"><div class="font-semibold mb-1" style="color:var(--yellow);">⚠ Ценовая конкуренция</div><p class="text-sm">Сравнивают турецкие vs. китайские вводы. Альтаир предупредил: «мы не сможем поддержать такую цену, как у китайских». Нужна TCO-аргументация.</p></div>
+                    <div class="p-4 rounded-2xl" style="background:var(--blue-soft);"><div class="font-semibold mb-1" style="color:var(--blue);">⚠ Расширение базы поставщиков</div><p class="text-sm">Суковатов сам переслал презентации Альтаир коллегам — ищут альтернативных поставщиков для снижения рисков и цен.</p></div>
+                    <div class="p-4 rounded-2xl" style="background:var(--accent-soft);"><div class="font-semibold mb-1" style="color:var(--accent);">⚠ Комплексная комплектация</div><p class="text-sm">Запрос сразу на 5+ категорий: блоки питания, коннекторы, сальники, светодиоды, платы. Нужен один поставщик «всё в одном окне».</p></div>
+                </div>
+            </div>
+            <div>
+                <h3 class="font-bold text-[#184D7A] mb-3">Точные цитаты из CRM</h3>
+                <div class="space-y-4">
+                    <div class="quote-block">«Прошу выслать ваш прайс-лист на следующую продукцию: Блоки питания MW, Inventronics; Кабельные коннекторы (самозажимные); Сальники MG12 с системой вентиляции и без нее»<div class="text-xs mt-2 text-[#73808C]">— Ивченко Алиса, 05.07.2025</div></div>
+                    <div class="quote-block">«И если вы поставляете светодиоды и (ещё лучше) изготавливаете платы под них, можем дополнительно обсудить наши "ТЗ" в этой части.»<div class="text-xs mt-2 text-[#73808C]">— Ивченко Алиса, 05.07.2025</div></div>
+                    <div class="quote-block">«Добрый день! Письмо получила, ознакомлюсь»<div class="text-xs mt-2 text-[#73808C]">— Ивченко Алиса, 08.08.2025 (после КП на разъёмы)</div></div>
+                    <div class="quote-block">«По кабельным вводам с вентиляцией пока в работе. На турецкие могу вам сделать КП, но мы не сможем поддержать такую цену, как у китайских производителей, будет значительно дороже.»<div class="text-xs mt-2 text-[#73808C]">— Васильев Максим → Алиса, 10.07.2025</div></div>
+                    <div class="quote-block">«Я так понимаю, что вы очень заняты, не могу с вами никак созвониться. Когда будет удобно пообщаться по нашему КП, удалось его посмотреть?»<div class="text-xs mt-2 text-[#73808C]">— Васильев Максим → Алиса, 13.08.2025</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №9 — СТРАТЕГИЯ СДЕЛКИ ═══════ -->
+    <section class="glass-dark p-8 animate-in" style="animation-delay:.55s">
+        <div class="block-title mb-6" style="color:var(--accent);">Стратегия сделки (Strategist)</div>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="font-bold mb-3" style="color:var(--accent-strong);">TCO-стратегия</h3>
+                <p class="text-[15px] mb-4" style="color:var(--text-on-dark-muted);">ВЕЛАР — серийный производитель, закупающий компоненты тысячами штук. Наша задача — стать единым поставщиком комплектации: кабельные вводы IP68 с вентиляцией (ORTAC), самозажимные коннекторы, блоки питания. Ключевой аргумент: склад в СПб + экономия 30–40% на сальниках vs. IEK, гарантия 2 года (Турция) vs. 1 год (Китай).</p>
+                <h3 class="font-bold mb-3 mt-6" style="color:var(--accent-strong);">Вектор расширения</h3>
+                <ul class="space-y-2 text-[15px]" style="color:var(--text-on-dark-muted);">
+                    <li>→ Кабельные коннекторы (самозажимные) — наша сильная позиция по разъёмам</li>
+                    <li>→ Блоки питания MW/Inventronics — основной расходник LED-производства</li>
+                    <li>→ Сальники MG12 с вентиляцией — закрыть боль «в сборе, без заглушки»</li>
+                    <li>→ Светодиоды + платы — выход на OEM-партнёрство (самый крупный чек)</li>
+                    <li>→ Выход на Щербака (инженерия) — утвердить нашу продукцию в конструкторской документации</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="font-bold mb-3" style="color:var(--accent-strong);">Скрипт звонка</h3>
+                <div class="space-y-4 text-[14px]">
+                    <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);"><div class="font-bold mb-1" style="color:var(--accent);">Открывашка</div><p style="color:var(--text-on-dark-muted);">«Алиса, добрый день, это [Имя] из Альтаир. Звоню по вашему запросу — вы просили прайс на блоки питания, коннекторы и сальники с вентиляцией. Мы подготовили полное КП по всем позициям. Удобно сейчас обсудить?»</p></div>
+                    <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);"><div class="font-bold mb-1" style="color:var(--accent);">Вопрос-крючок</div><p style="color:var(--text-on-dark-muted);">«Подскажите, какой у вас месячный объём потребления сальников MG12? Мы можем зафиксировать спеццену при объёме от 1000 шт/мес с доставкой из СПб за 3-5 дней.»</p></div>
+                    <div class="p-4 rounded-2xl" style="background:rgba(237,122,28,0.12);"><div class="font-bold mb-1" style="color:var(--accent);">КЭВ (Ключевой Этап Воронки)</div><p style="color:var(--text-on-dark-muted);">Отправить тестовую партию сальников MG12 с вентиляцией (10–20 шт) + самозажимные коннекторы бесплатно для тестирования на производстве. Доставка СДЭК за 2 дня.</p></div>
+                    <div class="p-4 rounded-2xl" style="background:rgba(42,157,92,0.15);"><div class="font-bold mb-1" style="color:var(--green);">Закрытие</div><p style="color:var(--text-on-dark-muted);">«Давайте начнём с тестовой партии — 100 сальников + 200 коннекторов. Я подготовлю счёт с фиксированной ценой. Если всё ок, перейдём к объёмному контракту на год.»</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №10 — NEXT BEST ACTION ═══════ -->
+    <section class="animate-in" style="animation-delay:.6s">
+        <div class="block-title mb-6 px-2">Next Best Action</div>
+        <div class="grid md:grid-cols-3 gap-4">
+            <div class="action-card">
+                <div class="text-3xl mb-3">📞</div>
+                <div class="font-bold text-[#184D7A] mb-2">Позвонить Ивченко Алисе</div>
+                <p class="text-sm text-[#44515D]">Вернуться к запросу от июля 2025. Уточнить статус рассмотрения КП на разъёмы. Предложить полный пакет: сальники + коннекторы + БП. Предложить образцы.</p>
+                <div class="badge badge-accent mt-3 text-[11px]">ПРИОРИТЕТ: ВЫСОКИЙ</div>
+            </div>
+            <div class="action-card">
+                <div class="text-3xl mb-3">📦</div>
+                <div class="font-bold text-[#184D7A] mb-2">Отправить образцы MG12 с вентиляцией</div>
+                <p class="text-sm text-[#44515D]">Собрать набор: 10 шт MG12 с клапаном + 10 шт без клапана (в сборе, без заглушки, как Dekraft). Это закроет их главную боль.</p>
+                <div class="badge badge-blue mt-3 text-[11px]">ПРИОРИТЕТ: ВЫСОКИЙ</div>
+            </div>
+            <div class="action-card">
+                <div class="text-3xl mb-3">🎯</div>
+                <div class="font-bold text-[#184D7A] mb-2">Выход на OEM-партнёрство</div>
+                <p class="text-sm text-[#44515D]">Предложить поставку светодиодов и изготовление плат (из запроса Алисы). Связаться с Щербаком (инженерия) для технического обсуждения ТЗ.</p>
+                <div class="badge badge-green mt-3 text-[11px]">СТРАТЕГИЧЕСКАЯ ЦЕЛЬ</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════ БЛОК №11 — АНАЛИТИЧЕСКИЙ ПАСПОРТ ═══════ -->
+    <section id="analytical-passport" class="glass animate-in" style="animation-delay:.65s">
+        <div onclick="toggleAccordion('passport')" class="px-8 py-5 flex items-center justify-between cursor-pointer border-b border-[rgba(129,149,168,0.28)] hover:bg-[#ED7A1C]/5">
+            <div class="block-title">Аналитический паспорт</div>
+            <span id="toggle-passport" class="text-[#ED7A1C] font-medium flex items-center gap-2">Скрыть <span class="text-xl leading-none">↑</span></span>
+        </div>
+        <div id="content-passport" class="accordion-content px-8 py-6">
+            <table class="w-full text-sm text-left">
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A] w-1/3">ID Компании</th><td class="py-3 px-4">47650</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Полное наименование</th><td class="py-3 px-4">Общество с ограниченной ответственностью «ВЕЛАР»</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">ИНН / КПП</th><td class="py-3 px-4">6168101803 / 616801001</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">ОГРН</th><td class="py-3 px-4">1186196006479</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Сфера</th><td class="py-3 px-4">Производство светодиодного освещения</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Выручка</th><td class="py-3 px-4">289 000 000 ₽</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Адрес</th><td class="py-3 px-4">344116, г. Ростов-на-Дону, пр. Стачки, 71</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Сайт</th><td class="py-3 px-4"><a href="https://velar-lt.ru" target="_blank" class="text-[#ED7A1C] underline">velar-lt.ru</a></td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Статус в CRM</th><td class="py-3 px-4"><span class="badge badge-accent">CUSTOMER (0 WON)</span></td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Суммарная opportunity</th><td class="py-3 px-4">309 951 ₽ (6 сделок, все LOSE)</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Ключевые позиции</th><td class="py-3 px-4">Сальники MG12/MG16 IP68, коннекторы, вводы с вентиляцией, БП MW/Inventronics</td></tr>
+                <tr class="border-b border-[rgba(129,149,168,0.28)]"><th class="py-3 px-4 font-semibold text-[#184D7A]">Ответственный менеджер</th><td class="py-3 px-4">Васильев Максим (sales5@altaircom.ru)</td></tr>
+                <tr><th class="py-3 px-4 font-semibold text-[#184D7A]">Последняя коммуникация</th><td class="py-3 px-4">23.04.2026</td></tr>
+            </table>
+        </div>
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="glass border-t border-[rgba(129,149,168,0.28)] py-8 mt-4">
+    <div class="max-w-[1320px] mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-[#73808C]">
+        <div>&copy; ALTAIR &bull; Altair AI-Sales Instructor</div>
+        <div class="flex gap-6">
+            <a href="#" onclick="window.print();return false;" class="hover:text-[#ED7A1C] transition-colors">&#128424; Скачать PDF</a>
+            <a href="https://altaircom.bitrix24.ru/crm/company/details/47650/" target="_blank" class="hover:text-[#ED7A1C] transition-colors">&nearr; Открыть в Bitrix24</a>
+        </div>
+        <div class="text-xs">Сгенерировано Altair AI-Sales Instructor &bull; v3.3 &bull; Deep Client Analysis</div>
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+    // Particle Background
+    const COUNT=2000;const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0xf4f6f8,0.011);
+    const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,2000);camera.position.z=160;
+    const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setSize(innerWidth,innerHeight);renderer.setClearColor(0x000000,0);
+    document.getElementById('particle-bg').appendChild(renderer.domElement);
+    const dummy=new THREE.Object3D();const color=new THREE.Color();const target=new THREE.Vector3();
+    const geo=new THREE.SphereGeometry(0.35,16,16);const mat=new THREE.MeshBasicMaterial({transparent:true,opacity:0.78,depthTest:false});
+    const mesh=new THREE.InstancedMesh(geo,mat,COUNT);scene.add(mesh);
+    const positions=[];for(let i=0;i<COUNT;i++){positions.push(new THREE.Vector3());mesh.setColorAt(i,color.setHSL(0.58,0.4,0.65));}
+    const mode=Math.floor(Math.random()*3);let time=0;
+    function animate(){requestAnimationFrame(animate);time+=0.003;
+        for(let i=0;i<COUNT;i++){const p=positions[i];
+            if(mode===0){const a=i*0.618*6.28,r=Math.sqrt(i/COUNT)*120;target.set(Math.cos(a+time*0.4)*r,Math.sin(a+time*0.4)*r,Math.sin(i*0.01+time)*30);}
+            else if(mode===1){const t2=i/COUNT*6.28*4+time;target.set(Math.cos(t2)*60+Math.cos(time+i*0.01)*20,i/COUNT*200-100,Math.sin(t2)*60+Math.sin(time+i*0.01)*20);}
+            else{const phi=Math.acos(1-2*(i+0.5)/COUNT),theta=Math.PI*(1+Math.sqrt(5))*i+time*0.3;const r2=70+Math.sin(time*2+i*0.01)*10;target.set(r2*Math.sin(phi)*Math.cos(theta),r2*Math.sin(phi)*Math.sin(theta),r2*Math.cos(phi));}
+            p.lerp(target,0.02);dummy.position.copy(p);dummy.updateMatrix();mesh.setMatrixAt(i,dummy.matrix);}
+        mesh.instanceMatrix.needsUpdate=true;renderer.render(scene,camera);}
+    animate();
+    window.addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);});
+
+    // Accordion
+    function toggleAccordion(id){
+        const c=document.getElementById('content-'+id);const t=document.getElementById('toggle-'+id);
+        c.classList.toggle('hidden');
+        t.innerHTML=c.classList.contains('hidden')?'Открыть подробнее <span class="text-xl leading-none">&darr;</span>':'Скрыть <span class="text-xl leading-none">&uarr;</span>';
+    }
+
+    // Date
+    document.getElementById('analysis-date').textContent=new Date().toLocaleDateString('ru-RU',{day:'2-digit',month:'2-digit',year:'numeric'});
+
+    // Animate on scroll
+    const obs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting)e.target.style.animationPlayState='running';});},{threshold:0.1});
+    document.querySelectorAll('.animate-in').forEach(el=>{el.style.animationPlayState='paused';obs.observe(el);});
+</script>
+</body>
+</html>
+'''
+
+os.makedirs(os.path.dirname(OUT), exist_ok=True)
+with open(OUT, 'w', encoding='utf-8') as f:
+    f.write(html)
+
+print(f"✅ HTML saved to: {OUT}")
+print(f"   File size: {os.path.getsize(OUT):,} bytes")
